@@ -31,7 +31,7 @@ body > div {
 }
 
 div > form {
-    margin: 0 0.25rem;
+    margin-right: 2.5rem;
 }
 
 .section-title {
@@ -60,7 +60,7 @@ div > form {
 }
 
 .sp-block > div {
-    text-align: center;
+    text-align: right;
 }
 
 .highlight {
