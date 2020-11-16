@@ -1,0 +1,81 @@
+@media(min-width: 420) {
+    html {
+        font-size: 2.5vh;
+    }
+}
+
+html {
+    font-size: 2.25vh;
+}
+
+body {
+    margin: 0;
+}
+
+.header-title {
+    font-size: 1rem;
+    margin-top: 0.45rem;
+    font-weight: bold;
+}
+
+.header {
+    border: 1px solid;
+    height: 2rem;
+    text-align: center;
+    background-color: #333333;
+    color: white;
+}
+
+body > div {
+    margin-bottom: 1rem;
+}
+
+div > form {
+    margin: 0 0.25rem;
+}
+
+.section-title {
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin: 0 0.5rem;
+}
+
+.section {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    border: solid 1px;
+}
+
+.level-input {
+    font-size: 1rem;
+    height: 1rem;
+    margin: 0.5rem 0.25rem;
+    width: 3rem;
+    border: 1px solid;
+}
+
+.sp-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.sp-block > div {
+    text-align: center;
+}
+
+.highlight {
+    background-color: #38ff81;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    border: 1px solid;
+    margin-bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+    font-style: italic;
+    color: white;
+    background-color: #333333;
+}
