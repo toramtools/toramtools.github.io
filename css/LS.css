@@ -79,3 +79,7 @@ div > form {
     color: white;
     background-color: #333333;
 }
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
