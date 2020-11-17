@@ -1,12 +1,4 @@
-@media(min-width: 420) {
-    html {
-        font-size: 2.5vh;
-    }
-}
-
-html {
-    font-size: 2.25vh;
-}
+/* Main end: 412x692 viewport */
 
 body {
     margin: 0;
@@ -31,7 +23,7 @@ body > div {
 }
 
 div > form {
-    margin-right: 2.5rem;
+    margin: 0 5vw;
 }
 
 .section-title {
@@ -44,9 +36,10 @@ div > form {
     margin-left: 0.25rem;
     margin-right: 0.25rem;
     border: solid 1px;
+    border-radius: 10px;
 }
 
-.level-input {
+.small-input {
     font-size: 1rem;
     height: 1rem;
     margin: 0.5rem 0.25rem;
@@ -54,30 +47,28 @@ div > form {
     border: 1px solid;
 }
 
-.sp-block {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.sp-block > div {
-    text-align: right;
-}
-
 .highlight {
     background-color: #38ff81;
 }
 
 #footer {
-    position: absolute;
-    bottom: 0;
-    border: 1px solid;
-    margin-bottom: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 0.75rem;
-    font-style: italic;
-    color: white;
-    background-color: #333333;
+    display: none;
+}
+
+@media (min-height: 580px) {
+    #footer {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        border: 1px solid;
+        margin-bottom: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 0.75rem;
+        font-style: italic;
+        color: white;
+        background-color: #333333;
+    }
 }
 
 input[type=number] {

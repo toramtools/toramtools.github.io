@@ -1,0 +1,12 @@
+.stat-skill-points {
+    font-size: max(16px, 2.5vh);
+}
+
+.sp-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.sp-block > div {
+    text-align: right;
+}

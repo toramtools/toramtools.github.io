@@ -1,0 +1,76 @@
+label {
+    font-size: 0.85rem;
+}
+
+.blacksmith {
+    font-size: 16px;
+}
+
+.stat-block {
+    display: grid;
+    grid-template-columns: 1fr 4fr 4fr 4fr 1fr;
+}
+
+.stat-block > div {
+    text-align: right;
+}
+
+.equip-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.equip-block > div {
+    text-align: right;
+    margin-right: 20%;
+}
+
+.skill-block {
+    text-align: right;
+}
+
+.skill-block > div {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    margin: 0% 20%;
+}
+
+.skill-block > div > input {
+    display: inline-block;
+}
+
+.skill-block > div > label {
+    text-align: left;
+    margin-top: 0.5rem;
+}
+
+#crafting-section input:not([disabled]) {
+    border: solid 1px blue;
+}
+
+.difficulty-block {
+    text-align: center;
+    margin-right: 1vw;
+}
+
+.potential-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 8%;
+}
+
+.crafting-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-right: 7vw;
+    text-align: right;
+}
+
+.crafting-type {
+    text-align: center;
+}
+
+.crafting-type > select {
+    margin: 0.5rem;
+    width: 30vw;
+}
