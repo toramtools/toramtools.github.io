@@ -1,53 +1,57 @@
 <!DOCTYPE html>
-<html class="stat-skill-points">
+<html>
     <head>
         <title>Stat & Skill Points Simulator</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
         <link rel="stylesheet" href="css/main.css"/>
-        <link rel="stylesheet" href="css/sp.css"/>
     </head>
 
     <body>
+    <form>
         <div class="header">
             <div class="header-title">Stat &amp; Skill Points Simulator</div>
         </div>
         
         <span class="section-title">Level</span>
         <div class="section">
-            <form>
-                <div class="sp-block">
-                    <div>
-                        <label for="level">Lv</label>
-                        <input class="small-input" id="level" type="number" min="1"/>
-                    </div>
-                    <div>
-                        <label for="lvcap">MaxLv</label>
-                        <input class="small-input" id="lvcap" type="number" min="1" value="215"/>
-                    </div>
+            <div class="grid-2">
+                <div></div>
+                <div>
+                    <label for="level">Lv</label>
+                    <input class="small-input" id="level" type="number" min="1"/>
                 </div>
-            </form>
+                <div>
+                    <label for="lvcap">MaxLv</label>
+                    <input class="small-input" id="lvcap" type="number" min="1" value="215"/>
+                </div>
+                <div></div>
+            </div>
         </div>
 
         <span class="section-title">Stat and Skill Points</span>
         <div class="section">
-            <form>
-                <div class="sp-block">
-                    <div>
-                        <label for="stat-points">Stat Points</label>
-                        <input class="small-input" id="stat-points" type="number" min="1"/>
-                    </div>
-                    <div>
-                        <label for="skill-points">Skill Points</label>
-                        <input class="small-input" id="skill-points" type="number" min="1"/>
-                    </div>
+            <div class="grid-1">
+                <div></div>
+                <div>
+                    <label for="stat-points">Stat Points</label>
+                    <input class="small-input" id="stat-points" type="number" min="1"/>
                 </div>
-            </form>
+                <div></div>
+
+                <div></div>
+                <div>
+                    <label for="skill-points">Skill Points</label>
+                    <input class="small-input" id="skill-points" type="number" min="1"/>
+                </div>
+                <div></div>
+            </div>
         </div>
 
         <span class="section-title">Emblems (Soon)</span>
         <div class="section"></div>
 
         <div id="footer">Developed by: Insane23</div>
+    </form>
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/sp.js"></script>

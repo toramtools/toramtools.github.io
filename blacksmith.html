@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html class="blacksmith">
+<html>
     <head>
         <title>Blacksmith Crafting Simulator</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
         <link rel="stylesheet" href="css/main.css"/>
         <link rel="stylesheet" href="css/blacksmith.css"/>
     </head>
     <body>
+    <form>
         <div class="header">
             <div class="header-title">Blacksmith Crafting Simulator</div>
         </div>
 
         <span class="section-title">Base Stats</span>
         <div class="section">
-            <div class="stat-block">
+            <div class="grid-3">
                 <div></div>
                 <div>
                     <label for="STR">STR</label>
@@ -28,8 +29,7 @@
                     <input class="small-input" id="VIT" type="number" min="1"/>
                 </div>
                 <div></div>
-            </div>
-            <div class="stat-block">
+
                 <div></div>
                 <div>
                     <label for="DEX">DEX</label>
@@ -48,23 +48,24 @@
         </div>
 
         <span class="section-title">Equipament Stats</span>
-        <div class="section equip-block">
-            <div>
+        <div class="section">
+            <div class="grid-4">
+                <div>
                     <label for="eSTR">STR</label>
                     <input class="small-input" id="eSTR" type="number" min="0"/>
-            </div>
-            <div>
-                <label for="eSTR%">STR%</label>
-                <input class="small-input" id="eSTRp" type="number" min="0"/>
-            </div>
-
-            <div>
-                    <label for="eDEX">DEX</label>
-                    <input class="small-input" id="eDEX" type="number" min="0"/>
-            </div>
-            <div>
-                <label for="eDEX%">DEX%</label>
-                <input class="small-input" id="eDEXp"max(16px, type="number" min="0"/>
+                </div>
+                <div>
+                    <label for="eSTR%">STR%</label>
+                    <input class="small-input" id="eSTRp" type="number" min="0"/>
+                </div>
+                <div>
+                        <label for="eDEX">DEX</label>
+                        <input class="small-input" id="eDEX" type="number" min="0"/>
+                </div>
+                <div>
+                    <label for="eDEX%">DEX%</label>
+                    <input class="small-input" id="eDEXp"max(16px, type="number" min="0"/>
+                </div>
             </div>
         </div>
 
@@ -86,31 +87,39 @@
         </div>
 
         <span class="section-title">Skill Level</span>
-        <div class="section skill-block">
-            <div>
+        <div class="section">
+            <div class="grid-3 skill-block">
+                <div></div>
                 <label for="create-equipment">Create Equipment</label>
-                <input class="small-input" id="create-equipment" type="number" min="1" value="10"/>
-            </div>
-            <div>
                 <label for="careful-creation">Careful Creation</label>
-                <input class="small-input" id="careful-creation" type="number" min="1" value="10"/>
-            </div>
-            <div>
                 <label for="expert-creation">Expert's Creation</label>
+                <div></div>
+
+                <div></div>
+                <input class="small-input" id="create-equipment" type="number" min="1" value="10"/>    
+                <input class="small-input" id="careful-creation" type="number" min="1" value="10"/>
                 <input class="small-input" id="expert-creation" type="number" min="1" value="10"/>
+                <div></div>
             </div>
         </div>
 
         <span class="section-title">Crafting Stats</span>
-        <div id="crafting-section" class="section">
-            <div class="difficulty-block">
-                <label for="equipment-difficulty">Difficulty</label>
-                <input class="small-input" id="your-difficulty" type="number" min="0" disabled/>
-                /
-                <input class="small-input" id="equipment-difficulty" type="number" min="0"/> 
+        <div class="section">
+            <div class="grid-2 nogap">
+                <div></div>
+                <div>
+                    <label for="equipment-difficulty">Difficulty</label>
+                    <input class="small-input" id="your-difficulty" type="number" min="0" disabled/>
+                </div>
+                <div>
+                    <span id="difficulty-divider">/</span>
+                    <input class="small-input" id="equipment-difficulty" type="number" min="0"/>
+                </div>
+                </div><div>
             </div>
 
-            <div class="crafting-block">
+            <div class="grid-2">
+                <div></div>
                 <div>
                     <label for="base-potential">Base Potential</label>
                     <input class="small-input" id="base-potential" type="number" min="0"/>
@@ -119,22 +128,23 @@
                     <label for="total-potential">Total Potential</label>
                     <input class="small-input" id="total-potential" type="number" min="0" disabled/>
                 </div>
-                
-            </div>
+                <div></div>
 
-            <div class="crafting-block">
+                <div></div>
                 <div>
                     <label for="proeficiency">Proeficiency</label>
-                    <input class="small-input" id="proeficiency" type="number" min="0"/>
+                    <input class="small-input" id="proeficiency" type="number" min="0"/> 
                 </div>
                 <div>
                     <label for="success-rate">Success Rate (%)</label>
                     <input class="small-input" id="success-rate" type="number" min="0" disabled/>
                 </div>
+                <div></div>
             </div>
         </div>
 
         <div id="footer">Developed by: Insane23</div>
+    </form>
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/blacksmith.js"></script>

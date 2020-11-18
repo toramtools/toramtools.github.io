@@ -52,24 +52,4 @@ function bothHandler () {
     potentialHandler();
 }
 
-$("#STR").on("input", bothHandler);
-$("#DEX").on("input", bothHandler);
-$("#TEC").on("input", bothHandler);
-$("#AGI").on("input", potentialHandler);
-$("#VIT").on("input", potentialHandler);
-$("#INT").on("input", potentialHandler);
-
-$("#eSTR").on("input", difficultyHandler);
-$("#eDEX").on("input", difficultyHandler);
-$("#eSTRp").on("input", difficultyHandler);
-$("#eDEXp").on("input", difficultyHandler);
-
-$("#craft-type").on("input", potentialHandler);
-
-$("#create-equipment").on("input", potentialHandler);
-$("#careful-creation").on("input", difficultyHandler);
-$("#expert-creation").on("input", difficultyHandler);
-
-$("#equipment-difficulty").on("input", difficultyHandler);
-$("#base-potential").on("input", potentialHandler);
-$("#proeficiency").on("input", difficultyHandler);
+$("body form").on("change", bothHandler);

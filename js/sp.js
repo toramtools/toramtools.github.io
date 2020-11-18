@@ -8,10 +8,6 @@ $("#level").attr("max", $("#lvcap").val());
 $("#stat-points").attr("max", statPoints(parseInt($("#lvcap").val())));
 $("#skill-points").attr("max", skillPoints(parseInt($("#lvcap").val())));
 
-$("#lvcap").on("input", function () {
-    $("#level").attr("max", $("#lvcap").val());
-});
-
 function levelHighlight () {
     $("#level").addClass("highlight");
     $("#stat-points").removeClass("highlight");
@@ -29,20 +25,6 @@ function clearHighlight () {
     $("#stat-points").removeClass("highlight");
     $("#skill-points").removeClass("highlight");
 }
-
-$("#level").on("input", function () {
-    if (this.value != "") {
-        let level = parseInt(this.value);
-        $("#stat-points").val(statPoints(level));
-        $("#skill-points").val(skillPoints(level));
-        spHighlight();
-    }
-    else {
-        $("#stat-points").val("");
-        $("#skill-points").val("");
-        clearHighlight();
-    }
-});
 
 function binSearch (value, evalFunction) {
     if (!isNaN(value)) {
@@ -69,12 +51,30 @@ function binSearch (value, evalFunction) {
     }
 }
 
-$("#stat-points").on("input", function () {
+$("#lvcap").on("change", function () {
+    $("#level").attr("max", $("#lvcap").val());
+});
+
+$("#level").on("change", function () {
+    if (this.value != "") {
+        let level = parseInt(this.value);
+        $("#stat-points").val(statPoints(level));
+        $("#skill-points").val(skillPoints(level));
+        spHighlight();
+    }
+    else {
+        $("#stat-points").val("");
+        $("#skill-points").val("");
+        clearHighlight();
+    }
+});
+
+$("#stat-points").on("change", function () {
     binSearch(parseInt(this.value), statPoints);
     levelHighlight();
 });
 
-$("#skill-points").on("input", function () {
+$("#skill-points").on("change", function () {
     binSearch(parseInt(this.value), skillPoints);
     levelHighlight();
 });
