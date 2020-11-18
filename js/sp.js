@@ -51,11 +51,11 @@ function binSearch (value, evalFunction) {
     }
 }
 
-$("#lvcap").on("change", function () {
+$("#lvcap").on("input", function () {
     $("#level").attr("max", $("#lvcap").val());
 });
 
-$("#level").on("change", function () {
+$("#level").on("input", function () {
     if (this.value != "") {
         let level = parseInt(this.value);
         $("#stat-points").val(statPoints(level));
@@ -69,12 +69,12 @@ $("#level").on("change", function () {
     }
 });
 
-$("#stat-points").on("change", function () {
+$("#stat-points").on("input", function () {
     binSearch(parseInt(this.value), statPoints);
     levelHighlight();
 });
 
-$("#skill-points").on("change", function () {
+$("#skill-points").on("input", function () {
     binSearch(parseInt(this.value), skillPoints);
     levelHighlight();
 });

@@ -52,4 +52,4 @@ function bothHandler () {
     potentialHandler();
 }
 
-$("body form").on("change", bothHandler);
+$("body form").on("input", bothHandler);
