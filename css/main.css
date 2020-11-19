@@ -70,7 +70,7 @@ div > form {
     display: grid;
     grid-template-columns: 1fr repeat(2, auto) 1fr;
     text-align: right;
-    grid-gap: 2vh 2vw;
+    grid-gap: 2vh 1rem;
     padding: 0.5rem 0;
 }
 
@@ -78,7 +78,7 @@ div > form {
     display: grid;
     grid-template-columns: 1fr repeat(3, auto) 1fr;
     text-align: right;
-    grid-gap: 2vh 2vw;
+    grid-gap: 2vh 1rem;
     padding: 0.5rem 0;
 }
 
@@ -102,6 +102,10 @@ div > form {
 
 .highlight {
     background-color: #38ff81;
+}
+
+.error {
+    background-color: #ff4141;
 }
 
 input[type=number] {

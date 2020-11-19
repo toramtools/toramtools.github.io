@@ -1,0 +1,17 @@
+.quest-block {
+    padding-top: 1rem;
+}
+
+#quest-name {
+    padding-right: 0.5rem;
+}
+
+#quest-exp {
+    width: 4rem;
+}
+
+#quest-info {
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 1rem;
+}

@@ -4,16 +4,70 @@
         <title>Experience Calculator</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
         <link rel="stylesheet" href="css/main.css"/>
+        <link rel="stylesheet" href="css/xp.css"/>
     </head>
 
     <body>
+    <form>
         <div class="header">
             <div class="header-title">Experience Calculator</div>
         </div>
 
-        <span class="section-title">Emblems (Soon)</span>
-        <div class="section"></div>
+        <span class="section-title">Level</span>
+        <div class="section">
+            <div class="grid-2">
+                <div></div>
+                <div>
+                    <label for="level">Lv</label>
+                    <input type="number" class="small-input" id="level" min="1" value="1"/>
+                </div>
+                <div>
+                    <label for="level-percentage">%</label>
+                    <input type="number" class="small-input" id="level-percentage" min="1" max="100" value="0"/>
+                </div>
+                <div></div>
+
+                <div></div>
+                <div>
+                    <label for="target-level">TargetLv</label>
+                    <input type="number" class="small-input" id="target-level" min="1" value="215"/>
+                </div>
+                <div>
+                    <label for="lvcap">MaxLv</label>
+                    <input type="number" class="small-input" id="lvcap" min="1" value="215"/>
+                </div>
+                <div></div>
+            </div>
+        </div>
+
+        <span class="section-title">Quest</span>
+        <div class="section">
+            <div class="grid-1 quest-block">
+                <div></div>
+                <div>
+                    <label for="quest-name">Quest</label>
+                    <select id="quest-name"></select>   
+                </div>
+                <div></div>
+
+                <div></div>
+                <div>
+                    <label for="quest-name">Exp</label>
+                    <input type="number" class="large-input" id="quest-exp" min="0"/>   
+                </div>
+                <div></div>
+            </div>
+
+            <div id="quest-info">
+                Repeat this quest <span id="target-times"></span> times to reach target level.
+            </div>
+        </div>
 
         <div id="footer">Developed by: Insane23</div>
+    </form>
     </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/xp_data.js"></script>
+    <script src="js/xp_script.js"></script>
 </html>

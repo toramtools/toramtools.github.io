@@ -53,3 +53,4 @@ function bothHandler () {
 }
 
 $("body form").on("input", bothHandler);
+$("body form").trigger("input");
