@@ -1,13 +1,4 @@
-const floor = Math.floor;
-const max = Math.max;
-const min = Math.min;
-
-function parseInput (selector, std = 1) {
-    let field = $(selector).val();
-    return field != ""?parseInt(field):std;
-}
-
-function difficultyHandler () {
+const difficultyHandler = function () {
     let TEC = parseInput("#TEC");
     let DEX = floor(parseInput("#DEX")*parseInput("#eDEXp")+parseInput("#eDEX"));
     let STR = floor(parseInput("#STR")*parseInput("#eSTRp")+parseInput("#eSTR"));
@@ -19,35 +10,44 @@ function difficultyHandler () {
     $("#success-rate").val(min(100, max(0, createEquipment+difficulty-itemDifficulty+floor(STR/10))));
 }
 
-function potentialHandler () {
+const potentialHandler = function () {
     let potential = parseInput("#base-potential", 0);
     potential = floor(potential*(1+parseInput("#careful-creation", 0)*0.01+parseInput("#expert-creation", 0)*0.02));
     let craft = $("#craft-type").val();
     if (craft == "Armor") {
         potential += floor(parseInput("#VIT")/10);
-    } else if (craft == "1H Sword") {
+    } 
+    else if (craft == "1H Sword") {
         potential += floor((parseInput("#DEX")+parseInput("#STR"))/20);
-    } else if (craft == "2H Sword") {
+    } 
+    else if (craft == "2H Sword") {
         potential += floor(parseInput("#STR")/10);
-    } else if (craft == "Bow") {
+    } 
+    else if (craft == "Bow") {
         potential += floor((parseInput("#DEX")+parseInput("#STR"))/20);
-    } else if (craft == "Bowgun") {
+    } 
+    else if (craft == "Bowgun") {
         potential += floor(parseInput("#DEX")/10);
-    } else if (craft == "Staff") {
+    } 
+    else if (craft == "Staff") {
         potential += floor(parseInput("#INT")/10);
-    } else if (craft == "Magic Device") {
+    } 
+    else if (craft == "Magic Device") {
         potential += floor((parseInput("#INT")+parseInput("#AGI"))/20);
-    } else if (craft == "Knuckle") {
+    } 
+    else if (craft == "Knuckle") {
         potential += floor(parseInput("#AGI")/10);
-    } else if (craft == "Halberd") {
+    } 
+    else if (craft == "Halberd") {
         potential += floor((parseInput("#STR")+parseInput("#AGI"))/20);
-    } else if (craft == "Katana") {
+    } 
+    else if (craft == "Katana") {
         potential += floor((parseInput("#DEX")+parseInput("#AGI"))/20);
     }
     $("#total-potential").val(potential);
 }
 
-function bothHandler () {
+const bothHandler = function () {
     difficultyHandler();
     potentialHandler();
 }

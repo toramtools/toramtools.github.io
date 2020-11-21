@@ -8,7 +8,7 @@ label {
 
 .crafting-type > select {
     margin: 0.5rem;
-    width: 30vw;
+    padding-right: 0.5rem;
 }
 
 .skill-block {

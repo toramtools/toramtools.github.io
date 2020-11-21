@@ -2,7 +2,7 @@
 <html class="blacksmith">
     <head>
         <title>Experience Calculator</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="css/main.css"/>
         <link rel="stylesheet" href="css/xp.css"/>
     </head>
@@ -13,49 +13,41 @@
             <div class="header-title">Experience Calculator</div>
         </div>
 
-        <span class="section-title">Level</span>
+        <h2 class="section-title">Level</h2>
         <div class="section">
-            <div class="grid-2">
-                <div></div>
-                <div>
+            <div class="grid grid-2">
+                <div class="col-1">
                     <label for="level">Lv</label>
                     <input type="number" class="small-input" id="level" min="1" value="1"/>
                 </div>
-                <div>
+                <div class="col-2">
                     <label for="level-percentage">%</label>
                     <input type="number" class="small-input" id="level-percentage" min="1" max="100" value="0"/>
                 </div>
-                <div></div>
 
-                <div></div>
-                <div>
+                <div class="col-1">
                     <label for="target-level">TargetLv</label>
                     <input type="number" class="small-input" id="target-level" min="1" value="215"/>
                 </div>
-                <div>
+                <div class="col-2">
                     <label for="lvcap">MaxLv</label>
                     <input type="number" class="small-input" id="lvcap" min="1" value="215"/>
                 </div>
-                <div></div>
             </div>
         </div>
 
-        <span class="section-title">Quest</span>
+        <h2 class="section-title">Quest</h2>
         <div class="section">
-            <div class="grid-1 quest-block">
-                <div></div>
-                <div>
+            <div class="grid grid-1 quest-block">
+                <div class="col-1">
                     <label for="quest-name">Quest</label>
                     <select id="quest-name"></select>   
                 </div>
-                <div></div>
 
-                <div></div>
-                <div>
+                <div class="col-1">
                     <label for="quest-name">Exp</label>
                     <input type="number" class="large-input" id="quest-exp" min="0"/>   
                 </div>
-                <div></div>
             </div>
 
             <div id="quest-info">
@@ -68,6 +60,7 @@
     </body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/xp_data.js"></script>
     <script src="js/xp_script.js"></script>
 </html>
