@@ -56,7 +56,7 @@ var lastState = 'none';
 const levelChange = function () {
     if (this.value != "") {
         let level = parseInt(this.value);
-        let highestLv = max(level, parseInput('#highest-level', 0));
+        let highestLv = max(level, parseInput('#highest-level'));
         let statp = statPoints(level)+maxLvPoints(highestLv)+rankStatPoints();
         $("#stat-points").val(statp);
         $("#skill-points").val(skillPoints(level)+parseInput("#extra-skill-points", 0));
@@ -77,10 +77,8 @@ const levelChange = function () {
 const statChange = function () {
     let statValue = $("#stat-points").val();
     if (statValue != "") {
-        let highestSP = maxLvPoints(parseInput("#highest-level", 0));
-        binSearch(parseInt(this.value), (level) => statPoints(level)
-        +max(highestSP, maxLvPoints(level))
-        +rankStatPoints());
+        let highestSP = maxLvPoints(parseInput("#highest-level"));
+        binSearch(parseInt(this.value), (level) => statPoints(level)+max(highestSP, maxLvPoints(level))+rankStatPoints());
         $("#stat-points").removeClass("highlight");
         $("#level").addClass("highlight");
         $("#skill-points").addClass("highlight");
@@ -113,7 +111,7 @@ const skillChange = function () {
     }
 }
 
-const extraPoints = function () {
+const extraSkillPoints = function () {
     let totalPoints = 0;
     totalPoints += parseInt($("#attacker-rank").val());
     totalPoints += parseInt($("#defender-rank").val());
@@ -125,6 +123,15 @@ const extraPoints = function () {
     totalPoints += parseInt($("#mastered-skills").val());
     totalPoints += parseInt($("#mastered-trees").val());
     totalPoints += parseInt($("#consecutive-time").val());
+    return totalPoints;
+}
+
+const extraStatPoints = function () {
+    let totalPoints = 0;
+    let highestSP = maxLvPoints(parseInput("#highest-level"));
+    let levelSP = maxLvPoints(parseInput("#level"));
+    totalPoints += max(highestSP, levelSP);
+    totalPoints += rankStatPoints();
     return totalPoints;
 }
 
@@ -140,17 +147,20 @@ $("#show-skill-emblems").on("click", function () {
     if (!emblemsDisplay) {
         emblemsDisplay = true;
         this.innerHTML = "Hide All"
+        $("#extra-stp").show();
         $("#extra-sp").show();
     }
     else {
         emblemsDisplay = false;
         this.innerHTML = "Show All"
+        $("#extra-stp").hide();
         $("#extra-sp").hide();
     }
 });
 
 $("#extra-sp").on("input", function () {
-    $("#extra-skill-points").val(extraPoints());
+    $("#extra-skill-points").val(extraSkillPoints());
+    $("#extra-stat-points").val(extraStatPoints());
     if (lastState == 'level') {
         $("#level").trigger("input");
     }

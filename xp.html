@@ -43,15 +43,26 @@
                     <label for="quest-name">Quest</label>
                     <select id="quest-name"></select>   
                 </div>
+            </div>
 
+            <div class="grid grid-2">
                 <div class="col-1">
                     <label for="quest-name">Exp</label>
-                    <input type="number" class="large-input" id="quest-exp" min="0"/>   
+                    <input type="number" id="quest-exp" min="0"/>
+                </div>
+                <div class="col-2">
+                    <label for="quest-times">N° of Times</label>
+                    <input type="number" id="quest-times" min="0"/>
                 </div>
             </div>
 
             <div id="quest-info">
-                Repeat this quest <span id="target-times"></span> times to reach target level.
+                <p>
+                    Repeat this quest <strong><span id="target-times"></span> times</strong> to reach target level.
+                </p>
+                <p>
+                    <strong><span id="times-value"></span> times</strong> = <strong>Level <span id="times-level"></span></strong> 
+                </p>
             </div>
         </div>
 

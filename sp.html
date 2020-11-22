@@ -40,11 +40,18 @@
         <h2 class="section-title">Emblems</h2>
         <div class="section emblems-section">
             <div>
-                <div class="grid grid-1">
+                <div class="grid grid-2">
                     <div class="col-1">
-                        <label for="extra-skill-points">Extra Points</label>
+                        <label for="extra-skill-points">Skill Points</label>
                         <input id="extra-skill-points" class="small-input" type="number" min="0"/>
+                    </div>
+                    <div class="col-2">
                         <button type="button" id="show-skill-emblems">Show All</button>
+                    </div>
+
+                    <div class="col-1 hidden" id="extra-stp">
+                        <label for="extra-stat-points">Stat Points</label>
+                        <input id="extra-stat-points" class="small-input" type="number" min="0" disabled/>
                     </div>
                 </div>
 
@@ -54,18 +61,6 @@
                         <div class="col-1">
                             <label for="highest-level">Highest Lv</label>
                             <input class="small-input" type="number" id="highest-level" min="1"/>
-                        </div>
-                    </div>
-
-                    <h2 class="subsection-title">Learning Skills</h2>
-                    <div class="grid grid-2">
-                        <div class="col-1">
-                            <label for="mastered-skills">Mastered Skills</label>
-                            <select id="mastered-skills"></select>
-                        </div>
-                        <div class="col-2">
-                            <label for="mastered-trees">Mastered Trees</label>
-                            <select id="mastered-trees"></select>
                         </div>
                     </div>
 
@@ -87,6 +82,18 @@
                         <div class="col-2">
                             <label for="highest-level">Breaker</label>
                             <select id="breaker-rank"></select>
+                        </div>
+                    </div>
+                
+                    <h2 class="subsection-title">Learning Skills</h2>
+                    <div class="grid grid-2">
+                        <div class="col-1">
+                            <label for="mastered-skills">Mastered Skills</label>
+                            <select id="mastered-skills"></select>
+                        </div>
+                        <div class="col-2">
+                            <label for="mastered-trees">Mastered Trees</label>
+                            <select id="mastered-trees"></select>
                         </div>
                     </div>
 

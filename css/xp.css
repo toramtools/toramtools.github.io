@@ -6,7 +6,7 @@
     padding-right: 0.5rem;
 }
 
-#quest-exp {
+#quest-exp, #quest-times {
     width: 4rem;
 }
 
@@ -14,4 +14,13 @@
     text-align: center;
     margin: 0 auto;
     padding-bottom: 1rem;
+}
+
+#quest-info > p {
+    margin: 0;
+    margin-bottom: 0.25rem;
+}
+
+#quest-info > p:last-child {
+    margin-bottom: 0;
 }
