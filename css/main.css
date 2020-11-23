@@ -175,3 +175,27 @@ input[type=number] {
     margin: 0;
     text-align: center;
 }
+
+.question-mark {
+    height: 0.75rem;
+    display: inline-block;
+    margin-left: 3px;
+    content: url(https://cdn1.iconfinder.com/data/icons/material-set-6/48/543-512.png);
+}
+
+.text-center {
+    text-align: center;
+}
+
+a:-webkit-any-link {
+    color: blue;
+}
+
+.index-ul > li:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+.index-ul {
+    padding-inline-end: 40px;
+    text-align: justify;
+}

@@ -10,17 +10,17 @@
     width: 4rem;
 }
 
-#quest-info {
+.quest-info {
     text-align: center;
     margin: 0 auto;
     padding-bottom: 1rem;
 }
 
-#quest-info > p {
+.quest-info > p {
     margin: 0;
     margin-bottom: 0.25rem;
 }
 
-#quest-info > p:last-child {
+.quest-info > p:last-child {
     margin-bottom: 0;
 }

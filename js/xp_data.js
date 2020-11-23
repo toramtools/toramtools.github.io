@@ -1,10 +1,11 @@
 const quest_data = {
-    "Custom Quest Reward": "",
+    "Custom Experience Value": "",
     "Pride of the Rich (Nightmare Crystal)": 300000,
     "Rabbit in the Dark Realm?! (Lapin's Soul)": 400000,
     "Risky Gamble (Parasited Crystal)": 400000,
     "Free from Infesters! (C. Fighter/Knight)": 150000,
-    "Ravagne (Metal Stinger)": 32400
+    "Ravagne (Metal Stinger)": 32400,
+    "Proof of Courage (Minotaur Skin)": 10100
 };
 
 const mq_data = {

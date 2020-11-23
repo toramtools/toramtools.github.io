@@ -12,6 +12,10 @@ $(document).ready(function() {
     $("#consecutive-time").html(fillOptions(range(0, 8), ['0min', '15min', '30min', '1h', '2h', '3h', '4h', '5h', '6h']));
 });
 
+$("#emblem-popup").on("click", function () {
+    alert('Subsections indicate which tabs you may find mentioned emblems.\n\nHighest Lv = Highest "Player Level" emblem you got.');
+});
+
 // const statPoints = (level) => 2*level+5*(floor((level-level%10)/10)+floor((level%10)/5));
 const statPoints = (level) => level*2;
 const maxLvPoints = (level) => level>=5?5*(floor((level-5)/10)+1):0;

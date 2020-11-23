@@ -1,3 +1,7 @@
+$("#crafting-popup").on("click", function() {
+    alert("Type equipment difficulty, not yours.");
+});
+
 const difficultyHandler = function () {
     let TEC = parseInput("#TEC");
     let DEX = floor(parseInput("#DEX")*parseInput("#eDEXp")+parseInput("#eDEX"));

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3L72RY7DFJ"></script>
+        <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3L72RY7DFJ');</script>
         <title>Blacksmith Crafting Simulator</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/main.css"/>
         <link rel="stylesheet" href="css/blacksmith.css"/>
     </head>
@@ -97,16 +99,21 @@
                 </div>
             </div>
 
-            <h2 class="section-title">Crafting Stats</h2>
+            <h2 class="section-title v-align">
+                <div>
+                    <span>Crafting Stats</span>
+                    <img class="question-mark" id="crafting-popup">
+                </div>
+            </h2>
             <div class="section">
                 <div class="grid grid-2 nogap">
                     <div class="col-1">
                         <label for="equipment-difficulty">Difficulty</label>
-                        <input class="small-input" id="your-difficulty" type="number" min="0" disabled/>
+                        <input class="small-input" id="equipment-difficulty" type="number" min="0"/>
                     </div>
                     <div class="col-2">
                         <span id="difficulty-divider">/</span>
-                        <input class="small-input" id="equipment-difficulty" type="number" min="0"/>
+                        <input class="small-input" id="your-difficulty" type="number" min="0" disabled/>
                     </div>
                 </div>
 

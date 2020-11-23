@@ -1,73 +1,95 @@
 <!DOCTYPE html>
 <html class="blacksmith">
     <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3L72RY7DFJ"></script>
+        <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3L72RY7DFJ');</script>
         <title>Experience Calculator</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="css/main.css"/>
         <link rel="stylesheet" href="css/xp.css"/>
     </head>
 
     <body>
-    <form>
-        <div class="header">
-            <div class="header-title">Experience Calculator</div>
-        </div>
-
-        <h2 class="section-title">Level</h2>
-        <div class="section">
-            <div class="grid grid-2">
-                <div class="col-1">
-                    <label for="level">Lv</label>
-                    <input type="number" class="small-input" id="level" min="1" value="1"/>
-                </div>
-                <div class="col-2">
-                    <label for="level-percentage">%</label>
-                    <input type="number" class="small-input" id="level-percentage" min="1" max="100" value="0"/>
-                </div>
-
-                <div class="col-1">
-                    <label for="target-level">TargetLv</label>
-                    <input type="number" class="small-input" id="target-level" min="1" value="215"/>
-                </div>
-                <div class="col-2">
-                    <label for="lvcap">MaxLv</label>
-                    <input type="number" class="small-input" id="lvcap" min="1" value="215"/>
-                </div>
+        <form>
+            <div class="header">
+                <div class="header-title">Experience Calculator</div>
             </div>
-        </div>
 
-        <h2 class="section-title">Quest</h2>
-        <div class="section">
-            <div class="grid grid-1 quest-block">
-                <div class="col-1">
-                    <label for="quest-name">Quest</label>
-                    <select id="quest-name"></select>   
+            <h2 class="section-title">Level</h2>
+            <div class="section">
+                <div class="grid grid-3">
+                    <div class="col-1">
+                        <label for="level">Lv</label>
+                        <input type="number" class="small-input" id="level" min="1" value="1"/>
+                    </div>
+                    <div class="col-2">
+                        <label for="level-percentage">%</label>
+                        <input type="number" class="small-input" id="level-percentage" min="0" max="99" value="0"/>
+                    </div>
+                    <div class="col-3">
+                        <label for="target-level">TargetLv</label>
+                        <input type="number" class="small-input" id="target-level" min="1" value="215"/>
+                    </div>
                 </div>
             </div>
 
-            <div class="grid grid-2">
-                <div class="col-1">
-                    <label for="quest-name">Exp</label>
-                    <input type="number" id="quest-exp" min="0"/>
+            <h2 class="section-title v-align">
+                <div>
+                    <span>Quest</span>
+                    <img id="quest-popup" class="question-mark"/>
                 </div>
-                <div class="col-2">
-                    <label for="quest-times">N° of Times</label>
-                    <input type="number" id="quest-times" min="0"/>
+            </h2>
+            <div class="section">
+                <div class="grid grid-1 quest-block">
+                    <div class="col-1">
+                        <label for="quest-name">Quest</label>
+                        <select id="quest-name"></select>   
+                    </div>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="col-1">
+                        <label for="quest-name">Exp</label>
+                        <input type="number" id="quest-exp" min="0"/>
+                    </div>
+                    <div class="col-2">
+                        <label for="quest-times">N° of Times</label>
+                        <input type="number" id="quest-times" min="0"/>
+                    </div>
+                </div>
+
+                <div class="quest-info">
+                    <p>
+                        Repeat this quest <strong><span id="target-times"></span> times</strong> to reach target level.
+                    </p>
+                    <p>
+                        By doing this quest for <strong><span id="times-value"></span> times</strong>, you'll reach <strong>Level <span id="times-level"></span></strong> 
+                    </p>
                 </div>
             </div>
 
-            <div id="quest-info">
-                <p>
-                    Repeat this quest <strong><span id="target-times"></span> times</strong> to reach target level.
-                </p>
-                <p>
-                    <strong><span id="times-value"></span> times</strong> = <strong>Level <span id="times-level"></span></strong> 
-                </p>
-            </div>
-        </div>
+            <h2 class="section-title">Main Quest</h2>
+            <div class="section">
+                <div class="grid grid-1 nogap">
+                    <div class="col-1 grid grid-1 nogap">
+                        <label class="col-1 text-center" for="mq-from">From</label>
+                        <select class="col-1" id="mq-from"></select>
+                    </div>
 
-        <div id="footer">Developed by: Insane23</div>
-    </form>
+                    <div class="col-1 grid grid-1 nogap">
+                        <label class="col-1 text-center" for="mq-until">Until</label>
+                        <select class="col-1" id="mq-until"></select>
+                    </div>
+
+                    <div class="col-1 quest-info">
+                        <p id="mq-eval"></p>
+                        <p id="mq-stop"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="footer">Developed by: Insane23</div>
+        </form>
     </body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
