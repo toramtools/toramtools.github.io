@@ -1,3 +1,5 @@
+"use strict"
+
 const splitMqInfo = function () {
     let mqKeys = [];
     let mqValues = [];

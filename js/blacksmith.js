@@ -1,3 +1,5 @@
+"use strict"
+
 $("#crafting-popup").on("click", function() {
     alert("Type equipment difficulty, not yours.");
 });

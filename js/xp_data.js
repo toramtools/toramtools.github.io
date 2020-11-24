@@ -1,3 +1,5 @@
+"use strict"
+
 const quest_data = {
     "Custom Experience Value": "",
     "Pride of the Rich (Nightmare Crystal)": 300000,

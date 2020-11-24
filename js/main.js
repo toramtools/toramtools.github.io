@@ -33,6 +33,13 @@ const parseInputf = function (selector, std = 1) {
     return field != ""?parseFloat(field):std;
 }
 
+const showSection = function (itemId, sectionSelector, title) {
+    $('#'+sectionSelector).show();
+    $('#'+itemId).show();
+    $(`${'#'+sectionSelector} .closeable-body :not(div[id="${itemId}"])`).each(function () {$(this).hide()});
+    $("#description-section h2 span:first-child").text(title);
+}
+
 const max = Math.max;
 const min = Math.min;
 const floor = Math.floor;
