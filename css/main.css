@@ -242,3 +242,10 @@ a:-webkit-any-link {
 .hidden {
     display: none;
 }
+
+@media (min-width: 500px) {
+    .container {
+        width: 480px;
+        margin: 0 auto;
+    }
+}
