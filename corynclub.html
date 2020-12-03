@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="corynclub">
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-141HZ4L42J"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-141HZ4L42J');
+        </script>
+        <title>Toram Tools</title>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="css/main.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+        <script src="js/corynclub.js"></script>
+    </head>
+
+    <body ng-controller="StatListController as st">
+        <div class="header">
+            <a href="index.html"><div class="header-title">Toram Tools</div></a>
+        </div>
+
+        <ul class="index-ul">
+            <li><a href="http://coryn.club/item.php?&show=50&order=id%20DESC,name">[Coryn.Club] Sort by latest items</a></li>
+        </ul>
+
+        <form ng-cloak class="{{bodyClass}} container" ng-submit="st.fix()" method="POST" action="http://coryn.club/itemsearch_handler.php">
+            <input type="hidden" name="iprocess" value="-1"/>
+
+            <h2 class="section-title">Advanced Search [Redirects to Coryn.Club]</h2>
+            <div class="section">
+                <div class="grid grid-2">
+                    <div class="col-1 v-align">
+                        <div style="margin: 1.5px 0;">
+                            <label>Item Types</label>
+                            <select class="multiple-1" ng-model="st.itemList" name="itype[]" multiple>
+                                <option ng-repeat="item in st.itemOptions" value={{item[1]}}>{{item[0]}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-2 v-align">
+                        <div>
+                            <button type="button" ng-click="st.addStat()">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <datalist id="statChoices">
+                        <option ng-repeat="statEntry in st.statEntries" value={{statEntry[0]}}></option>
+                    </datalist>
+                    <div class="col-1" ng-repeat="statItem in st.statList">
+                        <input ng-class="st.statBgColor(statItem.stat)" list="statChoices" type="text" ng-model="statItem.stat"/>
+                        <input type="hidden" name="effect[{{st.entries[statItem.stat]}}]" value="{{statItem.amount}}"/>
+                        <select ng-model="statItem.op">
+                            <option ng-repeat="op in st.operators" value="{{op}}">{{op}}</option>
+                        </select>
+                        <input type="hidden" name="op[{{st.entries[statItem.stat]}}]" value="{{statItem.op}}"/>
+                        <input class="small-input medium-input" type="number" ng-model="statItem.amount"/>
+                        <button type="button" ng-click="st.removeStat($index)">-</button>
+                    </div>
+                </div>
+                <div class="grid">
+                    <button class="col-1" type="submit">Search</button>
+                </div>
+            </div>
+        </form> 
+
+        <div id="footer">Developed by: Insane23</div>
+    </body>
+    <script src="js/main.js"></script>
+</html>

@@ -15,6 +15,10 @@ select {
     padding-right: 0.5rem;
 }
 
+a:-webkit-any-link {
+    color: blue;
+}
+
 .header-title {
     font-size: 1rem;
     font-weight: bold;
@@ -26,6 +30,11 @@ select {
     border: 1px solid;
     text-align: center;
     background-color: #333333;
+    color: white;
+}
+
+.header a {
+    text-decoration: none;
     color: white;
 }
 
@@ -51,11 +60,21 @@ select {
     border-radius: 10px;
 }
 
+.section::before {
+    content: "";
+    display: block;
+    margin-top: 0.5rem;
+}
+
 .small-input {
     font-size: 1rem;
     height: 1rem;
     width: 3rem;
     border: 1px solid;
+}
+
+.medium-input {
+    width: 4rem;
 }
 
 .grid {
@@ -129,8 +148,16 @@ select {
     background-color: #ff4141;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
 input[type=number] {
-    -moz-appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 #footer {
@@ -157,10 +184,11 @@ input[type=number] {
     display: flex;
     align-items: center;
     align-content: center;
+    height: 100%;
 }
 
-.v-align input[type="number"] {
-    margin-left: 0.25rem;
+.v-align input[type="number"], .v-align select {
+    margin-left: 0.5rem;
 }
 
 .subsection-title {
@@ -178,10 +206,6 @@ input[type=number] {
 
 .text-center {
     text-align: center;
-}
-
-a:-webkit-any-link {
-    color: blue;
 }
 
 .index-ul > li:not(:last-child) {
@@ -247,5 +271,15 @@ a:-webkit-any-link {
     .container {
         width: 480px;
         margin: 0 auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .multiple-1 {
+        height: calc(1rem + 2px);
+    }
+
+    .multiple-5 {
+        height: calc(5rem + 2px);
     }
 }

@@ -14,6 +14,9 @@ $("#help-xp").on("click", function (){
 $("#help-bs").on("click", function (){
     showSection('bs', "description-section", this.dataset.title);
 });
+$("#help-cc").on("click", function (){
+    showSection('cc', "description-section", this.dataset.title);
+});
 $("#close-description").on("click", function () {
     $("#description-section").hide();
 });

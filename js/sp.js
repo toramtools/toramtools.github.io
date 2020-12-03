@@ -1,6 +1,7 @@
 "use strict"
 
 $(document).ready(function() {
+    $("#lvcap").val(LV_CAP);
     $("#attacker-rank").html(fillOptions([0, 1, 1.5, 2, 3, 4], [0, 10, 100, 1000, 10000, 100000]));
     $("#defender-rank").html(fillOptions([0, 1, 1.5, 2, 3, 4], [0, 10, 100, 1000, 10000, 100000]));
     $("#supporter-rank").html(fillOptions([0, 1, 1.5, 2, 3, 4], [0, 10, 100, 1000, 10000, 100000]));
@@ -31,7 +32,7 @@ const rankStatPoints = function () {
 }
 
 const binSearch = function (value, evalFunction) {
-    let begin = 1;
+    let begin = 0;
     let end = parseInt($("#lvcap").val());
     while (begin+1 < end) {
         let mid = floor((begin+end)/2);

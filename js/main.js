@@ -1,5 +1,7 @@
 "use strict"
 
+const LV_CAP = 220;
+
 const range = function (begin, end, step=1) {
     let list = [];
     for (var i = begin; i <= end; i=i+step) {
@@ -36,7 +38,8 @@ const parseInputf = function (selector, std = 1) {
 const showSection = function (itemId, sectionSelector, title) {
     $('#'+sectionSelector).show();
     $('#'+itemId).show();
-    $(`${'#'+sectionSelector} .closeable-body :not(div[id="${itemId}"])`).each(function () {$(this).hide()});
+    //$(`${'#'+sectionSelector} .closeable-body :not(div[id="${itemId}"])`).each(function () {$(this).hide()});
+    $(`${'#'+sectionSelector} .closeable-body div`).not(`#${itemId}`).hide();
     $("#description-section h2 span:first-child").text(title);
 }
 
