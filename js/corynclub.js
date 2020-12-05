@@ -9,6 +9,7 @@ $(document).ready(function () {
     $("select[name='itype[]']").on("focusout", function () {
         $(this).removeClass("multiple-5");
         $(this).addClass("multiple-1");
+        $(this).scrollTop(0);
     });
 });
 
