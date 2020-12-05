@@ -132,7 +132,7 @@ $(document).ready(function () {
 });
 
 $("#quest-popup").on("click", function () {
-    alert("Use custom experience to set unlisted quest or monster experience.");
+    alert('Use custom experience to set unlisted quest or monster experience.\n\nHint: Type "1" on "Exp" field to discover total raw XP required to reach target Lv.');
 });
 
 
