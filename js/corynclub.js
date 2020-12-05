@@ -202,7 +202,14 @@ angular.module('corynclub', []).controller("StatListController", function () {
     st.type = 0;
 
     st.entries = EFF_NAME;
-    st.types = ITEM_TYPES;
+    st.types = function() {
+        let dict = {};
+        for (const key of Object.keys(ITEM_TYPES)) {
+            dict[ITEM_TYPES[key]] = key;
+        }
+        console.log(dict);
+        return dict;
+    }();
 
     st.itemOptions = Object.entries(ITEM_TYPES);
     st.operators = ['>=', '=', '<=', '>', '<'];

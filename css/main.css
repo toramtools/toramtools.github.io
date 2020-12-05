@@ -283,3 +283,11 @@ input[type=number] {
         height: calc(5rem + 2px);
     }
 }
+
+.single-line {
+    height: calc(1rem + 2px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0 1rem;
+}

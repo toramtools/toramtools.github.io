@@ -49,6 +49,8 @@
                     </div>
                 </div>
 
+                <div class="single-line" style="text-align: center; font-weight: bold;" ng-hide="!st.itemList.length">Selected item<span ng-hide="st.itemList.length <= 1">s</span>: <span style="font-weight: normal" ng-repeat="item in st.itemList">{{st.types[item]+(($index+1 == st.itemList.length)?"":", ")}}</span></div>
+
                 <div class="grid">
                     <datalist id="statChoices">
                         <option ng-repeat="statEntry in st.statEntries" value={{statEntry[0]}}></option>
