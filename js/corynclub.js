@@ -173,16 +173,15 @@ const ITEM_TYPES = {
     'Staff': '19',
     'Additional Crysta': '23',
     'Armor Crysta': '22',
+    'Normal Crysta': '20',
+    'Special Crysta': '24',
+    'Weapon Crysta': '21',
     'Enhancer Crysta (Blue)': '200',
     'Enhancer Crysta (Green)': '220',
     'Enhancer Crysta (Purple)': '240',
     'Enhancer Crysta (Red)': '210',
     'Enhancer Crysta (Yellow)': '230',
-    'Normal Crysta': '20',
-    'Special Crysta': '24',
-    'Weapon Crysta': '21',
     'Gem': '12',
-    'Material': '14',
     'Usable': '1'
 };
 
