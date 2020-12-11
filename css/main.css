@@ -160,6 +160,15 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+input[type=checkbox] {
+    vertical-align: text-top;
+}
+
+.label-checkbox {
+    font-size: calc(1rem + 1px);
+}
+
+
 #footer {
     display: none;
 }

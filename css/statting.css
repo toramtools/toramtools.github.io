@@ -1,0 +1,65 @@
+body, html {
+    overflow-x: hidden;
+}
+
+.mb-05:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+.mb-05:last-child {
+    margin-bottom: 0;
+}
+
+.pb-1:not(:last-child) {
+    padding: 0;
+    padding-bottom: 1rem;
+}
+
+.pb-1:last-child {
+    padding: 0;
+}
+
+.mv-2vh {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.mh-1 {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+@media (min-width: 768px) {
+    .r-grid {
+        width: auto !important;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1rem;
+    }
+
+    .r-grid .stats {
+        min-width: 360px;
+        width: 100%;
+        margin: 0 auto;
+        grid-column: 2;
+        grid-row: 1 / span 2;
+    }
+
+    .r-grid .configuration {
+        min-width: 360px;
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .r-grid .steps {
+        min-width: 360px;
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .r-grid .only-configuration {
+        min-width: 360px;
+        grid-column: 1 / span 2;
+        margin: 0 auto;
+    }
+}

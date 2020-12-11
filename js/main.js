@@ -47,3 +47,6 @@ const max = Math.max;
 const min = Math.min;
 const floor = Math.floor;
 const ceil = Math.ceil;
+const abs = Math.abs;
+const sign = Math.sign;
+const trunc = Math.trunc;

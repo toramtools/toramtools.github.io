@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html ng-app="StattingSim">
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-141HZ4L42J"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-141HZ4L42J');
+        </script>
+        <title>Toram Tools</title>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="keywords" content="Toram Online, Toram Tools, Game Tools, Simulator, Statting, Calculator, Skill Points, Stat Points, Crafting, Blacksmith, Experience, Main Quest"/>
+        <meta name="description" content="Some varied tools related to Toram Online. Statting, Quest Experience, Stat and Skill Points, Crafting."/>
+        <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+        <link rel="stylesheet" href="css/main.css"/>
+        <link rel="stylesheet" href="css/statting.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/statting.js"></script>
+    </head>
+
+    <body ng-controller="StattingSimController as SS">
+        <div class="header">
+            <a href="index.html"><div class="header-title">Statting Simulator</div></a>
+        </div>
+
+        <form ng-cloak class="{{bodyClass}} r-grid">
+            <div ng-class="{'configuration': SS.configDisabled, 'only-configuration': !SS.configDisabled}">
+                <h2 class="section-title" ng-click="SS.showthisbs()">Configuration</h2>
+                <div class="section">
+                    <div class="grid grid-2">
+                        <div class="col-1">
+                            <label for="potential">Potential</label>
+                            <input ng-model="SS.startingPot" class="small-input" type="number" id="potential" ng-disabled="SS.configDisabled"/>
+                        </div>
+                        <div class="col-2">
+                            <label for="level">Lv</label>
+                            <input ng-model="SS.lvcap" class="small-input" type="number" id="level" ng-disabled="SS.configDisabled"/>
+                        </div>
+                        
+                        <div class="col-1">
+                            <label for="statting-type">Type</label>
+                            <select id="statting-type" ng-model="SS.itemNature" ng-disabled="SS.configDisabled">
+                                <option value="W">Weapon</option>
+                                <option value="A">Armor</option>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <label for="recipe">Recipe</label>
+                            <input ng-model="SS.recipePot" class="small-input" type="number" id="recipe" value="1" ng-disabled="SS.configDisabled"/>
+                        </div>
+                        
+                        <div style="grid-column: 2 / span 2; text-align: center">
+                            <label class="label-checkbox">Matching Element? <input ng-model="SS.matchingElement" type="checkbox" ng-disabled="SS.configDisabled"/></label>
+                        </div>
+
+                        <div style="grid-column: 2 / span 2; text-align: center">
+                            <button type="button" ng-click="SS.setPot()" ng-disabled="SS.configDisabled">Start</button>
+                            <button type="button" ng-click="SS.resetPot()">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-hide="!SS.configDisabled" class="steps">
+                <h2 class="section-title" ng-click="SS.showthisbs()">Formula</h2>
+                <div class="section">
+                    <div class="mh-1 mt-1 mv-2vh">
+                        <div>Recipe Potential: {{SS.recipePot}}</div>
+                        <div>Starting Potential: {{SS.startingPot}}</div>
+                        <div ng-repeat="line in SS.getFormattedSteps()">
+                            <strong># Step {{$index+1}}</strong>: {{line}}
+                        </div>
+                        <div>Success Rate = {{SS.successRate}}%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-hide="!SS.configDisabled" class="stats">
+                <h2 class="section-title" ng-click="SS.showthisbs()">Stats ({{SS.curPot}}/{{SS.prevPot}}) [={{SS.successRate}}%]</h2>
+                <div class="section">
+                    <div class="grid grid-1">
+                        <div class="col-1">
+                            <button type="button" ng-click="SS.addStep()">Confirm</button>
+                            <button type="button" ng-click="SS.repeatStep()">Repeat</button>
+                            <button type="button" ng-click="SS.undoStep()">Undo</button>
+                        </div>
+                    </div>
+    
+                    <div class="grid grid-1 nogap">
+                        <div class="col-1 grid grid-1 nogap pb-1" ng-repeat="stat in SS.statList">
+                            <div class="col-1 mb-05">
+                                <select ng-model="stat.id" ng-change="SS.clearStatChoice($index)" ng-disabled="SS.statDisabled($index)">
+                                    <option ng-repeat="name in SS.statNames track by $index" value={{$index}}>{{name}}</option>
+                                </select>
+                                <button type="button" ng-click="SS.setZero($index)">0</button>
+                            </div>
+                            <div class="col-1" style="text-align: center">
+                                <button type="button" ng-click="SS.subMax($index)">&lt;&lt;</button>
+                                <button type="button" ng-click="SS.subOne($index)">&lt;</button>
+                                <input ng-model="stat.shownAmount" class="small-input" type="number" disabled/>
+                                <button type="button" ng-click="SS.addOne($index)">&gt;</button>
+                                <button type="button" ng-click="SS.addMax($index)">&gt;&gt;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div id="footer" ng-hide="SS.configDisabled">Developed by: Insane23</div>
+    </body>
+</html>
