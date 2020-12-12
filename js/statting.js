@@ -102,6 +102,9 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
     var SS = this;
 
     SS.lvcap = LV_CAP;
+    SS.recipePot = 15;
+    SS.itemNature = "A";
+    SS.startingPot = 41;
     
     SS.getPenalty = function () {
         let groups = {};
@@ -174,11 +177,8 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
 
         SS.finished = false;
         SS.successRate = 100;
-        SS.startingPot = 41;
         SS.curPot = 0;
         SS.prevPot = 0;
-        SS.recipePot = 15;
-        SS.itemNature = "A";
         SS.stepList = [];
         SS.statList = [];
         for (let i = 0; i < MAX_FIELDS; i++) {
@@ -201,7 +201,6 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
 
     SS.setZero = function (i) {
         SS.statList[i].amount = 0;
-        //SS.statList[i].shownAmount = 0;
         SS.statList[i].delta = 0;
         SS.evaluatePotential();
     }
@@ -225,13 +224,11 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
             const nextValue = SS.statList[i].amount+overCapInc;
             if (SS.lvcap >= 200+floor(((abs(nextValue)-statCap)/overCapInc)*lvUnitInc)) {
                 SS.statList[i].amount = nextValue;
-                //SS.statList[i].shownAmount += overCapInc*shownPost200;
                 SS.evaluatePotential();
             }
         }
         else {
             SS.statList[i].amount = min(SS.statList[i].amount+1, statCap);
-            //SS.statList[i].shownAmount = SS.statList[i].amount*shownPre200;
             SS.evaluatePotential();
         }
     }
@@ -245,7 +242,6 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
 
         let maxAmount = statCap+max(0, overCapInc*floor((SS.lvcap-200)/lvUnitInc));
         SS.statList[i].amount = maxAmount;
-        //SS.statList[i].shownAmount = statCap*shownPre200+(maxAmount-statCap)*shownPost200;
         SS.evaluatePotential();
     }
 
@@ -274,13 +270,11 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
             let nextValue = SS.statList[i].amount-overCapInc;
             if (SS.lvcap >= 200+floor(((abs(nextValue)-statCap)/overCapInc)*lvUnitInc)) {
                 SS.statList[i].amount = nextValue;
-                //SS.statList[i].shownAmount -= overCapInc*shownPost200;
                 SS.evaluatePotential();
             }
         }
         else {
             SS.statList[i].amount = min(SS.statList[i].amount-1, statCap);
-            //SS.statList[i].shownAmount = SS.statList[i].amount*shownPre200;
             SS.evaluatePotential();
         }
     }
@@ -296,7 +290,6 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
 
         if (SS.statList[i].amount >= 0 && canBeNegative == 0) {
             SS.statList[i].amount = 0;
-            //SS.statList[i].shownAmount = 0;
             SS.statList[i].delta = 0;
             SS.evaluatePotential();
             return;
@@ -306,7 +299,6 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
         let minAmount = (lowestNegative != 0)?lowestNegative:-maxAmount;
 
         SS.statList[i].amount = minAmount;
-        //SS.statList[i].shownAmount = -statCap*shownPre200+(minAmount+statCap)*shownPost200;
         SS.evaluatePotential();
     }
 
@@ -327,8 +319,8 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
     }
 
     SS.clearStatChoice = function (index) {
+        console.log("stop");
         SS.statList[index].amount = 0;
-        //SS.statList[index].shownAmount = 0;
         SS.statList[index].delta = 0;
 
         SS.evaluatePotential();
@@ -486,7 +478,6 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
         SS.disabledStats = 0;
         for (let i = 0; i < MAX_FIELDS; i++) {
             SS.statList[i].amount = lastStep.stats[i].amount;
-            //SS.statList[i].shownAmount = lastStep.stats[i].shownAmount;
             SS.statList[i].delta = 0;
 
             if (SS.statList[i].id != 0) {

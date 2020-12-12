@@ -13,7 +13,7 @@ const difficultyHandler = function () {
     let difficulty = proeficiency+floor(TEC/2)+floor(DEX/6);
     let itemDifficulty = parseInput("#equipment-difficulty", 0);
     $("#your-difficulty").val(difficulty);
-    $("#success-rate").val(min(100, max(0, createEquipment+difficulty-itemDifficulty+floor(STR/10))));
+    $("#success-rate").val(min(100, max(0, floor((50+5*createEquipment)/100*(10+difficulty-itemDifficulty+floor(STR/10))))));
 }
 
 const potentialHandler = function () {

@@ -70,12 +70,11 @@
                 <h2 class="section-title" ng-click="SS.showthisbs()">Formula</h2>
                 <div class="section">
                     <div class="mh-1 mt-1 mv-2vh">
-                        <div>Recipe Potential: {{SS.recipePot}}</div>
-                        <div>Starting Potential: {{SS.startingPot}}</div>
-                        <div ng-repeat="line in SS.getFormattedSteps()">
-                            <strong># Step {{$index+1}}</strong>: {{line}}
-                        </div>
-                        <div>Success Rate = {{SS.successRate}}%</div>
+                        <div><strong>Recipe Potential</strong>: {{SS.recipePot}}</div>
+                        <div><strong>Starting Potential</strong>: {{SS.startingPot}}</div>
+                        <div><strong>Item Type:</strong>{{(SS.itemNature == "A")?"Armor":"Weapon"}}</div><br/>
+                        <div ng-repeat="line in SS.getFormattedSteps()"><strong># Step {{$index+1}}</strong>: {{line}}</div></br>
+                        <div><strong>Success Rate</strong> = {{SS.successRate}}%</div>
                     </div>
                 </div>
             </div>
