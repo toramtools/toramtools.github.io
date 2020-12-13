@@ -207,7 +207,7 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
 
     // Insane debugging skills
     SS.showthisbs = function () {
-        console.log(SS.statList);
+        console.log(SS.stepList);
     }
 
     SS.addOne = function (i) {
@@ -466,25 +466,39 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
     }
 
     SS.undoStep = function () {
-        if (!SS.stepList.length) {
-            return;
-        }
-
         if (SS.finished) {
             SS.finished = false;
         }
 
-        let lastStep = SS.stepList.pop();
-        SS.disabledStats = 0;
-        for (let i = 0; i < MAX_FIELDS; i++) {
-            SS.statList[i].amount = lastStep.stats[i].amount;
-            SS.statList[i].delta = 0;
-
-            if (SS.statList[i].id != 0) {
-                SS.disabledStats += 2**i;
-            }
+        if (SS.stepList.length == 0) {
+            return;
         }
-        SS.prevPot = SS.curPot = lastStep.pot;
+        else if (SS.stepList.length == 1) {
+            SS.stepList.pop();
+            SS.disabledStats = 0;
+            for (let i = 0; i < MAX_FIELDS; i++) {
+                SS.statList[i].id = 0;
+                SS.statList[i].amount = 0;
+                SS.statList[i].delta = 0
+            }
+            SS.prevPot = SS.curPot = SS.startingPot;
+        }
+        else {
+            SS.stepList.pop();
+            console.log(SS.stepList);
+            let lastStep = SS.stepList[SS.stepList.length-1];
+            SS.disabledStats = 0;
+            for (let i = 0; i < MAX_FIELDS; i++) {
+                SS.statList[i].id = lastStep.stats[i].id;
+                SS.statList[i].amount = lastStep.stats[i].amount;
+                SS.statList[i].delta = 0;
+
+                if (SS.statList[i].id != 0) {
+                    SS.disabledStats += 2**i;
+                }
+            }
+            SS.prevPot = SS.curPot = lastStep.pot;
+        }
         SS.evaluatePotential();
     }
 
