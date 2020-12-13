@@ -207,7 +207,6 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
 
     // Insane debugging skills
     SS.showthisbs = function () {
-        console.log(SS.stepList);
     }
 
     SS.addOne = function (i) {
@@ -319,7 +318,6 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
     }
 
     SS.clearStatChoice = function (index) {
-        console.log("stop");
         SS.statList[index].amount = 0;
         SS.statList[index].delta = 0;
 
@@ -485,7 +483,6 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
         }
         else {
             SS.stepList.pop();
-            console.log(SS.stepList);
             let lastStep = SS.stepList[SS.stepList.length-1];
             SS.disabledStats = 0;
             for (let i = 0; i < MAX_FIELDS; i++) {
