@@ -13,6 +13,7 @@
         <title>Toram Tools</title>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="css/main.css"/>
+        <link rel="stylesheet" href="css/chrome.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
         <script src="js/corynclub.js"></script>
@@ -36,7 +37,7 @@
                     <div class="col-1 v-align">
                         <div style="margin: 1.5px 0;">
                             <label>Item Types</label>
-                            <select class="multiple-1" ng-model="st.itemList" name="itype[]" multiple>
+                            <select class="chrome-select" ng-model="st.itemList" name="itype[]" multiple>
                                 <option ng-repeat="item in st.itemOptions" value={{item[1]}}>{{item[0]}}</option>
                             </select>
                         </div>
@@ -44,7 +45,7 @@
                     
                     <div class="col-2 v-align">
                         <div>
-                            <button type="button" ng-click="st.addStat()">+</button>
+                            <button class="chrome-button" type="button" ng-click="st.addStat()">+</button>
                         </div>
                     </div>
                 </div>
@@ -58,16 +59,16 @@
                     <div class="col-1" ng-repeat="statItem in st.statList">
                         <input ng-class="st.statBgColor(statItem.stat)" list="statChoices" type="text" ng-model="statItem.stat"/>
                         <input type="hidden" name="effect[{{st.entries[statItem.stat]}}]" value="{{statItem.amount}}"/>
-                        <select ng-model="statItem.op">
+                        <select class="chrome-select" ng-model="statItem.op">
                             <option ng-repeat="op in st.operators" value="{{op}}">{{op}}</option>
                         </select>
                         <input type="hidden" name="op[{{st.entries[statItem.stat]}}]" value="{{statItem.op}}"/>
-                        <input class="small-input medium-input" type="number" ng-model="statItem.amount"/>
-                        <button type="button" ng-click="st.removeStat($index)">-</button>
+                        <input class="small-input medium-input" type="number" ng-model="statItem.amount" value="0"/>
+                        <button class="chrome-button" type="button" ng-click="st.removeStat($index)">-</button>
                     </div>
                 </div>
                 <div class="grid">
-                    <button class="col-1" type="submit">Search</button>
+                    <button class="chrome-button col-1" type="submit">Search</button>
                 </div>
             </div>
         </form> 

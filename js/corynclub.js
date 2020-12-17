@@ -185,18 +185,6 @@ const ITEM_TYPES = {
     'Usable': '1'
 };
 
-$(document).ready(function () {
-    $("select[name='itype[]']").on("focus", function () {
-        $(this).removeClass("multiple-1");
-        $(this).addClass("multiple-5");
-    });
-    $("select[name='itype[]']").on("focusout", function () {
-        $(this).removeClass("multiple-5");
-        $(this).addClass("multiple-1");
-        $(this).scrollTop(0);
-    });
-});
-
 angular.module('corynclub', []).controller("StatListController", function () {
     var st = this;
     st.type = 0;
@@ -219,7 +207,7 @@ angular.module('corynclub', []).controller("StatListController", function () {
     st.statList = [];
 
     st.addStat = function () {
-        st.statList.push({'stat': '', 'op': '>=', 'amount': ''});
+        st.statList.push({'stat': '', 'op': '>=', 'amount': '0'});
         console.log(st.itemList);
     }
 

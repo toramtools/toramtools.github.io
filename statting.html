@@ -16,6 +16,7 @@
         <meta name="description" content="Some varied tools related to Toram Online. Statting, Quest Experience, Stat and Skill Points, Crafting."/>
         <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
         <link rel="stylesheet" href="css/main.css"/>
+        <link rel="stylesheet" href="css/chrome.css"/>
         <link rel="stylesheet" href="css/statting.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
@@ -44,7 +45,7 @@
                         
                         <div class="col-1">
                             <label for="statting-type">Type</label>
-                            <select id="statting-type" ng-model="SS.itemNature" ng-disabled="SS.configDisabled">
+                            <select class="chrome-select" id="statting-type" ng-model="SS.itemNature" ng-disabled="SS.configDisabled">
                                 <option value="W">Weapon</option>
                                 <option value="A">Armor</option>
                             </select>
@@ -59,8 +60,8 @@
                         </div>
 
                         <div style="grid-column: 2 / span 2; text-align: center">
-                            <button type="button" ng-click="SS.setPot()" ng-disabled="SS.configDisabled">Start</button>
-                            <button type="button" ng-click="SS.resetPot()">Reset</button>
+                            <button class="chrome-button" type="button" ng-click="SS.setPot()" ng-disabled="SS.configDisabled">Start</button>
+                            <button class="chrome-button" type="button" ng-click="SS.resetPot()">Reset</button>
                         </div>
                     </div>
                 </div>
@@ -84,26 +85,26 @@
                 <div class="section">
                     <div class="grid grid-1">
                         <div class="col-1">
-                            <button type="button" ng-click="SS.addStep()">Confirm</button>
-                            <button type="button" ng-click="SS.repeatStep()">Repeat</button>
-                            <button type="button" ng-click="SS.undoStep()">Undo</button>
+                            <button class="chrome-button" type="button" ng-click="SS.addStep()">Confirm</button>
+                            <button class="chrome-button" type="button" ng-click="SS.repeatStep()">Repeat</button>
+                            <button class="chrome-button" type="button" ng-click="SS.undoStep()">Undo</button>
                         </div>
                     </div>
     
                     <div class="grid grid-1 nogap">
                         <div class="col-1 grid grid-1 nogap pb-1" ng-repeat="stat in SS.statList">
                             <div class="col-1 mb-05">
-                                <select ng-model="stat.id" ng-change="SS.clearStatChoice($index)" ng-disabled="SS.statDisabled($index)">
+                                <select class="chrome-select" ng-model="stat.id" ng-change="SS.clearStatChoice($index)" ng-disabled="SS.statDisabled($index)">
                                     <option ng-repeat="name in SS.statNames track by $index" value={{$index}}>{{name}}</option>
                                 </select>
-                                <button type="button" ng-click="SS.setZero($index)">0</button>
+                                <button class="chrome-button" type="button" ng-click="SS.setZero($index)">0</button>
                             </div>
                             <div class="col-1" style="text-align: center">
-                                <button type="button" ng-click="SS.subMax($index)">&lt;&lt;</button>
-                                <button type="button" ng-click="SS.subOne($index)">&lt;</button>
+                                <button class="chrome-button" type="button" ng-click="SS.subMax($index)">&lt;&lt;</button>
+                                <button class="chrome-button" type="button" ng-click="SS.subOne($index)">&lt;</button>
                                 <input ng-model="stat.shownAmount" class="small-input" type="number" disabled/>
-                                <button type="button" ng-click="SS.addOne($index)">&gt;</button>
-                                <button type="button" ng-click="SS.addMax($index)">&gt;&gt;</button>
+                                <button class="chrome-button" type="button" ng-click="SS.addOne($index)">&gt;</button>
+                                <button class="chrome-button" type="button" ng-click="SS.addMax($index)">&gt;&gt;</button>
                             </div>
                         </div>
                     </div>
