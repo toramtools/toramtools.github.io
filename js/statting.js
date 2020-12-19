@@ -3,7 +3,7 @@
 const MAX_FIELDS = 8;
 
 const DB = [
-    ['', 0, 0, 0.0, 0, 0, 0, '0', '0', 0, 0, 1, 0], 
+    ['', 0, 0, 0.0, 0, 0, 0, 'Choose a stat', '0', 0, 0, 1, 0], 
     ['STR', 1, 5, 25.0, 20, 1, 1, 'Enhance Stats', 'U', 1, 1, 10, 0], 
     ['STR %', 1, 10, 50.0, 10, 1, 0, 'Enhance Stats', 'U', 1, 0, 1, 0], 
     ['INT', 2, 5, 25.0, 20, 1, 1, 'Enhance Stats', 'U', 1, 1, 10, 0], 
@@ -97,20 +97,51 @@ Floating points in Javascript = Code full of bugs
 Turn into integer, do operations and turn into float later to avoid bugs.
 */
 
+let ZEROES = [];
+for (let i = 0; i < MAX_FIELDS; i++) {
+    ZEROES.push("0");
+}
+
+/*
+const NO_PENALTY = {
+    "Enhance Stats": 0,
+    "Enhance HP/MP": 0,
+    "Enhance Attack": 0,
+    "Enhance Defense": 0,
+    "Enhance Accuracy": 0,
+    "Enhance Dodge": 0,
+    ​"Enhance Speed": 0,
+    "Enhance Critical": 0,
+    ​"Enhance Elements": 0,
+    "Special Enhancement": 0,
+    ​"Awaken Elements": 0
+}
+*/
 
 angular.module("StattingSim", []).controller("StattingSimController", function ($scope) {
     var SS = this;
+    SS.DB = DB;
+
+    SS.ARMOR_CHOICES = DB.slice(0, DB.length-6).map((entry) => entry[0]);
+    SS.WEAPON_CHOICES = DB.map((entry) => entry[0]);
 
     SS.lvcap = LV_CAP;
     SS.recipePot = 15;
     SS.itemNature = "A";
     SS.startingPot = 41;
-    
+
+    // Insane debugging skills
+    SS.showthisbs = function () {
+        console.log(SS.shownSteps);
+    }
+
+    SS.trackShownSteps = (index, step) => step.amount;
+
     SS.getPenalty = function () {
         let groups = {};
         for (let i = 0; i < MAX_FIELDS; i++) {
             const group = DB[SS.statList[i].id][7];
-            if (group == '0') {
+            if (group == 'Choose a stat') {
                 continue;
             }
             
@@ -169,34 +200,51 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
         return trunc(delta/1000);
     }
 
-    SS.resetPot = function () {
-        SS.configDisabled = false;
-        SS.disabledStats = 0;
-        SS.matchingElement = false;
-        SS.statNames = [];
-
-        SS.finished = false;
-        SS.successRate = 100;
-        SS.curPot = 0;
-        SS.prevPot = 0;
-        SS.stepList = [];
-        SS.statList = [];
+    SS.evaluatePotential = function () {
+        SS.curPot = SS.prevPot;
+        let delta = 0;
         for (let i = 0; i < MAX_FIELDS; i++) {
-            SS.statList.push({id: "0", amount: 0, shownAmount: 0, delta: 0});
-        }
-    }
+            if (SS.stepList.length != 0 && SS.stepList[SS.stepList.length-1].id == 0) {
+                continue;
+            }
+            
+            const refValue = (SS.stepList.length != 0)?SS.stepList[SS.stepList.length-1].stats[i].amount:0;
+            SS.statList[i].delta = SS.deltaPotential(i, refValue, SS.statList[i].amount);
+            delta += SS.statList[i].delta;
 
-    SS.resetPot();
+            const shownPost200 = DB[SS.statList[i].id][6];
+            const shownPre200 = DB[SS.statList[i].id][5];
+            const statCap = DB[SS.statList[i].id][4];
+
+            if (SS.statList[i].amount >= 0) {
+                SS.statList[i].shownAmount = min(SS.statList[i].amount, statCap)*shownPre200+max(0, SS.statList[i].amount-statCap)*shownPost200;
+            }
+            else {
+                SS.statList[i].shownAmount = max(SS.statList[i].amount, -statCap)*shownPre200+min(0, SS.statList[i].amount+statCap)*shownPost200;
+            }
+        }
+        SS.curPot = SS.curPot+trunc(delta*SS.getPenalty());
+    }
 
     SS.setPot = function () {
         SS.curPot = SS.startingPot;
         SS.prevPot = SS.curPot;
         SS.configDisabled = true;
-        
-        const maxIndex = (SS.itemNature == "A")?DB.length-6:DB.length;
-        for (let i = 0; i < maxIndex; i++) {
-            SS.statNames.push(DB[i][0]);
+        SS.statNames = (SS.itemNature == "A")?SS.ARMOR_CHOICES:SS.WEAPON_CHOICES;
+        SS.disabledStats = 0;
+        SS.finished = false;
+        SS.successRate = 100;
+
+        SS.stepList = [];
+        SS.statList = [];
+        SS.shownSteps = [];
+        for (let i = 0; i < MAX_FIELDS; i++) {
+            SS.statList.push({id: "0", amount: 0, shownAmount: 0, delta: 0});
         }
+    }
+
+    SS.resetPot = function () {
+        SS.configDisabled = false;
     }
 
     SS.setZero = function (i) {
@@ -205,16 +253,10 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
         SS.evaluatePotential();
     }
 
-    // Insane debugging skills
-    SS.showthisbs = function () {
-    }
-
     SS.addOne = function (i) {
         const statCap = DB[SS.statList[i].id][4];
         const overCapInc = DB[SS.statList[i].id][10];
         const lvUnitInc = DB[SS.statList[i].id][11];
-        const shownPost200 = DB[SS.statList[i].id][6];
-        const shownPre200 = DB[SS.statList[i].id][5];
 
         if (SS.statList[i].amount == statCap && overCapInc == 0)
             return;
@@ -236,8 +278,6 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
         const statCap = DB[SS.statList[i].id][4];
         const overCapInc = DB[SS.statList[i].id][10];
         const lvUnitInc = DB[SS.statList[i].id][11];
-        const shownPost200 = DB[SS.statList[i].id][6];
-        const shownPre200 = DB[SS.statList[i].id][5];
 
         let maxAmount = statCap+max(0, overCapInc*floor((SS.lvcap-200)/lvUnitInc));
         SS.statList[i].amount = maxAmount;
@@ -248,8 +288,6 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
         const statCap = DB[SS.statList[i].id][4];
         const overCapInc = DB[SS.statList[i].id][10];
         const lvUnitInc = DB[SS.statList[i].id][11];
-        const shownPost200 = DB[SS.statList[i].id][6];
-        const shownPre200 = DB[SS.statList[i].id][5];
         const canBeNegative = DB[SS.statList[i].id][9];
         const lowestNegative = DB[SS.statList[i].id][12];
 
@@ -282,8 +320,6 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
         const statCap = DB[SS.statList[i].id][4];
         const overCapInc = DB[SS.statList[i].id][10];
         const lvUnitInc = DB[SS.statList[i].id][11];
-        const shownPost200 = DB[SS.statList[i].id][6];
-        const shownPre200 = DB[SS.statList[i].id][5];
         const canBeNegative = DB[SS.statList[i].id][9];
         const lowestNegative = DB[SS.statList[i].id][12];
 
@@ -369,76 +405,52 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
             if (SS.prevPot <= 0) {
                 SS.finished = true;
             }
+
+            SS.addShownStep();
         };
     }
 
-    SS.evaluatePotential = function () {
-        SS.curPot = SS.prevPot;
-        let delta = 0;
-        for (let i = 0; i < MAX_FIELDS; i++) {
-            if (SS.stepList.length != 0 && SS.stepList[SS.stepList.length-1].id == 0) {
-                continue;
-            }
-            
-            const refValue = (SS.stepList.length != 0)?SS.stepList[SS.stepList.length-1].stats[i].amount:0;
-            SS.statList[i].delta = SS.deltaPotential(i, refValue, SS.statList[i].amount);
-            delta += SS.statList[i].delta;
-
-            const shownPost200 = DB[SS.statList[i].id][6];
-            const shownPre200 = DB[SS.statList[i].id][5];
-            const statCap = DB[SS.statList[i].id][4];
-
-            if (SS.statList[i].amount >= 0) {
-                SS.statList[i].shownAmount = min(SS.statList[i].amount, statCap)*shownPre200+max(0, SS.statList[i].amount-statCap)*shownPost200;
-            }
-            else {
-                SS.statList[i].shownAmount = max(SS.statList[i].amount, -statCap)*shownPre200+min(0, SS.statList[i].amount+statCap)*shownPost200;
-            }
-        }
-        SS.curPot = SS.curPot+trunc(delta*SS.getPenalty());
-    }
-
-    SS.getFormattedSteps = function () {
+    SS.addShownStep = function () {
         if (SS.stepList.length == 0) {
             return;
         }
-
-        let steps = [{delta: SS.stepList[0].stats, pot: SS.stepList[0].pot, repeat: 1}];
-
-        for (let i = 1; i < SS.stepList.length; i++) {
-            let step = [];
+        else if (SS.stepList.length == 1) {
+            SS.shownSteps.push({repr: SS.formatStepLine(SS.stepList[0].stats), delta:SS.stepList[0].stats, pot: SS.stepList[0].pot, repeat: 1});
+            return;
+        }
+        else {
+            let delta = [];
             let isSameStep = 0;
+            let addedStep = SS.stepList[SS.stepList.length-1];
+            let lastStep = SS.stepList[SS.stepList.length-2];
+            let lastShownStep = SS.shownSteps[SS.shownSteps.length-1];
+
             for (let j = 0; j < MAX_FIELDS; j++) {
-                step.push({id: "0", amount: 0});
-                if (SS.stepList[i].stats[j].id != 0) {
-                    step[j].id = SS.stepList[i].stats[j].id;
-                    step[j].amount = SS.stepList[i].stats[j].amount-SS.stepList[i-1].stats[j].amount;
-                    step[j].shownAmount = SS.stepList[i].stats[j].shownAmount-SS.stepList[i-1].stats[j].shownAmount;
+                delta.push({id: "0", amount: 0});
+                if (addedStep.stats[j].id != 0) {
+                    delta[j].id = addedStep.stats[j].id;
+                    delta[j].amount = addedStep.stats[j].amount-lastStep.stats[j].amount;
+                    delta[j].shownAmount = addedStep.stats[j].shownAmount-lastStep.stats[j].shownAmount;
                 }
 
-                if (step[j].id == steps[steps.length-1].delta[j].id && step[j].amount == steps[steps.length-1].delta[j].amount) {
+                if (delta[j].id == lastShownStep.delta[j].id && delta[j].amount == lastShownStep.delta[j].amount) {
                     isSameStep += 1;
                 }
             }
 
             if (isSameStep == MAX_FIELDS) {
-                steps[steps.length-1].repeat += 1;
-                steps[steps.length-1].pot = SS.stepList[i].pot;
+                lastShownStep.repeat += 1;
+                lastShownStep.pot = addedStep.pot;
             }
             else {
-                steps.push({delta: step, pot: SS.stepList[i].pot, repeat: 1});
+                SS.shownSteps.push({repr: SS.formatStepLine(delta), delta: delta, pot: addedStep.pot, repeat: 1});
             }
+            return;
         }
-        
-        return steps.map((step) => SS.formatStepLine(step));
     }
 
-    SS.formatStepLine = function (step) {
+    SS.formatStepLine = function (delta) {
         let formatted = String();
-        const delta = step.delta;
-        const pot = step.pot;
-        const repeat = step.repeat;
-
         for (let i = 0; i < MAX_FIELDS; i++) {
             const shownPre200 = DB[delta[i].id][5];
             if (delta[i].id != 0 && delta[i].amount != 0) {
@@ -446,7 +458,7 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
             }
         }
         
-        return formatted.slice(0, formatted.length-2) + ` [x${repeat}] (${pot})`;
+        return formatted.slice(0, formatted.length-2);
     }
 
     SS.repeatStep = function () {
@@ -497,6 +509,14 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
             SS.prevPot = SS.curPot = lastStep.pot;
         }
         SS.evaluatePotential();
+
+        let lastShownStep = SS.shownSteps[SS.shownSteps-1];
+        if (lastShownStep.repeat > 1) {
+            lastShownStep.repeat -= 1;
+        }
+        else {
+            SS.shownSteps.pop();
+        }
     }
 
     $scope.$watch("SS.curPot", function () {

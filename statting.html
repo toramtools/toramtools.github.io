@@ -21,7 +21,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
         <script src="js/main.js"></script>
-        <script src="js/statting.js"></script>
+        <script src="js/statting (copy).js"></script>
     </head>
 
     <body ng-controller="StattingSimController as SS">
@@ -73,8 +73,7 @@
                     <div class="mh-1 mt-1 mv-2vh">
                         <div><strong>Recipe Potential</strong>: {{SS.recipePot}}</div>
                         <div><strong>Starting Potential</strong>: {{SS.startingPot}}</div>
-                        <div><strong>Item Type</strong>: {{(SS.itemNature == "A")?"Armor":"Weapon"}}</div><br/>
-                        <div ng-repeat="line in SS.getFormattedSteps()"><strong># Step {{$index+1}}</strong>: {{line}}</div></br>
+                        <div ng-repeat="shownStep in SS.shownSteps track by shownStep.repr+shownStep.pot+shownStep.repeat"><strong>#Step {{$index}}</strong>: {{shownStep.repr}} (x{{shownStep.repeat}}) [{{shownStep.pot}}]</div>
                         <div><strong>Success Rate</strong> = {{SS.successRate}}%</div>
                     </div>
                 </div>
@@ -94,9 +93,7 @@
                     <div class="grid grid-1 nogap">
                         <div class="col-1 grid grid-1 nogap pb-1" ng-repeat="stat in SS.statList">
                             <div class="col-1 mb-05">
-                                <select class="chrome-select" ng-model="stat.id" ng-change="SS.clearStatChoice($index)" ng-disabled="SS.statDisabled($index)">
-                                    <option ng-repeat="name in SS.statNames track by $index" value={{$index}}>{{name}}</option>
-                                </select>
+                                <select class="chrome-select" ng-options="index as entry group by SS.DB[index][7] for (index, entry) in SS.statNames" ng-model="stat.id" ng-change="SS.clearStatChoice($index)" ng-disabled="SS.statDisabled($index)"></select>
                                 <button class="chrome-button" type="button" ng-click="SS.setZero($index)">0</button>
                             </div>
                             <div class="col-1" style="text-align: center">
