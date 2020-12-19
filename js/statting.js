@@ -126,9 +126,9 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
     SS.WEAPON_CHOICES = DB.map((entry) => entry[0]);
 
     SS.lvcap = LV_CAP;
-    SS.recipePot = 15;
-    SS.itemNature = "A";
-    SS.startingPot = 41;
+    SS.recipePot = 0;
+    SS.itemNature = "W";
+    SS.startingPot = 86;
 
     // Insane debugging skills
     SS.showthisbs = function () {
@@ -510,8 +510,9 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
         }
         SS.evaluatePotential();
 
-        let lastShownStep = SS.shownSteps[SS.shownSteps-1];
-        if (lastShownStep.repeat > 1) {
+        let lastShownStep = SS.shownSteps.length?SS.shownSteps[SS.shownSteps.length-1]:[];
+        if (SS.shownSteps.length && lastShownStep.repeat > 1) {
+            lastShownStep.pot = SS.stepList[SS.stepList.length-1].pot;
             lastShownStep.repeat -= 1;
         }
         else {
