@@ -71,7 +71,7 @@
                 <h2 class="section-title" ng-click="SS.showthisbs()">Formula</h2>
                 <div class="section">
                     <div class="mh-1 mt-1 mv-2vh">
-                        <div><strong>Recipe Potential</strong>: {{SS.recipePot}}</div>
+                        <div ng-hide="!SS.recipePot"><strong>Recipe Potential</strong>: {{SS.recipePot}}</div>
                         <div><strong>Starting Potential</strong>: {{SS.startingPot}}</div><br/>
                         <div ng-repeat="shownStep in SS.shownSteps track by shownStep.repr+shownStep.pot+shownStep.repeat"><strong>#Step {{$index+1}}</strong>: {{shownStep.repr}} (x{{shownStep.repeat}}) [{{shownStep.pot}}]</div><br/>
                         <div><strong>Success Rate</strong> = {{SS.successRate}}%</div>

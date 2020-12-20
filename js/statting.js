@@ -132,7 +132,7 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
 
     // Insane debugging skills
     SS.showthisbs = function () {
-        console.log(SS.shownSteps);
+        //console.log(SS.shownSteps);
     }
 
     SS.trackShownSteps = (index, step) => step.amount;
@@ -452,7 +452,6 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
     SS.formatStepLine = function (delta) {
         let formatted = String();
         for (let i = 0; i < MAX_FIELDS; i++) {
-            const shownPre200 = DB[delta[i].id][5];
             if (delta[i].id != 0 && delta[i].amount != 0) {
                 formatted += `${DB[delta[i].id][0]} ${delta[i].shownAmount < 0?'':'+'}${delta[i].shownAmount}, `;
             }
@@ -465,9 +464,6 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
         for (let i = 0; i < MAX_FIELDS; i++) {
             const lastValue = (SS.stepList.length > 0)?SS.stepList[SS.stepList.length-1].stats[i].amount:0;
             const beforeLast = (SS.stepList.length > 1)?SS.stepList[SS.stepList.length-2].stats[i].amount:0;
-            const shownPost200 = DB[SS.statList[i].id][6];
-            const shownPre200 = DB[SS.statList[i].id][5];
-            const statCap = DB[SS.statList[i].id][4];
 
             SS.statList[i].amount += lastValue-beforeLast;
         }
