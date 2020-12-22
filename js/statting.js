@@ -189,7 +189,7 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
         else {
             for (let i = prev-1; i >= post; i--) {
                 if (i < -statCap) {
-                    delta += potCost*0.15*multiplier;
+                    delta += potCost*0.1525*multiplier;
                 }
                 else {
                     delta += potCost*0.305*multiplier;
