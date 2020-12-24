@@ -6,8 +6,8 @@ $("#crafting-popup").on("click", function() {
 
 const difficultyHandler = function () {
     let TEC = parseInput("#TEC");
-    let DEX = floor(parseInput("#DEX")*parseInput("#eDEXp")+parseInput("#eDEX"));
-    let STR = floor(parseInput("#STR")*parseInput("#eSTRp")+parseInput("#eSTR"));
+    let DEX = floor(parseInput("#DEX")*(100+parseInput("#eDEXp"))/100+parseInput("#eDEX"));
+    let STR = floor(parseInput("#STR")*(100+parseInput("#eSTRp"))/100+parseInput("#eSTR"));
     let proeficiency = parseInput("#proeficiency", 0);
     let createEquipment = parseInput("#create-equipment", 0);
     let difficulty = proeficiency+floor(TEC/2)+floor(DEX/6);
