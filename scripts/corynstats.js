@@ -114,16 +114,15 @@ function calculate(){
 	var weaponATK = 0;
 	var weaponATKsub = 0;
 	var weaponATKmodifier = 0;
-	var weaponATKsubModifier = 0;
 
 	weaponATK += Math.trunc(mainATK*(100+mainrefine*mainrefine)/100);
 	weaponATK += Math.trunc(mainATK*eq_stats[74]/100);
 	if(main=="1H Sword" || main=="2H Sword")
 		weaponATKmodifier += 0.03*skill["Sword Mastery"];
 	if(main=="1H Sword" && sub=="1H Sword"){
-		weaponATKsubModifier += Math.trunc(subATK*0.03*skill["Sword Mastery"]);
-		weaponATKsubModifier += Math.trunc(subATK*(200+mainsubrefine*subrefine)/200);
-		weaponATKsubModifier += Math.trunc(subATK*eq_stats[74]/100);
+		weaponATKsub += Math.trunc(subATK*0.03*skill["Sword Mastery"]);
+		weaponATKsub += Math.trunc(subATK*(200+subrefine*subrefine)/200);
+		weaponATKsub += Math.trunc(subATK*eq_stats[74]/100);
 	}
 	if(main=="Bow" || main=="Bowgun")
 		weaponATKmodifier += 0.03*skill["Shot Mastery"];
@@ -422,6 +421,7 @@ function calculate(){
 	var CDMGmodifier = 1 + (eq_stats[44]/100);	//44 = CDamage %
 	CDMGmodifier += (Math.floor(skill["Critical Up"]/2)/100);
 	CDamage = Math.trunc(Math.trunc(CDamage * CDMGmodifier * 100)/100);
+	CDamage = (CDamage > 300)?300+Math.trunc((CDamage-300)/2):CDamage;
 
 	var MATK, MATKmodifier=1;
 	if(sub=="Knuckle")			MATKmodifier -= 0.15;
@@ -684,20 +684,20 @@ function calculate(){
 	var other_prorate = parseInt($("#other_prorate").val())/100;
 
 	var auto = base_dmg;
-		auto = Math.trunc(auto * ele_modifier);
 		if($("#skill_unsheathe").val()=='yes')
 			auto = Math.trunc(auto * (unsheathe/100));
 		auto = Math.trunc(auto * dist_modifier);
+		auto = Math.trunc(auto * ele_modifier);
 		auto = Math.trunc(auto * other_skill);
 		auto = Math.trunc(auto * other_combo);
 		auto = Math.trunc(auto * other_prorate);
 
 	var auto_crit = base_dmg_crit;
-		auto_crit = Math.trunc(auto_crit * ele_modifier);
-		auto_crit = Math.trunc(auto_crit * CDamage/100);
 		if($("#skill_unsheathe").val()=='yes')
 			auto_crit = Math.trunc(auto_crit * (unsheathe/100));
+		auto_crit = Math.trunc(auto_crit * CDamage/100);
 		auto_crit = Math.trunc(auto_crit * dist_modifier);
+		auto_crit = Math.trunc(auto_crit * ele_modifier);
 		auto_crit = Math.trunc(auto_crit * other_skill);
 		auto_crit = Math.trunc(auto_crit * other_combo);
 		auto_crit = Math.trunc(auto_crit * other_prorate);
@@ -714,10 +714,10 @@ function calculate(){
 	var skill_mult = parseFloat($("#skill_mult").val());
 
 	var skill_norm = Math.trunc((base_dmg + skill_const)*skill_mult);
-		skill_norm = Math.trunc(skill_norm * ele_modifier);
 		if($("#skill_unsheathe").val()=='yes')
 			skill_norm = Math.trunc(skill_norm * (unsheathe/100));
 		skill_norm = Math.trunc(skill_norm * dist_modifier);
+		skill_norm = Math.trunc(skill_norm * ele_modifier);
 		skill_norm = Math.trunc(skill_norm * other_skill);
 		skill_norm = Math.trunc(skill_norm * other_combo);
 		skill_norm = Math.trunc(skill_norm * other_prorate);
@@ -730,19 +730,19 @@ function calculate(){
 		magic_norm = Math.trunc(magic_norm * other_prorate);
 
 	var skill_crit = Math.trunc((base_dmg_crit + skill_const)*skill_mult);
-		skill_crit = Math.trunc(skill_crit * ele_modifier);
-		skill_crit = Math.trunc(skill_crit * CDamage/100);
 		if($("#skill_unsheathe").val()=='yes')
 			skill_crit = Math.trunc(skill_crit * (unsheathe/100));
+		skill_crit = Math.trunc(skill_crit * CDamage/100);
 		skill_crit = Math.trunc(skill_crit * dist_modifier);
+		skill_crit = Math.trunc(skill_crit * ele_modifier);
 		skill_crit = Math.trunc(skill_crit * other_skill);
 		skill_crit = Math.trunc(skill_crit * other_combo);
 		skill_crit = Math.trunc(skill_crit * other_prorate);
 
 	var magic_crit = Math.trunc((base_magic + skill_const)*skill_mult);
-		magic_crit = Math.trunc(magic_crit * ele_modifier);
-		magic_crit = Math.trunc(magic_crit * dist_modifier);
 		magic_crit = Math.trunc(magic_crit * MCDamage/100);
+		magic_crit = Math.trunc(magic_crit * dist_modifier);
+		magic_crit = Math.trunc(magic_crit * ele_modifier);
 		magic_crit = Math.trunc(magic_crit * other_skill);
 		magic_crit = Math.trunc(magic_crit * other_combo);
 		magic_crit = Math.trunc(magic_crit * other_prorate);
