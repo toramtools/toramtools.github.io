@@ -679,6 +679,10 @@ function calculate(){
 		//currently no unsheathe magic
 	}
 
+	var other_skill = parseInt($("#other_skill").val())/100;
+	var other_combo = parseInt($("#other_combo").val())/100;
+	var other_prorate = parseInt($("#other_prorate").val())/100;
+
 	var auto = base_dmg;
 		auto = Math.trunc(auto * ele_modifier);
 		if($("#skill_unsheathe").val()=='yes')
@@ -708,9 +712,6 @@ function calculate(){
 	var skill_const = parseInt($("#skill_const").val());
 	// sp3: mult can be floating point
 	var skill_mult = parseFloat($("#skill_mult").val());
-	var other_skill = parseInt($("#other_skill").val())/100;
-	var other_combo = parseInt($("#other_combo").val())/100;
-	var other_prorate = parseInt($("#other_prorate").val())/100;
 
 	var skill_norm = Math.trunc((base_dmg + skill_const)*skill_mult);
 		skill_norm = Math.trunc(skill_norm * ele_modifier);
