@@ -309,7 +309,7 @@ function calculate(){
 		ATKsub = Lv + STR + AGI*3 + weaponATKsub;
 		MATK = Lv + INT*3 + DEX;
 		stability += (STR + DEX*3)/40;
-		// sp5:
+		// sp5:0
 		sub_stability = Math.floor(substability/2+STR*0.06+AGI*0.04)+eq_stats[24];
 		ASPD = 100 + Lv + AGI*4 + (STR+AGI-1)*0.2
 	}
@@ -421,7 +421,6 @@ function calculate(){
 	var CDMGmodifier = 1 + (eq_stats[44]/100);	//44 = CDamage %
 	CDMGmodifier += (Math.floor(skill["Critical Up"]/2)/100);
 	CDamage = Math.trunc(Math.trunc(CDamage * CDMGmodifier * 100)/100);
-	CDamage = (CDamage > 300)?300+Math.trunc((CDamage-300)/2):CDamage;
 
 	var MATK, MATKmodifier=1;
 	if(sub=="Knuckle")			MATKmodifier -= 0.15;
@@ -538,6 +537,7 @@ function calculate(){
 	if(main=="Katana" && sub=="None")	CRate += skill["Two Handed"];
 	else if(main!="Bare Hand" && sub=="None")				CRate	+= Math.ceil(skill["Two Handed"]/2);
 	CDamage += eq_stats[43];	//43 = C.Damage
+	CDamage = (CDamage > 300)?300+Math.trunc((CDamage-300)/2):CDamage;
 	ATK		+= eq_stats[20]		//20 = ATK
 	ATK		+= Math.floor(skill["Attack Up"]*2.5/100*Lv);
 	ATK		+= Math.floor(skill["Intimidating Power"]*2.5/100*Lv);
@@ -578,6 +578,9 @@ function calculate(){
 	MATK 	+= Math.trunc(eq_stats[162]/100 * VIT);//MATK UP (VIT)	162
 
 	ATKsub	+= eq_stats[20]		//20 = ATK
+	ATKsub	+= Math.floor(skill["Attack Up"]*2.5/100*Lv);
+	ATKsub	+= Math.floor(skill["Intimidating Power"]*2.5/100*Lv);
+	
 	ASPD	+= eq_stats[37]		//37 = ASPD
 	if(main=="Knuckle")							ASPD += skill["Martial Discipline"]*10;
 	if(main=="1H Sword" || main=="2H Sword")	ASPD += skill["Quick Slash"] * 10;
@@ -661,13 +664,13 @@ function calculate(){
 		case 'placed'	: dist_modifier=1; break;
 	}
     
-    if (main != "1H Sword" && sub != "1H Sword")
-        var base_dmg = Math.trunc(((Lv + Math.trunc(ATK) + Math.trunc(ATKsub*sub_stability/100) - mob_level)*(100-mob_physres)/100)-mob_newDef);
+    if (main == "1H Sword" && sub == "1H Sword")
+        var base_dmg = Math.trunc(((Lv + Math.trunc(ATK) + ATKsub*sub_stability/100 - mob_level)*(100-mob_physres)/100)-mob_newDef);
     else
 	    var base_dmg = Math.trunc(((Lv + Math.trunc(ATK) - mob_level)*(100-mob_physres)/100)-mob_newDef);
     
-    if (main != "1H Sword" && sub != "1H Sword")
-        var base_dmg_crit = Math.trunc((Lv + Math.trunc(ATKcrit) + Math.trunc(ATKsub*sub_stability/100) - mob_level)*((100-mob_physres)/100)-mob_newDef);
+    if (main == "1H Sword" && sub == "1H Sword")
+        var base_dmg_crit = Math.trunc((Lv + Math.trunc(ATKcrit) + ATKsub*sub_stability/100 - mob_level)*((100-mob_physres)/100)-mob_newDef);
     else
 	    var base_dmg_crit = Math.trunc((Lv + Math.trunc(ATKcrit) - mob_level)*((100-mob_physres)/100)-mob_newDef);
 	
@@ -713,36 +716,40 @@ function calculate(){
 	// sp3: mult can be floating point
 	var skill_mult = parseFloat($("#skill_mult").val());
 
-	var skill_norm = Math.trunc((base_dmg + skill_const)*skill_mult);
+	var skill_norm = Math.trunc(base_dmg + skill_const);
 		if($("#skill_unsheathe").val()=='yes')
 			skill_norm = Math.trunc(skill_norm * (unsheathe/100));
 		skill_norm = Math.trunc(skill_norm * dist_modifier);
 		skill_norm = Math.trunc(skill_norm * ele_modifier);
+		skill_norm = Math.trunc(skill_norm * skill_mult);
 		skill_norm = Math.trunc(skill_norm * other_skill);
 		skill_norm = Math.trunc(skill_norm * other_combo);
 		skill_norm = Math.trunc(skill_norm * other_prorate);
 
-	var magic_norm = Math.trunc((base_magic + skill_const)*skill_mult);
+	var magic_norm = Math.trunc(base_magic + skill_const);
 		magic_norm = Math.trunc(magic_norm * ele_modifier);
 		magic_norm = Math.trunc(magic_norm * dist_modifier);
+		magic_norm = Math.trunc(magic_norm * skill_mult);
 		magic_norm = Math.trunc(magic_norm * other_skill);
 		magic_norm = Math.trunc(magic_norm * other_combo);
 		magic_norm = Math.trunc(magic_norm * other_prorate);
 
-	var skill_crit = Math.trunc((base_dmg_crit + skill_const)*skill_mult);
+	var skill_crit = Math.trunc(base_dmg_crit + skill_const);
 		if($("#skill_unsheathe").val()=='yes')
 			skill_crit = Math.trunc(skill_crit * (unsheathe/100));
 		skill_crit = Math.trunc(skill_crit * CDamage/100);
 		skill_crit = Math.trunc(skill_crit * dist_modifier);
 		skill_crit = Math.trunc(skill_crit * ele_modifier);
+		skill_crit = Math.trunc(skill_crit * skill_mult);
 		skill_crit = Math.trunc(skill_crit * other_skill);
 		skill_crit = Math.trunc(skill_crit * other_combo);
 		skill_crit = Math.trunc(skill_crit * other_prorate);
 
-	var magic_crit = Math.trunc((base_magic + skill_const)*skill_mult);
+	var magic_crit = Math.trunc(base_magic + skill_const);
 		magic_crit = Math.trunc(magic_crit * MCDamage/100);
 		magic_crit = Math.trunc(magic_crit * dist_modifier);
 		magic_crit = Math.trunc(magic_crit * ele_modifier);
+		magic_crit = Math.trunc(magic_crit * skill_mult);
 		magic_crit = Math.trunc(magic_crit * other_skill);
 		magic_crit = Math.trunc(magic_crit * other_combo);
 		magic_crit = Math.trunc(magic_crit * other_prorate);
