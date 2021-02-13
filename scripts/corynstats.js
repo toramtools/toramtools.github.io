@@ -522,8 +522,10 @@ function calculate(){
 	MaxMP	+= eq_stats[19]					//19 = MaxMP
 	MaxMP 	+= skill["MP Boost"]*30;
 	MaxMP	+= skill["Bushido"]*10;
+	/*
 	if(MaxMP > 2000)
 		MaxMP = 2000;
+	*/
 
 	HIT		+= eq_stats[33];	//33 = Accuracy
 	HIT 	+= skill["Accuracy Up"];
@@ -580,7 +582,7 @@ function calculate(){
 	ATKsub	+= eq_stats[20]		//20 = ATK
 	ATKsub	+= Math.floor(skill["Attack Up"]*2.5/100*Lv);
 	ATKsub	+= Math.floor(skill["Intimidating Power"]*2.5/100*Lv);
-	
+
 	ASPD	+= eq_stats[37]		//37 = ASPD
 	if(main=="Knuckle")							ASPD += skill["Martial Discipline"]*10;
 	if(main=="1H Sword" || main=="2H Sword")	ASPD += skill["Quick Slash"] * 10;
