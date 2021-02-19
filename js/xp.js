@@ -102,7 +102,9 @@ const mq_data = {
     "Off to the Fateful Land":26000000,
     "The Inhabitants Under the Cliff":27400000,
     "The Nightmare Returns":28800000,
-    "The Whereabouts of the Missing Monks":30200000
+    "The Whereabouts of the Missing Monks":30200000,
+    "The Goddess of Justice and the Squatters":31600000,
+    "Navigator of the Ark":33100000
  };
 
 
