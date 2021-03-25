@@ -287,6 +287,7 @@ function calculate(){
 	var sub_stability=0;
 	var ATK=0;
 	var ASPD=0;
+	var dual_modifier=0;
 	//------- 1H SWORD STATS -------
 	if(main=="1H Sword" && sub!="1H Sword"){
 		ATK = Lv + STR*2 + DEX*2 + weaponATK;
@@ -310,6 +311,7 @@ function calculate(){
 		MATK = Lv + INT*3 + DEX;
 		stability += (STR + DEX*3)/40;
 		// sp5:0
+		dual_modifier=1;
 		sub_stability = Math.floor(substability/2+STR*0.06+AGI*0.04)+eq_stats[24];
 		ASPD = 100 + Lv + AGI*4 + (STR+AGI-1)*0.2
 	}
@@ -644,7 +646,10 @@ function calculate(){
 		ATKcrit = ATK;
 
 	//-------- Damage Calculation --------
-	var stab = Math.min(stability,100);
+
+	//BASE - DEF + UNSHEATHE_FLAT + SKILL_CONSTANT > CDMG > UNSHEATHE % > STABILITY > ELEMENT > SKILL_MODIFIER > PRORATION > SRD/LRD > LETHARGY > DAMAGE MODIFIERS > COMBO > GEMRUN > GUARD
+
+	var stab = Math.min(stability,100)/100;
 	var mob_level = parseInt($("#mob_level").val());
 	var mob_physres = parseInt($("#mob_physres").val());
 	var mob_def = parseInt($("#mob_def").val());
@@ -665,110 +670,73 @@ function calculate(){
 		case 'long'		: dist_modifier=longRD/100; break;
 		case 'placed'	: dist_modifier=1; break;
 	}
-    
-    if (main == "1H Sword" && sub == "1H Sword")
-        var base_dmg = Math.trunc(((Lv + Math.trunc(ATK) + ATKsub*sub_stability/100 - mob_level)*(100-mob_physres)/100)-mob_newDef);
-    else
-	    var base_dmg = Math.trunc(((Lv + Math.trunc(ATK) - mob_level)*(100-mob_physres)/100)-mob_newDef);
-    
-    if (main == "1H Sword" && sub == "1H Sword")
-        var base_dmg_crit = Math.trunc((Lv + Math.trunc(ATKcrit) + ATKsub*sub_stability/100 - mob_level)*((100-mob_physres)/100)-mob_newDef);
-    else
-	    var base_dmg_crit = Math.trunc((Lv + Math.trunc(ATKcrit) - mob_level)*((100-mob_physres)/100)-mob_newDef);
-	
+	var unsheathe_modifier = 1;
+	var unsheathe_constant = 0;
+	if ($("#skill_unsheathe").val() == 'yes') {
+		unsheathe_modifier = unsheathe/100;
+		unsheathe_constant = unsheathe_flat;
+	}
+
+	var base_dmg = Math.trunc(((Lv + Math.trunc(ATK) + dual_modifier*ATKsub*sub_stability/100 - mob_level)*(100-mob_physres)/100)-mob_newDef)+unsheathe_constant;
+    var base_dmg_crit = Math.trunc((Lv + Math.trunc(ATKcrit) + dual_modifier*ATKsub*sub_stability/100 - mob_level)*((100-mob_physres)/100)-mob_newDef)+unsheathe_constant;
 	var base_magic = Math.trunc(((Lv + Math.trunc(MATK) - mob_level)*(100-mob_physres)/100)-mob_newDef);
 
-	if($("#skill_unsheathe").val()=='yes'){
-		base_dmg += unsheathe_flat;
-		base_dmg_crit += unsheathe_flat;
-		//currently no unsheathe magic
-	}
+	var skill_constant = parseInt($("#skill_const").val());
+	// sp3: mult can be floating point
+	var skill_modifier = parseFloat($("#skill_mult").val());
 
 	var other_skill = parseInt($("#other_skill").val())/100;
 	var other_combo = parseInt($("#other_combo").val())/100;
 	var other_prorate = parseInt($("#other_prorate").val())/100;
 
-	var auto = base_dmg;
-		if($("#skill_unsheathe").val()=='yes')
-			auto = Math.trunc(auto * (unsheathe/100));
-		auto = Math.trunc(auto * dist_modifier);
-		auto = Math.trunc(auto * ele_modifier);
-		auto = Math.trunc(auto * other_skill);
-		auto = Math.trunc(auto * other_combo);
-		auto = Math.trunc(auto * other_prorate);
+	const RD = Math.trunc;
 
-	var auto_crit = base_dmg_crit;
-		if($("#skill_unsheathe").val()=='yes')
-			auto_crit = Math.trunc(auto_crit * (unsheathe/100));
-		auto_crit = Math.trunc(auto_crit * CDamage/100);
-		auto_crit = Math.trunc(auto_crit * dist_modifier);
-		auto_crit = Math.trunc(auto_crit * ele_modifier);
-		auto_crit = Math.trunc(auto_crit * other_skill);
-		auto_crit = Math.trunc(auto_crit * other_combo);
-		auto_crit = Math.trunc(auto_crit * other_prorate);
+	var auto_norm_min = RD(RD(RD(RD(RD(RD(RD(base_dmg*unsheathe_modifier)*stab)*ele_modifier)*other_prorate)*dist_modifier)*other_skill)*other_combo);
+	var auto_norm_max = RD(RD(RD(RD(RD(RD(base_dmg*unsheathe_modifier)*ele_modifier)*other_prorate)*dist_modifier)*other_skill)*other_combo);
+	var auto_norm_avg = Math.trunc(auto_norm_max*(1+stab)/2);
 
-	$("#auto_min").html(formatNumber(Math.max(1,Math.trunc(auto*stab/100))));
-	$("#auto_max").html(formatNumber(Math.max(1,Math.trunc(auto))));
-	$("#auto_avg").html(formatNumber(Math.max(1,Math.trunc(auto*(100+stab)/200))));
-	$("#crit_min").html(formatNumber(Math.max(1,Math.trunc(auto_crit*stab/100))));
-	$("#crit_max").html(formatNumber(Math.max(1,Math.trunc(auto_crit))));
-	$("#crit_avg").html(formatNumber(Math.max(1,Math.trunc(auto_crit*(100+stab)/200))));
+	var auto_crit_min = RD(RD(RD(RD(RD(RD(RD(RD(base_dmg_crit*CDamage/100)*unsheathe_modifier)*stab)*ele_modifier)*other_prorate)*dist_modifier)*other_skill)*other_combo);
+	var auto_crit_max = RD(RD(RD(RD(RD(RD(RD(base_dmg_crit*CDamage/100)*unsheathe_modifier)*ele_modifier)*other_prorate)*dist_modifier)*other_skill)*other_combo);
+	var auto_crit_avg = Math.trunc(auto_crit_max*(1+stab)/2);
 
-	var skill_const = parseInt($("#skill_const").val());
-	// sp3: mult can be floating point
-	var skill_mult = parseFloat($("#skill_mult").val());
+	$("#auto_min").html(formatNumber(Math.max(1,auto_norm_min)));
+	$("#auto_max").html(formatNumber(Math.max(1,auto_norm_max)));
+	$("#auto_avg").html(formatNumber(Math.max(1,auto_norm_avg)));
+	$("#crit_min").html(formatNumber(Math.max(1,auto_crit_min)));
+	$("#crit_max").html(formatNumber(Math.max(1,auto_crit_max)));
+	$("#crit_avg").html(formatNumber(Math.max(1,auto_crit_avg)));
 
-	var skill_norm = Math.trunc(base_dmg + skill_const);
-		if($("#skill_unsheathe").val()=='yes')
-			skill_norm = Math.trunc(skill_norm * (unsheathe/100));
-		skill_norm = Math.trunc(skill_norm * dist_modifier);
-		skill_norm = Math.trunc(skill_norm * ele_modifier);
-		skill_norm = Math.trunc(skill_norm * skill_mult);
-		skill_norm = Math.trunc(skill_norm * other_skill);
-		skill_norm = Math.trunc(skill_norm * other_combo);
-		skill_norm = Math.trunc(skill_norm * other_prorate);
+	var skill_norm_min = RD(RD(RD(RD(RD(RD(RD(RD((base_dmg + skill_constant)*unsheathe_modifier)*stab)*ele_modifier)*skill_modifier)*other_prorate)*dist_modifier)*other_skill)*other_combo);
+	var skill_norm_max = RD(RD(RD(RD(RD(RD(RD((base_dmg + skill_constant)*unsheathe_modifier)*ele_modifier*skill_modifier))*other_prorate)*dist_modifier)*other_skill)*other_combo);
+	var skill_norm_avg = Math.trunc(skill_norm_max*(1+stab)/2);
+	
+	var magic_norm_min = RD(RD(RD(RD(RD(RD(RD((base_dmg + skill_constant)*MStability/100)*ele_modifier)*skill_modifier)*other_prorate)*dist_modifier)*other_skill)*other_combo);
+	var magic_norm_max = RD(RD(RD(RD(RD(RD((base_dmg + skill_constant)*ele_modifier)*skill_modifier)*other_prorate)*dist_modifier)*other_skill)*other_combo);
+	var magic_norm_avg = Math.trunc(magic_norm_max*(100+MStability)/200);
+	
+	var skill_crit_min = RD(RD(RD(RD(RD(RD(RD(RD(RD((base_dmg_crit + skill_constant)*CDamage/100)*unsheathe_modifier)*stab)*ele_modifier)*skill_modifier)*other_prorate)*dist_modifier)*other_skill)*other_combo);
+	var skill_crit_max = RD(RD(RD(RD(RD(RD(RD(RD((base_dmg_crit + skill_constant)*CDamage/100)*unsheathe_modifier)*ele_modifier)*skill_modifier)*other_prorate)*dist_modifier)*other_skill)*other_combo);
+	var skill_crit_avg = Math.trunc(skill_crit_max*(1+stab)/2);
 
-	var magic_norm = Math.trunc(base_magic + skill_const);
-		magic_norm = Math.trunc(magic_norm * ele_modifier);
-		magic_norm = Math.trunc(magic_norm * dist_modifier);
-		magic_norm = Math.trunc(magic_norm * skill_mult);
-		magic_norm = Math.trunc(magic_norm * other_skill);
-		magic_norm = Math.trunc(magic_norm * other_combo);
-		magic_norm = Math.trunc(magic_norm * other_prorate);
+	var magic_crit_min = RD(RD(RD(RD(RD(RD(RD(RD((base_magic + skill_constant)*MCDamage/100)*MStability)*ele_modifier)*skill_modifier)*other_prorate)*dist_modifier)*other_skill)*other_combo);
+	var magic_crit_max = RD(RD(RD(RD(RD(RD(RD((base_dmg + skill_constant)*MCDamage/100)*ele_modifier)*skill_modifier)*other_prorate)*dist_modifier)*other_skill)*other_combo);
+	var magic_crit_avg = Math.trunc(magic_crit_max*(100+MStability)/200);
 
-	var skill_crit = Math.trunc(base_dmg_crit + skill_const);
-		if($("#skill_unsheathe").val()=='yes')
-			skill_crit = Math.trunc(skill_crit * (unsheathe/100));
-		skill_crit = Math.trunc(skill_crit * CDamage/100);
-		skill_crit = Math.trunc(skill_crit * dist_modifier);
-		skill_crit = Math.trunc(skill_crit * ele_modifier);
-		skill_crit = Math.trunc(skill_crit * skill_mult);
-		skill_crit = Math.trunc(skill_crit * other_skill);
-		skill_crit = Math.trunc(skill_crit * other_combo);
-		skill_crit = Math.trunc(skill_crit * other_prorate);
+	$("#skill_min").html(formatNumber(Math.max(1,skill_norm_min)));
+	$("#skill_max").html(formatNumber(Math.max(1,skill_norm_max)));
+	$("#skill_avg").html(formatNumber(Math.max(1,skill_norm_avg)));
 
-	var magic_crit = Math.trunc(base_magic + skill_const);
-		magic_crit = Math.trunc(magic_crit * MCDamage/100);
-		magic_crit = Math.trunc(magic_crit * dist_modifier);
-		magic_crit = Math.trunc(magic_crit * ele_modifier);
-		magic_crit = Math.trunc(magic_crit * skill_mult);
-		magic_crit = Math.trunc(magic_crit * other_skill);
-		magic_crit = Math.trunc(magic_crit * other_combo);
-		magic_crit = Math.trunc(magic_crit * other_prorate);
+	$("#skillcrit_min").html(formatNumber(Math.max(1,skill_crit_min)));
+	$("#skillcrit_max").html(formatNumber(Math.max(1,skill_crit_max)));
+	$("#skillcrit_avg").html(formatNumber(Math.max(1,skill_crit_avg)));
 
-	$("#skill_min").html(formatNumber(Math.max(1,Math.trunc(skill_norm*stab/100))));
-	$("#skill_max").html(formatNumber(Math.max(1,Math.trunc(skill_norm))));
-	$("#skill_avg").html(formatNumber(Math.max(1,Math.trunc(skill_norm*(100+stab)/200))));
-	$("#skillcrit_min").html(formatNumber(Math.max(1,Math.trunc(skill_crit*stab/100))));
-	$("#skillcrit_max").html(formatNumber(Math.max(1,Math.trunc(skill_crit))));
-	$("#skillcrit_avg").html(formatNumber(Math.max(1,Math.trunc(skill_crit*(100+stab)/200))));
+	$("#magic_min").html(formatNumber(Math.max(1,magic_norm_min)));
+	$("#magic_max").html(formatNumber(Math.max(1,magic_norm_max)));
+	$("#magic_avg").html(formatNumber(Math.max(1,magic_norm_avg)));
 
-	$("#magic_min").html(formatNumber(Math.max(1,Math.trunc(magic_norm*MStability/100))));
-	$("#magic_max").html(formatNumber(Math.max(1,Math.trunc(magic_norm))));
-	$("#magic_avg").html(formatNumber(Math.max(1,Math.trunc(magic_norm*(100+MStability)/200))));
-	$("#magiccrit_min").html(formatNumber(Math.max(1,Math.trunc(magic_crit*MStability/100))));
-	$("#magiccrit_max").html(formatNumber(Math.max(1,Math.trunc(magic_crit))));
-	$("#magiccrit_avg").html(formatNumber(Math.max(1,Math.trunc(magic_crit*(100+MStability)/200))));
+	$("#magiccrit_min").html(formatNumber(Math.max(1,magic_crit_min)));
+	$("#magiccrit_max").html(formatNumber(Math.max(1,magic_crit_max)));
+	$("#magiccrit_avg").html(formatNumber(Math.max(1,magic_crit_avg)));
 
 	// Displaying
 	$("#DEF").html(Math.trunc(DEF));
