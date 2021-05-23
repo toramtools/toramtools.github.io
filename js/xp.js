@@ -167,11 +167,13 @@ const evaluateTarget = function () {
     let target = parseInput("#target-level");
     let percentage = parseInput("#level-percentage", 0);
     let questXP = parseInput("#quest-exp", 0);
-    let targetTimes = ceil(getTotalXP(lv, percentage, target)/questXP);
+    let xpRequired = getTotalXP(lv, percentage, target);
+    let targetTimes = ceil(xpRequired/questXP);
     let [nLv, nLvP] = addXP(lv, percentage, questXP*parseInput("#quest-times", 0));
     $("#target-times").text(targetTimes);
     $("#times-level").text(`${nLv} (${nLvP}%)`);
     $("#times-value").text(parseInput("#quest-times", 0));
+    $("#xp-required").text(xpRequired);
 }
 
 const evaluateMQ = function () {
