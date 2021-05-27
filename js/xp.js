@@ -105,7 +105,8 @@ const mq_data = {
     "The Whereabouts of the Missing Monks":30200000,
     "The Goddess of Justice and the Squatters":31600000,
     "Navigator of the Ark":33100000,
-    "Witch in the Woods": 34600000
+    "Witch in the Woods": 34600000,
+    "The Duel in Nov Diela": 36200000
  };
 
 
