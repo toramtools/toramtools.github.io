@@ -2,6 +2,14 @@
 
 const LV_CAP = 225;
 
+const HIGHEST_PROF = 200;
+const HIGHEST_ARM_POT = 44;
+const HIGHEST_WPN_POT = 46;
+const ARMOR_DIFFICULTY = 185;
+const ANNIV_DIFFICULTY = 210;
+const PRIMARY_STAT = 340;
+const SECONDARY_STAT = 247;
+
 const range = function (begin, end, step=1) {
     let list = [];
     for (var i = begin; i <= end; i=i+step) {

@@ -130,6 +130,7 @@ const splitMqInfo = function () {
 $(document).ready(function () {
     $("#target-level").val(LV_CAP);
     $("#quest-name").html(fillOptions(Object.values(quest_data), Object.keys(quest_data)));
+    $("#quest-name").val("15000000").trigger("input");
     let [keys, vals] = splitMqInfo(); 
     $("#mq-from").html(fillOptions(vals, keys));
     $("#mq-until").html(fillOptions(vals.reverse(), keys.reverse()));
@@ -174,7 +175,7 @@ const evaluateTarget = function () {
     $("#target-times").text(targetTimes);
     $("#times-level").text(`${nLv} (${nLvP}%)`);
     $("#times-value").text(parseInput("#quest-times", 0));
-    $("#xp-required").text(xpRequired);
+    $("#xp-required").text(new Intl.NumberFormat().format(xpRequired));
 }
 
 const evaluateMQ = function () {

@@ -29,7 +29,7 @@ body, html {
     margin-right: 1rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 100vh) {
     .r-grid {
         width: auto !important;
         display: grid;
@@ -62,4 +62,8 @@ body, html {
         grid-column: 1 / span 2;
         margin: 0 auto;
     }
+}
+
+.button-group *:not(:last-child) {
+    margin-right: 0.5em;
 }

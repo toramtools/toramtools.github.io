@@ -2,6 +2,7 @@
 
 $(document).ready(function() {
     $("#lvcap").val(LV_CAP);
+    $("#level").val(LV_CAP).trigger("input");
     $("#attacker-rank").html(fillOptions([0, 1, 1.5, 2, 3, 4], [0, 10, 100, 1000, 10000, 100000]));
     $("#defender-rank").html(fillOptions([0, 1, 1.5, 2, 3, 4], [0, 10, 100, 1000, 10000, 100000]));
     $("#supporter-rank").html(fillOptions([0, 1, 1.5, 2, 3, 4], [0, 10, 100, 1000, 10000, 100000]));

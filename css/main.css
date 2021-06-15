@@ -26,8 +26,9 @@ a:-webkit-any-link {
 }
 
 .header {
+    box-sizing: border-box;
     width: 100%;
-    border: 1px solid;
+    border: 1px solid #333333;
     text-align: center;
     background-color: #333333;
     color: white;
@@ -85,13 +86,6 @@ a:-webkit-any-link {
     padding: 0.5rem 0;
 }
 
-@media (max-width:320px) {
-    .grid {
-        text-align: right;
-        grid-gap: 1vh 0.25rem;
-    }
-}
-
 .grid-2 {
     grid-template-columns: 1fr repeat(2, auto) 1fr;
 }
@@ -131,6 +125,17 @@ a:-webkit-any-link {
 .col-5 {
     grid-column: 6;
 }
+
+.grid.grid-2 .col-1, .grid.grid-2 .col-2 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.grid.grid-2 .col-1 label, .grid.grid-2 .col-2 label {
+    margin-right: 5px;
+}
+
 
 .nogap {
     grid-gap: 0;
@@ -178,7 +183,7 @@ input[type=checkbox] {
         display: block;
         position: fixed;
         bottom: 0;
-        border: 1px solid;
+        border: 1px solid #333333;
         margin-bottom: 0;
         width: 100%;
         text-align: center;
@@ -186,6 +191,7 @@ input[type=checkbox] {
         font-style: italic;
         color: white;
         background-color: #333333;
+        box-sizing: border-box;
     }
 }
 

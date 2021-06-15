@@ -53,10 +53,69 @@ const potentialHandler = function () {
     $("#total-potential").val(potential);
 }
 
+const setDefaultStats = function (primary, secondary, difficulty = ANNIV_DIFFICULTY) {
+    $("#STR").val('');
+    $("#DEX").val(''); 
+    $("#INT").val(''); 
+    $("#VIT").val(''); 
+    $("#AGI").val(''); 
+    $("#TEC").val('');
+
+    $("#"+primary).val(PRIMARY_STAT);
+    $("#"+secondary).val(SECONDARY_STAT);
+
+    $("#equipment-difficulty").val(difficulty);
+
+    if (difficulty == ANNIV_DIFFICULTY) {
+        $("#base-potential").val(HIGHEST_WPN_POT);
+    }
+    else {
+        $("#base-potential").val(HIGHEST_ARM_POT);
+    }
+}
+
+const craftHandler = function () {
+    let craft = $("#craft-type").val();
+    if (craft == "Armor") {
+        setDefaultStats("VIT", "TEC", ARMOR_DIFFICULTY);
+    } 
+    else if (craft == "1H Sword") {
+        setDefaultStats("DEX", "STR");
+    } 
+    else if (craft == "2H Sword") {
+        setDefaultStats("STR", "DEX");
+    } 
+    else if (craft == "Bow") {
+        setDefaultStats("DEX", "STR");
+    } 
+    else if (craft == "Bowgun") {
+        setDefaultStats("DEX", "STR");
+    } 
+    else if (craft == "Staff") {
+        setDefaultStats("INT", "TEC");
+    } 
+    else if (craft == "Magic Device") {
+        setDefaultStats("INT", "AGI")
+    } 
+    else if (craft == "Knuckle") {
+        setDefaultStats("AGI", "DEX");
+    } 
+    else if (craft == "Halberd") {
+        setDefaultStats("STR", "AGI");
+    } 
+    else if (craft == "Katana") {
+        setDefaultStats("DEX", "AGI");
+    }
+}
+
 const bothHandler = function () {
     difficultyHandler();
     potentialHandler();
 }
 
+
+
 $("body form").on("input", bothHandler);
 $("body form").trigger("input");
+$("#craft-type").on("input", craftHandler);
+$("#craft-type").trigger("input");

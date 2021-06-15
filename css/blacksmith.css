@@ -15,6 +15,10 @@ label {
     grid-row-gap: 0.25rem;
 }
 
+.skill-block label {
+    text-align: center;
+}
+
 .skill-block > input {
     display: inline-block;
     margin: 0 auto;

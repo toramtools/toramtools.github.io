@@ -59,7 +59,7 @@
                             <label class="label-checkbox">Matching Element? <input ng-model="SS.matchingElement" type="checkbox" ng-disabled="SS.configDisabled"/></label>
                         </div>
 
-                        <div style="grid-column: 2 / span 2; text-align: center">
+                        <div style="grid-column: 2 / span 2; text-align: center" class="button-group">
                             <button class="chrome-button" type="button" ng-click="SS.setPot()" ng-disabled="SS.configDisabled">Start</button>
                             <button class="chrome-button" type="button" ng-click="SS.resetPot()">Reset</button>
                         </div>
@@ -72,7 +72,7 @@
                 <div class="section">
                     <div class="mh-1 mt-1 mv-2vh">
                         <div ng-hide="!SS.recipePot"><strong>Recipe Potential</strong>: {{SS.recipePot}}</div>
-                        <div><strong>Starting Potential - {{(SS.itemNature == "W")?"Weapon":"Armor"}}</strong>: {{SS.startingPot}}</div><br/>
+                        <div><strong>Starting Potential ({{(SS.itemNature == "W")?"Weapon":"Armor"}})</strong>: {{SS.startingPot}}</div><br/>
                         <div ng-repeat="shownStep in SS.shownSteps track by shownStep.repr+shownStep.pot+shownStep.repeat"><strong>#Step {{$index+1}}</strong>: {{shownStep.repr}} (x{{shownStep.repeat}}) [{{shownStep.pot}}]</div><br/>
                         <div><strong>Success Rate</strong> = {{SS.successRate}}%</div>
                     </div>
@@ -83,7 +83,7 @@
                 <h2 class="section-title" ng-click="SS.showthisbs()">Stats ({{SS.curPot}}/{{SS.prevPot}}) [={{SS.successRate}}%]</h2>
                 <div class="section">
                     <div class="grid grid-1">
-                        <div class="col-1">
+                        <div class="col-1 button-group">
                             <button class="chrome-button" type="button" ng-click="SS.addStep()">Confirm</button>
                             <button class="chrome-button" type="button" ng-click="SS.repeatStep()">Repeat</button>
                             <button class="chrome-button" type="button" ng-click="SS.undoStep()">Undo</button>
@@ -92,11 +92,11 @@
     
                     <div class="grid grid-1 nogap">
                         <div class="col-1 grid grid-1 nogap pb-1" ng-repeat="stat in SS.statList">
-                            <div class="col-1 mb-05">
+                            <div class="col-1 mb-05 button-group">
                                 <select class="chrome-select" ng-options="index as entry group by SS.DB[index][7] for (index, entry) in SS.statNames" ng-model="stat.id" ng-change="SS.clearStatChoice($index)" ng-disabled="SS.statDisabled($index)"></select>
                                 <button class="chrome-button" type="button" ng-click="SS.setZero($index)">0</button>
                             </div>
-                            <div class="col-1" style="text-align: center">
+                            <div class="col-1 button-group" style="text-align: center">
                                 <button class="chrome-button" type="button" ng-click="SS.subMax($index)">&lt;&lt;</button>
                                 <button class="chrome-button" type="button" ng-click="SS.subOne($index)">&lt;</button>
                                 <input ng-model="stat.shownAmount" class="small-input" type="number" disabled/>
