@@ -27,3 +27,16 @@ label {
 #difficulty-divider {
     padding: 0 0.25rem;
 }
+
+#warning {
+    grid-template-columns: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: red;
+    text-align: center;
+    padding: 0.5rem 0;
+}
+
+#warning span {
+    white-space: nowrap;
+}

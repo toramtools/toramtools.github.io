@@ -14,6 +14,13 @@ const difficultyHandler = function () {
     let itemDifficulty = parseInput("#equipment-difficulty", 0);
     $("#your-difficulty").val(difficulty);
     $("#success-rate").val(min(100, max(0, floor((50+5*createEquipment)/100*(10+difficulty-itemDifficulty+floor(STR/10))))));
+
+    if (difficulty < itemDifficulty) {
+        $("#warning").show();
+    }
+    else {
+        $("#warning").hide();
+    }
 }
 
 const potentialHandler = function () {
