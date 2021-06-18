@@ -28,6 +28,10 @@
     position: relative;
 }
 
+.closeable-body > div {
+    text-align: center;
+}
+
 .closeable-button {
     height: 0.75rem;
     background: white;
