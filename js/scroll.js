@@ -92,6 +92,11 @@ const searchScroll = function () {
 const craftScroll = function () {
     let cArray = [];
     $('select[id^="scroll-component-"').each(function () {cArray.push($(this).val())});
+
+    if (cArray.indexOf(null) != -1) {
+        return;
+    }
+    
     let components = cArray.join('');
     let scroll = SCROLL_COMBINATIONS.find((x) => x.startsWith(components));
     $("#craft-results-type").html(SCROLL_TYPES[scroll[3]]);
