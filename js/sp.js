@@ -144,6 +144,7 @@ const extraStatPoints = function () {
 $("#lvcap").on("input", function () {
     $("#level").attr("max", $("#lvcap").val());
 });
+$("#lvcap, #level").on("change", () => $("#extra-sp").trigger("input"));
 $("#level").on("input", levelChange);
 $("#stat-points").on("input", statChange);
 $("#skill-points").on("input", skillChange);

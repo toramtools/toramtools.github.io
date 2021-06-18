@@ -24,11 +24,11 @@
             <a href="index.html"><div class="header-title">Stat &amp; Skill Points Simulator</div></a>
         </div>
 
-        <div class="container">
+        <div class="container main">
 
-            <form id="base-sp">
-                <h2 class="section-title">Level, Stat &amp; Skill Points</h2>
-                <div class="section">
+            <form id="base-sp" action='javascript:void(0);'>
+                <fieldset class="section">
+                    <legend>Level, Stat &amp; Skill Points</legend>
                     <div class="grid grid-2">
                         <div class="col-1">
                             <label for="level">Lv</label>
@@ -48,16 +48,16 @@
                             <input class="small-input" id="skill-points" type="number" min="1"/>
                         </div>
                     </div>
-                </div>
+                </fieldset>
             </form>
 
-            <h2 class="section-title v-align">
-                <div>
-                    <span>Emblems</span>
-                    <img class="question-mark" id="emblem-popup">
-                </div>
-            </h2>
-            <div class="section emblems-section">
+            <fieldset class="section emblems-section">
+                <legend class="section-title v-align">
+                    <div>
+                        <span>Emblems</span>
+                        <img class="question-mark" id="emblem-popup">
+                    </div>
+                </legend>
                 <div>
                     <div class="grid grid-2">
                         <div class="col-1">
@@ -68,13 +68,13 @@
                             <button type="button" id="show-skill-emblems">Show All</button>
                         </div>
 
-                        <div class="col-1 hidden" id="extra-stp">
+                        <div class="col-1 ignore hidden" id="extra-stp">
                             <label for="extra-stat-points">Stat Points</label>
                             <input id="extra-stat-points" class="small-input" type="number" min="0" disabled/>
                         </div>
                     </div>
 
-                    <form id="extra-sp" class="hidden">
+                    <form id="extra-sp" class="hidden" action='javascript:void(0);'>
                         <h2 class="subsection-title">Player Level</h2>
                         <div class="grid grid-1">
                             <div class="col-1">
@@ -154,11 +154,11 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </fieldset>
 
         </div>
 
-        <div id="footer">
+        <div class="footer">
             Developed by: Insane23
         </div>
     </body>

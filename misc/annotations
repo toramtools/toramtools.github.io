@@ -8,3 +8,5 @@ Although, full formula for ignite damage is unknown. It's known that MATK/Ignite
 * If arrow hasn't element or no arrow is equiped, element is taken from bow (unless skill has fixed element);
 * If arrow has element and bow too, arrow element takes priority even if bow element is advantageous;
 * Bow skills with fixed element have dual element with arrow.
+
+- ['1st Weapon', '2nd Weapon', '3rd Weapon', 'Scroll Type', '1st Skill', '2nd Skill', '3rd Skill']

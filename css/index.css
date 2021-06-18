@@ -1,0 +1,38 @@
+.closeable-title {
+    display: grid;
+    grid-template-columns: auto auto;
+    font-size: 0.75rem;
+    margin: 0;
+}
+
+.closeable-title span {
+    width: fit-content;
+    background: white;
+    padding: 0 2px;
+    white-space: pre;
+}
+
+.closeable-title span:first-child {
+    margin-left: 1rem;
+    text-align: left;
+}
+
+.closeable-title img:last-child {
+    margin-right: 1rem;
+    text-align: right;
+    margin-left: auto;
+}
+
+.closeable-body {
+    text-align: justify;
+    position: relative;
+}
+
+.closeable-button {
+    height: 0.75rem;
+    background: white;
+    padding: 0 2px;
+    position: absolute;
+    top: calc(2.5px - 1em);
+    right: calc(0.35em + 4px);
+}

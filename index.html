@@ -16,6 +16,7 @@
         <meta name="description" content="Some varied tools related to Toram Online. Statting Simulator, Quest and Main Quest Simulator, Stat and Skill Points Calculator, Crafting Calculator."/>
         <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
         <link rel="stylesheet" href="css/main.css"/>
+        <link rel="stylesheet" href="css/index.css"/>
     </head>
 
     <body>
@@ -23,52 +24,59 @@
             <div class="header-title">Toram Tools</div>
         </div>
 
-        <ul class="index-ul">
-            <li>
-                <a href="statting.html">Statting Simulator</a>
-            </li>
-            <li>
-                <a href="xp.html">Experience Calculator</a>
-                <img class="question-mark" id="help-xp" data-title="Experience Calculator">
-            </li>
-            <li>
-                <a href="sp.html">Stat and Skill Points Simulator</a>
-                <img class="question-mark" id="help-sp" data-title="Stat and Skill Points Simulator">
-            </li>
-            <li>
-                <a href="blacksmith.html">Blacksmith Crafting Simulator</a>
-                <img class="question-mark" id="help-bs" data-title="Blacksmith Crafting Simulator">
-            </li>
-            <li>
-                <a href="corynclub.html">Simplified Advanced Search</a>
-                <img class="question-mark" id="help-cc" data-title="Simplified Advanced Search">
-            </li>
-            <li><a href="credits.html">Credits</a></li>
-        </ul>
-        
-        <div id="description-section" class="hidden">
-            <h2 class="closeable-title" id="description-title">
-                <span>Stat and Skill Points Simulator</span>
-                <img class="closeable-button" id="close-description" alt="Close [X]"/>
-            </h2>
-            <div class="section grid grid-1 closeable-body" id="description-body">
-                <div class="col-1" id="sp">
-                    Find how many skill and stat points you'll have at certain level counting extra points from emblems or not. You may also find required level to have certain amount of stat/skill points.
-                </div>
-                <div class="col-1" id="xp">
-                    Find how many times takes to reach certain level through either main quest or side quests or how many levels you'll get by doing these quests a certain number of times.
-                </div>
-                <div class="col-1" id="bs">
-                    Find how much potential your weapons/armor will have or how much success chance each craft might have based on your stats, equipaments and skills related to crafting.
-                </div>
-                <div class="col-1" id="cc">
-                    Less trouble finding items at <a href="http://coryn.club">Coryn Club</a>
-                </div>
+        <div class="main">
+            <ul class="index-ul">
+                <li>
+                    <a href="statting.html">Statting Simulator</a>
+                </li>
+                <li>
+                    <a href="xp.html">Experience Calculator</a>
+                    <img class="question-mark" id="help-xp">
+                </li>
+                <li>
+                    <a href="sp.html">Stat and Skill Points Simulator</a>
+                    <img class="question-mark" id="help-sp">
+                </li>
+                <li>
+                    <a href="blacksmith.html">Blacksmith Crafting Simulator</a>
+                    <img class="question-mark" id="help-bs">
+                </li>
+                <li>
+                    <a href="corynclub.html">Simplified Advanced Search</a>
+                    <img class="question-mark" id="help-cc">
+                </li>
+                <li>
+                    <a href="scroll.html">Ninja Scroll Crafting</a>
+                    <img class="question-mark" id="help-ns">
+                </li>
+                <li><a href="credits.html">Credits</a></li>
+            </ul>
+            
+            <div id="description-section" class="hidden">
+                <fieldset class="section closeable-body" id="description-body">
+                    <img class="closeable-button" id="close-description" alt="Close [X]" src="https://cdn.onlinewebfonts.com/svg/img_78622.png"/>
+                    <legend id="description-title"></legend>
+                    <div class="col-1" id="sp">
+                        Find how many skill and stat points you'll have at certain level counting extra points from emblems or not. You may also find required level to have certain amount of stat/skill points.
+                    </div>
+                    <div class="col-1" id="xp">
+                        Find how many times takes to reach certain level through either main quest or side quests or how many levels you'll get by doing these quests a certain number of times.
+                    </div>
+                    <div class="col-1" id="bs">
+                        Find how much potential your weapons/armor will have or how much success chance each craft might have based on your stats, equipaments and skills related to crafting.
+                    </div>
+                    <div class="col-1" id="ns">
+                        Find which weapons are required to craft a scroll given its type/skills or check which kind of scroll a certain combination of weapons will produce.
+                    </div>
+                    <div class="col-1" id="cc">
+                        Less trouble finding items at <a href="http://coryn.club">Coryn Club.</a>
+                    </div>
+                    </fieldset>
                 </div>
             </div>
         </div>
 
-        <div id="footer">Developed by: Insane23</div>
+        <div class="footer">Developed by: Insane23</div>
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/main.js"></script>

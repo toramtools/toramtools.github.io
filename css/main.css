@@ -2,13 +2,19 @@
 
 html {
     font-size: 16px;
+    width: 100%;
+    height: 100%;
 }
 
 body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
-    height: 90%;
-    width: 100%;
 }
 
 select {
@@ -26,12 +32,35 @@ a:-webkit-any-link {
 }
 
 .header {
-    box-sizing: border-box;
-    width: 100%;
     border: 1px solid #333333;
+    box-sizing: border-box;
     text-align: center;
     background-color: #333333;
     color: white;
+    margin-bottom: 0.5rem;
+}
+
+.main {
+    flex-grow: 1;
+}
+
+.main > *:not(:last-child) {
+    margin-bottom: 2vh;
+}
+
+.footer {
+    border: 1px solid #333333;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 0.75rem;
+    background-color: #333333;
+    color: white;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+.header, .main, .footer {
+    flex-shrink: 0;
 }
 
 .header a {
@@ -39,32 +68,18 @@ a:-webkit-any-link {
     color: white;
 }
 
-.header, .section {
-    margin-bottom: 1rem;
-}
-
-.section-title {
+.section > legend {
     font-size: 0.75rem;
     font-weight: bold;
-    margin: 0 0.5rem;
-    display: inline-block;
-    margin-left: 1rem;
-    background: white;
-    padding: 0 2px;
 }
 
 .section {
     margin-left: 0.25rem;
     margin-right: 0.25rem;
-    margin-top: calc(-0.5rem - 1px);
     border: solid 1px;
     border-radius: 10px;
-}
-
-.section::before {
-    content: "";
-    display: block;
-    margin-top: 0.5rem;
+    padding-bottom: 0.5em;
+    box-sizing: border-box;
 }
 
 .small-input {
@@ -126,16 +141,15 @@ a:-webkit-any-link {
     grid-column: 6;
 }
 
-.grid.grid-2 .col-1, .grid.grid-2 .col-2 {
+.grid.grid-2:not(.ignore) .col-1:not(.ignore), .grid.grid-2:not(.ignore) .col-2:not(.ignore) {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-.grid.grid-2 .col-1 label, .grid.grid-2 .col-2 label {
+.grid.grid-2:not(.ignore) .col-1:not(.ignore) label, .grid.grid-2:not(.ignore) .col-2:not(.ignore) label {
     margin-right: 5px;
 }
-
 
 .nogap {
     grid-gap: 0;
@@ -171,28 +185,6 @@ input[type=checkbox] {
 
 .label-checkbox {
     font-size: calc(1rem + 1px);
-}
-
-
-#footer {
-    display: none;
-}
-
-@media (min-height: 580px) {
-    #footer {
-        display: block;
-        position: fixed;
-        bottom: 0;
-        border: 1px solid #333333;
-        margin-bottom: 0;
-        width: 100%;
-        text-align: center;
-        font-size: 0.75rem;
-        font-style: italic;
-        color: white;
-        background-color: #333333;
-        box-sizing: border-box;
-    }
 }
 
 .v-align > div {
@@ -239,43 +231,6 @@ input[type=checkbox] {
 .index-ul .question-mark {
     margin-left: 0.25rem;
     height: 1rem;
-}
-
-.closeable-title {
-    display: grid;
-    grid-template-columns: auto auto;
-    font-size: 0.75rem;
-    margin: 0;
-}
-
-.closeable-title span {
-    width: fit-content;
-    background: white;
-    padding: 0 2px;
-    white-space: pre;
-}
-
-.closeable-title span:first-child {
-    margin-left: 1rem;
-    text-align: left;
-}
-
-.closeable-title img:last-child {
-    margin-right: 1rem;
-    text-align: right;
-    margin-left: auto;
-}
-
-.closeable-body {
-    padding: 1rem 0;
-    text-align: justify;
-}
-
-.closeable-button {
-    content: url(https://cdn.onlinewebfonts.com/svg/img_78622.png);
-    height: 0.75rem;
-    background: white;
-    padding: 0 2px;
 }
 
 .hidden {

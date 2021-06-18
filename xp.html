@@ -24,9 +24,9 @@
             <a href="index.html"><div class="header-title">Experience Calculator</div></a>
         </div>
 
-        <form class="container">
-            <h2 class="section-title">Level</h2>
-            <div class="section">
+        <form class="container main">
+            <fieldset class="section">
+                <legend>Level</legend>
                 <div class="grid grid-3">
                     <div class="col-1">
                         <label for="level">Lv</label>
@@ -46,15 +46,15 @@
                         <strong>Total XP required</strong>: <span id="xp-required"></span>
                     </p>
                 </div>
-            </div>
+            </fieldset>
 
-            <h2 class="section-title v-align">
-                <div>
-                    <span>Quest</span>
-                    <img id="quest-popup" class="question-mark"/>
-                </div>
-            </h2>
-            <div class="section">
+            <fieldset class="section">
+                <legend class="v-align">
+                    <div>
+                        <span>Quest</span>
+                        <img id="quest-popup" class="question-mark"/>
+                    </div>
+                </legend>
                 <div class="grid grid-1 quest-block">
                     <div class="col-1">
                         <label for="quest-name">Quest</label>
@@ -81,11 +81,11 @@
                         By doing this quest for <strong><span id="times-value"></span> times</strong>, you'll reach <strong>Level <span id="times-level"></span></strong> 
                     </p>
                 </div>
-            </div>
+            </fieldset>
 
-            <h2 class="section-title">Main Quest</h2>
-            <div class="section">
-                <div class="grid grid-1 nogap">
+            <fieldset class="section">
+                <legend>Main Quest</legend>
+                <div class="grid grid-1 nogap mq-block">
                     <div class="col-1 grid grid-1 nogap">
                         <label class="col-1 text-center" for="mq-from">From</label>
                         <select class="col-1" id="mq-from"></select>
@@ -101,10 +101,10 @@
                         <p id="mq-stop"></p>
                     </div>
                 </div>
-            </div>
+            </fieldset>
         </form>
 
-        <div id="footer">Developed by: Insane23</div>
+        <div class="footer">Developed by: Insane23</div>
     </body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

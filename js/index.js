@@ -1,22 +1,25 @@
 "use strict"
 
+const showSection = function (itemId, sectionSelector, title) {
+    $('#'+sectionSelector).show();
+    $('#'+itemId).show();
+    $(`${'#'+sectionSelector} .closeable-body div`).not(`#${itemId}`).hide();
+    $('#description-title').text(title);
+}
+
+$('.question-mark').each(function () {
+    let id = $(this).attr('id').split('-')[1];
+    $(this).on("click", function () {
+        console.log($(this).parent().find('a').text());
+        showSection(id, "description-section", $(this).parent().find('a').text());
+    });
+});
+
+$("#close-description").on("click", function () {
+    $("#description-section").hide();
+});
+
 $(document).ready(function () {
     let img = new Image();
     img.src = "https://cdn.onlinewebfonts.com/svg/img_78622.png";
-});
-
-$("#help-sp").on("click", function (){
-    showSection('sp', "description-section", this.dataset.title);
-});
-$("#help-xp").on("click", function (){
-    showSection('xp', "description-section", this.dataset.title);
-});
-$("#help-bs").on("click", function (){
-    showSection('bs', "description-section", this.dataset.title);
-});
-$("#help-cc").on("click", function (){
-    showSection('cc', "description-section", this.dataset.title);
-});
-$("#close-description").on("click", function () {
-    $("#description-section").hide();
 });

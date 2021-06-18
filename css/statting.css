@@ -2,6 +2,10 @@ body, html {
     overflow-x: hidden;
 }
 
+.ph-05 {
+    padding: 0.5rem 0;
+}
+
 .mb-05:not(:last-child) {
     margin-bottom: 0.5rem;
 }

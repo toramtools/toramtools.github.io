@@ -1,0 +1,132 @@
+.scroll-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.scroll-container > div {
+    height: fit-content;
+}
+
+@media (max-width: 480px) {
+    .scroll-container {
+        grid-template-columns: 1fr;
+        grid-row-gap: 2vh;
+    }
+}
+
+label > select, label > button {
+    margin-left: 5px;
+}
+
+.scroll-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-section button {
+    width: fit-content;
+}
+
+.scroll-section > label:not(:last-child) {
+    margin-bottom: 1em;
+}
+
+.scroll-section > label {
+    font-weight: bold;
+    text-align: center;
+}
+
+#scroll-craft-components {
+    height: calc(100% - 0.75rem + 3px);
+    box-sizing: border-box;
+    padding: 0.5em 0;
+}
+
+#scroll-skills {
+    padding: 0.5em 0;
+}
+
+.combination-box {
+    display: grid;
+    grid-template-columns: repeat(4, min-content);
+    font-weight: bold;
+    grid-gap: 1vh 0vw;
+}
+
+.combination-box span {
+    display: inline-block;
+    height: min-content;
+    margin: auto 0;
+    white-space: nowrap;
+}
+
+.combination-box img {
+    width: 30px;
+    margin: 0 0.25em;
+}
+
+#results {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: min-content;
+    grid-column-gap: 1em;
+    margin: 2vh 1em;
+    grid-gap: 1vh 1em;
+}
+
+#results-warning {
+    margin: 1vh;
+    text-align: justify;
+}
+
+#craft-results {
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+}
+
+#craft-results span:first-child {
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+#craft-results > span > span {
+    font-weight: normal;
+}
+
+.results-parent {
+    display: none;
+    width: fit-content;
+    margin: 0 auto;
+    min-width: 74px;
+    margin-top: 2vh;
+}
+
+@media(min-width: 654px) {
+    .results-parent {
+        max-width: 650px;
+    }
+}
+
+@media(min-width: 954px) {
+    .results-parent {
+        max-width: 950px;
+    }
+}
+
+@media (min-width: 650px) {
+    #results {
+        grid-template-columns: repeat(2, min-content);
+    }
+}
+
+@media (min-width: 950px) {
+    #results {
+        grid-template-columns: repeat(3, min-content);
+    }
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-141HZ4L42J"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-141HZ4L42J');
+        </script>
+        <title>Toram Tools</title>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="keywords" content="Toram Online, Toram Tools, Game Tools, Simulator, Statting Simulator, Calculator, Skill Points, Stat Points, Crafting, Blacksmith, Experience, Main Quest"/>
+        <meta name="description" content="Some varied tools related to Toram Online. Statting, Quest Experience, Stat and Skill Points, Crafting."/>
+        <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+        <link rel="stylesheet" href="css/main.css"/>
+        <link rel="stylesheet" href="css/scroll.css"/>
+    </head>
+
+    <body>
+        <div class="header">
+            <a href="index.html"><div class="header-title">Scroll Crafting Simulator</div></a>
+        </div>
+
+        <div class="main">
+            <div class="scroll-container">
+                <fieldset class="section">
+                    <legend>Search by Scroll Skills</legend>
+                    <div class="scroll-section" id="scroll-skills">
+                        <label>Type<select id="scroll-type"></select></label>
+                        <label>Skill 1<select id="scroll-skill-1" data-prev="-1"></select><button class="reset-skill" data-id="1">R</button></label>
+                        <label>Skill 2<select id="scroll-skill-2" data-prev="-1"></select><button class="reset-skill" data-id="2">R</button></label>
+                        <label>Skill 3<select id="scroll-skill-3" data-prev="-1"></select><button class="reset-skill" data-id="3">R</button></label>
+                        <div class="button-group">
+                            <button id="scroll-search">Search</button>
+                            <button id="scroll-search-reset">Reset</button>
+                        </div>
+                    </div>
+                </fieldset>
+                
+                <fieldset class="section" style="height: 100%;">
+                    <legend>Craft a Scroll</legend>
+                    <form action="javascript: void(0);" class="scroll-section" id="scroll-craft-components">
+                        <label>Weapon 1<select required id="scroll-component-1" data-prev="-1"></select></label>
+                        <label>Weapon 2<select required id="scroll-component-2" data-prev="-1"></select></label>
+                        <label>Weapon 3<select required id="scroll-component-3" data-prev="-1"></select></label>
+                        <div>
+                            <button id="craft-scroll">Craft</button>
+                            <button type="button" id="craft-scroll-reset">Reset</button>
+
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
+
+            <div class="results-parent">
+                <fieldset class="section">
+                    <legend>Results</legend>
+                    <div class="results-container">
+                        <div id="results"></div>
+                        <div id="results-warning">Oops, it seems that this combination is not possible unless one of the skills is random ("Any" or "Random") or the chosen scroll type is not available for the chosen combination. Try another combination, leaving one of the fields as random.</div>
+                        <div id="craft-results">
+                            <span id="craft-results-type"></span>
+                            <span>Stats: <span id="craft-results-stats"></span><span>.</span></span>
+                            <span>Skills: <span id="craft-results-skills"></span><span>.</span></span>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="footer">Developed by: Insane23</div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/scroll.js"></script>
+</html>

@@ -6,6 +6,10 @@ label {
     text-align: center;
 }
 
+.crafting-type legend {
+    text-align: left;
+}
+
 .crafting-type > select {
     margin: 0.5rem;
     padding-right: 0.5rem;

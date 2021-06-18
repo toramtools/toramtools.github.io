@@ -23,9 +23,9 @@
             <a href="index.html"><div class="header-title">Blacksmith Crafting Simulator</div></a>
         </div>
 
-        <form class="container">
-            <h2 class="section-title">Base Stats</h2>
-            <div class="section">
+        <form class="container main">
+            <fieldset class="section">
+                <legend>Base Stats</legend>
                 <div class="grid grid-3">
                     <div class="col-1">
                         <label for="STR">STR</label>
@@ -53,10 +53,10 @@
                         <input class="small-input" id="TEC" type="number" min="1"/>
                     </div>
                 </div>
-            </div>
+            </fieldset>
 
-            <h2 class="section-title">Equipament Stats</h2>
-            <div class="section">
+            <fieldset class="section">
+                <legend>Equipament Stats</legend>
                 <div class="grid grid-2">
                     <div class="col-1">
                         <label for="eSTR">STR</label>
@@ -76,10 +76,10 @@
                         <input class="small-input" id="eDEXp"max(16px, type="number" min="0"/>
                     </div>
                 </div>
-            </div>
+            </fieldset>
 
-            <h2 class="section-title">Craft Type</h2>
-            <div class="section crafting-type">
+            <fieldset class="section crafting-type">
+                <legend>Craft Type</legend>
                 <label for="craft-type">Type</label>
                 <select id="craft-type">
                     <option value="Armor">Armor</option>
@@ -93,10 +93,10 @@
                     <option value="Halberd">Halberd</option>
                     <option value="Katana">Katana</option>
                 </select>
-            </div>
+            </fieldset>
 
-            <h2 class="section-title">Skill Level</h2>
-            <div class="section">
+            <fieldset class="section">
+                <legend>Skill Level</legend>
                 <div class="grid grid-3 skill-block">
                     <label class="col-1" for="create-equipment">Create Equipment</label>
                     <label class="col-2" for="careful-creation">Careful Creation</label>
@@ -107,15 +107,15 @@
                     <input class="small-input col-3" id="expert-creation" type="number" min="1" value="10"/>
                     <div></div>
                 </div>
-            </div>
+            </fieldset>
 
-            <h2 class="section-title v-align">
-                <div>
-                    <span>Crafting Stats</span>
-                    <img class="question-mark" id="crafting-popup">
-                </div>
-            </h2>
-            <div class="section">
+            <fieldset class="section">
+                <legend class="v-align">
+                    <div>
+                        <span>Crafting Stats</span>
+                        <img class="question-mark" id="crafting-popup">
+                    </div>
+                </legend>
                 <div class="grid grid-2 nogap">
                     <div class="col-1">
                         <label for="equipment-difficulty">Difficulty</label>
@@ -151,10 +151,10 @@
                 <div id="warning">
                     You can't craft this item because <span> equipment difficulty &gt; your difficulty</span>.
                 </div>
-            </div>
+            </fieldset>
         </form>
 
-        <div id="footer">Developed by: Insane23</div>
+        <div class="footer">Developed by: Insane23</div>
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/main.js"></script>

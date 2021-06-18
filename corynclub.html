@@ -23,59 +23,61 @@
 
     <body ng-controller="StatListController as st">
         <div class="header">
-            <a href="index.html"><div class="header-title">Toram Tools</div></a>
+            <a href="index.html"><div class="header-title">Simplified Advanced Search</div></a>
         </div>
 
-        <ul class="index-ul">
-            <li><a href="https://coryn.club/item.php?&show=50&order=id%20DESC,name" target="_blank">[Coryn.Club] Sort by lastest items</a></li>
-        </ul>
+        <div class="main">
+            <ul class="index-ul">
+                <li><a href="https://coryn.club/item.php?&show=50&order=id%20DESC,name" target="_blank">[Coryn.Club] Sort by lastest items</a></li>
+            </ul>
 
-        <form ng-cloak class="{{bodyClass}} container" ng-submit="st.fix()" method="POST" action="https://coryn.club/itemsearch_handler.php" target="_blank">
-            <input type="hidden" name="iprocess" value="-1"/>
+            <form ng-cloak class="{{bodyClass}} container" ng-submit="st.fix()" method="POST" action="https://coryn.club/itemsearch_handler.php" target="_blank">
+                <input type="hidden" name="iprocess" value="-1"/>
 
-            <h2 class="section-title">Advanced Search [Redirects to Coryn.Club]</h2>
-            <div class="section">
-                <div class="grid grid-2">
-                    <div class="col-1 v-align">
-                        <div style="margin: 1.5px 0;">
-                            <label>Item Types</label>
-                            <select class="chrome-select" ng-model="st.itemList" name="itype[]" multiple>
-                                <option ng-repeat="item in st.itemOptions" value={{item[1]}}>{{item[0]}}</option>
+                <fieldset class="section">
+                    <legend>Advanced Search [Redirects to Coryn.Club]</legend>
+                    <div class="grid grid-2">
+                        <div class="col-1 v-align">
+                            <div style="margin: 1.5px 0;">
+                                <label>Item Types</label>
+                                <select class="chrome-select" ng-model="st.itemList" name="itype[]" multiple>
+                                    <option ng-repeat="item in st.itemOptions" value={{item[1]}}>{{item[0]}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-2 v-align">
+                            <div>
+                                <button class="chrome-button" type="button" ng-click="st.addStat()">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="single-line" style="text-align: center; font-weight: bold;" ng-hide="!st.itemList.length">Selected item<span ng-hide="st.itemList.length <= 1">s</span>: <span style="font-weight: normal" ng-repeat="item in st.itemList">{{st.types[item]+(($index+1 == st.itemList.length)?"":", ")}}</span></div>
+
+                    <div class="grid">
+                        <datalist id="statChoices">
+                            <option ng-repeat="statEntry in st.statEntries" value={{statEntry[0]}}></option>
+                        </datalist>
+                        <div class="col-1" ng-repeat="statItem in st.statList">
+                            <input ng-class="st.statBgColor(statItem.stat)" list="statChoices" type="text" ng-model="statItem.stat"/>
+                            <input type="hidden" name="effect[{{st.entries[statItem.stat]}}]" value="{{statItem.amount}}"/>
+                            <select class="chrome-select" ng-model="statItem.op">
+                                <option ng-repeat="op in st.operators" value="{{op}}">{{op}}</option>
                             </select>
+                            <input type="hidden" name="op[{{st.entries[statItem.stat]}}]" value="{{statItem.op}}"/>
+                            <input class="small-input" type="number" ng-model="statItem.amount" value="0"/>
+                            <button class="chrome-button" type="button" ng-click="st.removeStat($index)">-</button>
                         </div>
                     </div>
-                    
-                    <div class="col-2 v-align">
-                        <div>
-                            <button class="chrome-button" type="button" ng-click="st.addStat()">+</button>
-                        </div>
+                    <div class="grid">
+                        <button class="chrome-button col-1" type="submit">Search</button>
                     </div>
                 </div>
+            </form>
+        </div>
 
-                <div class="single-line" style="text-align: center; font-weight: bold;" ng-hide="!st.itemList.length">Selected item<span ng-hide="st.itemList.length <= 1">s</span>: <span style="font-weight: normal" ng-repeat="item in st.itemList">{{st.types[item]+(($index+1 == st.itemList.length)?"":", ")}}</span></div>
-
-                <div class="grid">
-                    <datalist id="statChoices">
-                        <option ng-repeat="statEntry in st.statEntries" value={{statEntry[0]}}></option>
-                    </datalist>
-                    <div class="col-1" ng-repeat="statItem in st.statList">
-                        <input ng-class="st.statBgColor(statItem.stat)" list="statChoices" type="text" ng-model="statItem.stat"/>
-                        <input type="hidden" name="effect[{{st.entries[statItem.stat]}}]" value="{{statItem.amount}}"/>
-                        <select class="chrome-select" ng-model="statItem.op">
-                            <option ng-repeat="op in st.operators" value="{{op}}">{{op}}</option>
-                        </select>
-                        <input type="hidden" name="op[{{st.entries[statItem.stat]}}]" value="{{statItem.op}}"/>
-                        <input class="small-input medium-input" type="number" ng-model="statItem.amount" value="0"/>
-                        <button class="chrome-button" type="button" ng-click="st.removeStat($index)">-</button>
-                    </div>
-                </div>
-                <div class="grid">
-                    <button class="chrome-button col-1" type="submit">Search</button>
-                </div>
-            </div>
-        </form> 
-
-        <div id="footer">Developed by: Insane23</div>
+        <div class="footer">Developed by: Insane23</div>
     </body>
     <script src="js/main.js"></script>
 </html>

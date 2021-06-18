@@ -29,10 +29,10 @@
             <a href="index.html"><div class="header-title">Statting Simulator</div></a>
         </div>
 
-        <form ng-cloak class="{{bodyClass}} r-grid">
+        <form ng-cloak class="{{bodyClass}} r-grid main">
             <div ng-class="{'configuration': SS.configDisabled, 'only-configuration': !SS.configDisabled}">
-                <h2 class="section-title" ng-click="SS.showthisbs()">Configuration</h2>
-                <div class="section">
+                <fieldset class="section">
+                    <legend ng-click="SS.showthisbs()">Configuration</legend>
                     <div class="grid grid-2">
                         <div class="col-1">
                             <label for="potential">Potential</label>
@@ -64,24 +64,24 @@
                             <button class="chrome-button" type="button" ng-click="SS.resetPot()">Reset</button>
                         </div>
                     </div>
-                </div>
+                </fieldset>
             </div>
 
             <div ng-hide="!SS.configDisabled" class="steps">
-                <h2 class="section-title" ng-click="SS.showthisbs()">Formula</h2>
-                <div class="section">
-                    <div class="mh-1 mt-1 mv-2vh">
+                <fieldset class="section">
+                    <legend ng-click="SS.showthisbs()">Formula</legend>
+                    <div class="ph-05">
                         <div ng-hide="!SS.recipePot"><strong>Recipe Potential</strong>: {{SS.recipePot}}</div>
                         <div><strong>Starting Potential ({{(SS.itemNature == "W")?"Weapon":"Armor"}})</strong>: {{SS.startingPot}}</div><br/>
                         <div ng-repeat="shownStep in SS.shownSteps track by shownStep.repr+shownStep.pot+shownStep.repeat"><strong>#Step {{$index+1}}</strong>: {{shownStep.repr}} (x{{shownStep.repeat}}) [{{shownStep.pot}}]</div><br/>
                         <div><strong>Success Rate</strong> = {{SS.successRate}}%</div>
                     </div>
-                </div>
+                </fieldset>
             </div>
 
             <div ng-hide="!SS.configDisabled" class="stats">
-                <h2 class="section-title" ng-click="SS.showthisbs()">Stats ({{SS.curPot}}/{{SS.prevPot}}) [={{SS.successRate}}%]</h2>
-                <div class="section">
+                <fieldset class="section">
+                    <legend class="section-title" ng-click="SS.showthisbs()">Stats ({{SS.curPot}}/{{SS.prevPot}}) [={{SS.successRate}}%]</legend>
                     <div class="grid grid-1">
                         <div class="col-1 button-group">
                             <button class="chrome-button" type="button" ng-click="SS.addStep()">Confirm</button>
@@ -105,10 +105,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </fieldset>
             </div>
         </form>
 
-        <div id="footer" ng-hide="SS.configDisabled">Developed by: Insane23</div>
+        <div class="footer">Developed by: Insane23</div>
     </body>
 </html>
