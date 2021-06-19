@@ -40,3 +40,26 @@
     top: calc(2.5px - 1em);
     right: calc(0.35em + 4px);
 }
+
+.index-ul > li:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+.index-ul {
+    padding-inline-end: 40px;
+    text-align: justify;
+}
+
+.index-ul > li > a, .index-ul > li > img {
+    float: left;
+}
+
+.index-ul .question-mark {
+    margin-left: 5px;
+    height: 1rem;
+}
+
+.index-ul > li > * {
+    display: flex;
+    align-items: center;
+}

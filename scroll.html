@@ -19,16 +19,18 @@
     </head>
 
     <body>
-        <div class="header">
+        <div class="header" id="HEADER">
             <a href="index.html"><div class="header-title">Scroll Crafting Simulator</div></a>
         </div>
 
         <div class="main">
             <div class="scroll-container">
-                <fieldset class="section">
-                    <legend>Search by Scroll Skills</legend>
+                <fieldset class="section" id="scroll-skills-container">
+                    <legend>
+                        Search by Scroll Skills
+                    </legend>
                     <div class="scroll-section" id="scroll-skills">
-                        <label>Type<select id="scroll-type"></select></label>
+                        <!-- label>Type<select id="scroll-type"></select></!-->
                         <label>Skill 1<select id="scroll-skill-1" data-prev="-1"></select><button class="reset-skill" data-id="1">R</button></label>
                         <label>Skill 2<select id="scroll-skill-2" data-prev="-1"></select><button class="reset-skill" data-id="2">R</button></label>
                         <label>Skill 3<select id="scroll-skill-3" data-prev="-1"></select><button class="reset-skill" data-id="3">R</button></label>
@@ -40,7 +42,12 @@
                 </fieldset>
                 
                 <fieldset class="section" style="height: 100%;">
-                    <legend>Craft a Scroll</legend>
+                    <legend>
+                        <div>
+                            <span>Craft a Scroll</span>
+                            <img id="cs-popup">
+                        </div>
+                    </legend>
                     <form action="javascript: void(0);" class="scroll-section" id="scroll-craft-components">
                         <label>Weapon 1<select required id="scroll-component-1" data-prev="-1"></select></label>
                         <label>Weapon 2<select required id="scroll-component-2" data-prev="-1"></select></label>
@@ -48,23 +55,30 @@
                         <div>
                             <button id="craft-scroll">Craft</button>
                             <button type="button" id="craft-scroll-reset">Reset</button>
-
                         </div>
+                        <div id="craft-results-container" class="hidden">
+                            <div id="craft-results">
+                                <span>Possible Types: <span id="craft-results-type"></span><span> Ninjustu Scroll.</span></span>
+                                <!-- span>Stats: <span id="craft-results-stats"></span><span>.</span></!-->
+                                <span>Skills: <span id="craft-results-skills"></span><span>.</span></span>
+                            </div>
+                        </div>
+                        
                     </form>
                 </fieldset>
             </div>
 
             <div class="results-parent">
                 <fieldset class="section">
-                    <legend>Results</legend>
+                    <legend>
+                        <div>
+                            <span>Results</span>
+                            <img id="results-popup">
+                        </div>
+                    </legend>
                     <div class="results-container">
                         <div id="results"></div>
                         <div id="results-warning">Oops, it seems that this combination is not possible unless one of the skills is random ("Any" or "Random") or the chosen scroll type is not available for the chosen combination. Try another combination, leaving one of the fields as random.</div>
-                        <div id="craft-results">
-                            <span id="craft-results-type"></span>
-                            <span>Stats: <span id="craft-results-stats"></span><span>.</span></span>
-                            <span>Skills: <span id="craft-results-skills"></span><span>.</span></span>
-                        </div>
                     </div>
                 </fieldset>
             </div>

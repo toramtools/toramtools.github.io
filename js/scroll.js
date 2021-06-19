@@ -5,39 +5,66 @@ const SCROLL_COMBINATIONS = ['1234320', '1247318', '1257351', '1267346', '127737
 const SCROLL_SKILLS = {'-1': 'Any', '0': 'Random', '1': 'Fire Release', '2': 'Thunder Release', '3': 'Wind Release', '4': 'Water Release', '5': 'Earth Release', '6': 'Cloning', '7': 'Demon Wind Shuriken', '8': 'Kunai Throw'};
 const WEAPON_TYPES = {'1': '1H Sword', '2': '2H Sword', '3': 'Bow', '4': 'Bowgun', '5': 'Katana', '6': 'Halberd', '7': 'Staff', '8': 'Magic Device', '9': 'Knuckles'};
 const WEAPON_ICONS = {'1': 'ohs', '2': 'ths', '3': 'bow', '4': 'bg', '5': 'ktn', '6': 'hb', '7': 'stf', '8': 'md', '9': 'knx'}
-const SCROLL_TYPES = {'0': 'Any Scroll', '1': 'Fire Scroll', '2': 'Water Scroll', '3': 'Earth Scroll', '4': 'Lightning Scroll', '5': 'Metal Scroll', '6': 'Dark Scroll', '7': 'Wind Scroll'};
+/*const SCROLL_TYPES = {'0': 'Any Scroll', '1': 'Fire Scroll', '2': 'Water Scroll', '3': 'Earth Scroll', '4': 'Lightning Scroll', '5': 'Metal Scroll', '6': 'Dark Scroll', '7': 'Wind Scroll'};*/
+const SCROLL_TYPES = {'1': 'Fire', '2': 'Lighting', '3': 'Wind', '4': 'Water', '5': 'Earth', '6': 'Dark', '7': 'Metal', '8': 'Metal'}
 const SCROLL_STATS = {'1': 'MATK +1%, With Staffs: Magic Pierce +5%', '2': 'Ailment Resistance +5%, With Magic Tools: Aggro -10%', '3': 'MaxHP +10%, With One Handed Swords: Fractional Barrier +10%', '4': 'Stability +5%, With Katanas: Accuracy +10%', '5': 'Critical Rate +5', '6': 'Aggro -10%', '7': 'Attack Speed +250, With Katanas: Critical Rate +5'}
 
 const findCombination = function (combination) {
     let matches = [];
     for (const scroll of SCROLL_COMBINATIONS) {
-        if (combination[0] == '0' || combination[0] == scroll[3]) {
-            const choosen_skills = combination.slice(1);
-            const scroll_skills = scroll.slice(4);
-            let count = 0;
-            for (const skill of choosen_skills) {
-                if (scroll_skills.search(skill) != -1) {
-                    count += 1;
-                }
+        const scroll_skills = scroll.slice(4);
+        let count = 0;
+        for (const skill of combination) {
+            if (scroll_skills.search(skill) != -1) {
+                count += 1;
             }
+        }
 
-            let cs_randoms = (choosen_skills.match(RegExp('0', 'g')) || []).length;
-            let ss_randoms = (scroll_skills.match(RegExp('0', 'g')) || []).length;
+        let cs_randoms = combination.split('0').length-1;
+        let ss_randoms = scroll_skills.split('0').length-1;
 
-            if (count == choosen_skills.length && ss_randoms >= cs_randoms) {
-                matches.push(scroll);
-            }
+        if (count == combination.length && ss_randoms >= cs_randoms) {
+            matches.push(scroll);
         }
     }
     return matches;
 }
 
+const clickCombinationBox = function () {
+    let combination = new String($(this).data('id'));
+    combination.split('').map(function (value, index) {
+        $("#scroll-component-" + (index + 1)).val(value);
+    });
+    craftScroll();
+    location.href = "#HEADER";
+}
+
 const generateScrollBlock = function (array) {
     let result = new String();
     for (scroll of array) {
-        result += `<div class="combination-box"><img src="./media/images/${WEAPON_ICONS[scroll[0]]}.png"><img src="./media/images/${WEAPON_ICONS[scroll[1]]}.png"><img src="./media/images/${WEAPON_ICONS[scroll[2]]}.png"><span>[${SCROLL_TYPES[scroll[3]]}]</span></div>\n`
+        result += `<div class="combination-box" data-id="${scroll.slice(0, 3)}"><div><img src="./media/images/${WEAPON_ICONS[scroll[0]]}.png"><img src="./media/images/${WEAPON_ICONS[scroll[1]]}.png"><img src="./media/images/${WEAPON_ICONS[scroll[2]]}.png"></div></div>\n`
     }
     return result;
+}
+
+const searchScroll = function () {
+    let scroll = '';
+    let s = [$("#scroll-skill-1").val(), $("#scroll-skill-2").val(), $("#scroll-skill-3").val()];
+    for (const skill of s) {
+        scroll = (skill != '-1')?scroll+skill:scroll;
+    }
+    let combinations = findCombination(scroll);
+    if (combinations.length != 0) {
+        $("#results").show();
+        $(".results-container > div:not(#results)").hide();
+        $("#results").html(generateScrollBlock(combinations));
+        $(".combination-box").on("click", clickCombinationBox);
+    }
+    else {
+        $("#results-warning").show();
+        $(".results-container > div:not(#results-warning)").hide();
+    }
+    $('.results-parent').show();
 }
 
 const limitSkillOptions = function (event) {
@@ -49,44 +76,15 @@ const limitSkillOptions = function (event) {
         $('select[id^="scroll-skill-"').not(this).find(`option[value="${next}"]`).prop("disabled", true);
 }
 
-const limitWeaponCombinations = function (event) {
-    let prev = $(this).data('prev');
-    $('select[id^="scroll-component-"').not(this).find(`option[value="${prev}"]`).prop("disabled", false);
-    let next = $(this).val();
-    $(this).data('prev', next);
-    $('select[id^="scroll-component-"').not(this).find(`option[value="${next}"]`).prop("disabled", true);
-}
-
-const resetScrollSkills = function () {
-    $('#scroll-type').val('0');
-    $('select[id^="scroll-skill-"').val('-1');
-    $('.results-parent').hide();
+const resetChoosenSkill = function (event) {
+    $("#scroll-skill-" + $(this).data("id")).val('0');
     $('select[id^="scroll-skill-"').change();
 }
 
-const resetScrollComponents = function () {
-    $('select[id^="scroll-component-"').val('-1');
+const resetScrollSkills = function () {
+    $('select[id^="scroll-skill-"').val('-1');
     $('.results-parent').hide();
-    $('select[id^="scroll-component-"').change();
-}
-
-const searchScroll = function () {
-    let scroll = $("#scroll-type").val();
-    let s = [$("#scroll-skill-1").val(), $("#scroll-skill-2").val(), $("#scroll-skill-3").val()];
-    for (const skill of s) {
-        scroll = (skill != '-1')?scroll+skill:scroll;
-    }
-    let combinations = findCombination(scroll);
-    if (combinations.length != 0) {
-        $("#results").show();
-        $(".results-container > div:not(#results)").hide();
-        $("#results").html(generateScrollBlock(combinations));
-    }
-    else {
-        $("#results-warning").show();
-        $(".results-container > div:not(#results-warning)").hide();
-    }
-    $('.results-parent').show();
+    $('select[id^="scroll-skill-"').change();
 }
 
 const craftScroll = function () {
@@ -96,25 +94,41 @@ const craftScroll = function () {
     if (cArray.indexOf(null) != -1) {
         return;
     }
-    
+
     let components = cArray.join('');
     let scroll = SCROLL_COMBINATIONS.find((x) => x.startsWith(components));
-    $("#craft-results-type").html(SCROLL_TYPES[scroll[3]]);
-    $("#craft-results-stats").html(SCROLL_STATS[scroll[3]]);
-    $("#craft-results-skills").html(cArray.map((x) => SCROLL_SKILLS[x]).join(' / '));
-
-    $("#craft-results").show();
-    $(".results-container > div:not(#craft-results)").hide();
-    $(".results-parent").show();
+    let skills = scroll.slice(4);
+    if (skills.split('0').length - 1 < 2) {
+        let types = [];
+        skills.split('').forEach(function (value) {
+            if (value > 0) {
+                types.push(SCROLL_TYPES[value]);
+            }
+        });
+        $("#craft-results-type").html(types.map((x) => `<span>${x}</span>`).join('\n'));
+    }
+    else {
+        $("#craft-results-type").html("Any");
+    }
+    $("#craft-results-skills").html(scroll.slice(4).split('').map((x) => SCROLL_SKILLS[x]).join(' / '));
+    $("#craft-results-container").show();
 }
 
-const resetChoosenSkill = function (event) {
-    $("#scroll-skill-" + $(this).data("id")).val('0');
-    $('select[id^="scroll-skill-"').change();
+const limitWeaponCombinations = function (event) {
+    let prev = $(this).data('prev');
+    $('select[id^="scroll-component-"').not(this).find(`option[value="${prev}"]`).prop("disabled", false);
+    let next = $(this).val();
+    $(this).data('prev', next);
+    $('select[id^="scroll-component-"').not(this).find(`option[value="${next}"]`).prop("disabled", true);
+}
+
+const resetScrollComponents = function () {
+    $('select[id^="scroll-component-"').val('-1');
+    $('select[id^="scroll-component-"').change();
+    $("#craft-results-container").hide();
 }
 
 $(document).ready(function () {
-    $('#scroll-type').append(fillOptions(Object.keys(SCROLL_TYPES), Object.values(SCROLL_TYPES))).val('0');
     $('select[id^="scroll-skill-"').append(fillOptions(Object.keys(SCROLL_SKILLS), Object.values(SCROLL_SKILLS))).val('-1');
     $('select[id^="scroll-component-"').append(fillOptions(Object.keys(WEAPON_TYPES), Object.values(WEAPON_TYPES))).val('-1');
     $('#scroll-search-reset').on("click", resetScrollSkills);
@@ -124,4 +138,11 @@ $(document).ready(function () {
     $('#scroll-search').on("click", searchScroll);
     $('#craft-scroll').on("click", craftScroll);
     $('.reset-skill').on("click", resetChoosenSkill);
+
+    $("#cs-popup").on("click", function () {
+        alert("Scroll type is bound to its skills, but each type has specific stats:\n\n" + Object.keys(SCROLL_STATS).map((x) => `${SCROLL_TYPES[x]} = ${SCROLL_STATS[x]}`).join('; \n') + '.');
+    });
+    $("#results-popup").on("click", function () {
+        alert("For more details, click on a combination to push it to craft section.");
+    });
 });

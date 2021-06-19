@@ -204,33 +204,19 @@ input[type=checkbox] {
     text-align: center;
 }
 
-.question-mark {
-    height: 0.75rem;
-    display: inline-block;
-    margin-left: 3px;
+.section > legend > div {
+    display: flex;
+    align-items: center;
+}
+
+.section > legend > div > img, .question-mark {
+    width: 1.1em;
+    margin-left: 5px;
     content: url(https://cdn1.iconfinder.com/data/icons/material-set-6/48/543-512.png);
 }
 
 .text-center {
     text-align: center;
-}
-
-.index-ul > li:not(:last-child) {
-    margin-bottom: 0.5rem;
-}
-
-.index-ul {
-    padding-inline-end: 40px;
-    text-align: justify;
-}
-
-.index-ul > li > a, .index-ul > li > img {
-    float: left;
-}
-
-.index-ul .question-mark {
-    margin-left: 0.25rem;
-    height: 1rem;
 }
 
 .hidden {

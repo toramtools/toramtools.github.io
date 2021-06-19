@@ -53,9 +53,15 @@ label > select, label > button {
 
 .combination-box {
     display: grid;
-    grid-template-columns: repeat(4, min-content);
+    grid-template-columns: repeat(1, min-content);
     font-weight: bold;
-    grid-gap: 1vh 0vw;
+    grid-gap: 0.5vh 0vw;
+    justify-content: center;
+}
+
+.combination-box div {
+    display: flex;
+    justify-content: center;
 }
 
 .combination-box span {
@@ -63,6 +69,7 @@ label > select, label > button {
     height: min-content;
     margin: auto 0;
     white-space: nowrap;
+    text-align: center;
 }
 
 .combination-box img {
@@ -73,10 +80,10 @@ label > select, label > button {
 #results {
     display: grid;
     justify-content: center;
-    grid-template-columns: min-content;
     grid-column-gap: 1em;
     margin: 2vh 1em;
-    grid-gap: 1vh 1em;
+    grid-gap: 3vh 2em;
+    grid-template-columns: repeat(auto-fill, 100px);
 }
 
 #results-warning {
@@ -88,10 +95,12 @@ label > select, label > button {
     font-weight: bold;
     display: flex;
     flex-direction: column;
+    margin-top: 1em;
+    border-top: 1px solid black;
+    padding-top: 1em;
 }
 
 #craft-results span:first-child {
-    margin-bottom: 1em;
     text-align: center;
 }
 
@@ -99,34 +108,24 @@ label > select, label > button {
     font-weight: normal;
 }
 
+#craft-results-type span:not(:last-child):not(:nth-last-child(2))::after {
+    content: ", ";
+}
+
+#craft-results-type span:last-child::before {
+    content: " and "
+}
+
+#scroll-skills-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .results-parent {
     display: none;
-    width: fit-content;
+    max-width: 90%;
     margin: 0 auto;
     min-width: 74px;
     margin-top: 2vh;
-}
-
-@media(min-width: 654px) {
-    .results-parent {
-        max-width: 650px;
-    }
-}
-
-@media(min-width: 954px) {
-    .results-parent {
-        max-width: 950px;
-    }
-}
-
-@media (min-width: 650px) {
-    #results {
-        grid-template-columns: repeat(2, min-content);
-    }
-}
-
-@media (min-width: 950px) {
-    #results {
-        grid-template-columns: repeat(3, min-content);
-    }
 }
