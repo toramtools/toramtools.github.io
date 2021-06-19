@@ -1,13 +1,14 @@
 .scroll-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: -moz-fit-content;
     width: fit-content;
+    width: -moz-fit-content;
     margin: 0 auto;
 }
 
 .scroll-container > div {
     height: fit-content;
+    height: -moz-fit-content;
 }
 
 @media (max-width: 480px) {
@@ -30,6 +31,7 @@ label > select, label > button {
 
 .scroll-section button {
     width: fit-content;
+    width: -moz-fit-content;
 }
 
 .scroll-section > label:not(:last-child) {
