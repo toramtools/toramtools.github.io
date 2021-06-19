@@ -36,7 +36,7 @@ const clickCombinationBox = function () {
         $("#scroll-component-" + (index + 1)).val(value);
     });
     craftScroll();
-    location.href = "#HEADER";
+    //location.href = "#HEADER";
 }
 
 const generateScrollBlock = function (array) {
