@@ -74,6 +74,7 @@ label > select, label > button {
 
 .combination-box img {
     width: 30px;
+    border-radius: 15px;
     margin: 0 0.25em;
 }
 
