@@ -110,7 +110,7 @@ const craftScroll = function () {
     else {
         $("#craft-results-type").html("Any");
     }
-    $("#craft-results-skills").html(scroll.slice(4).split('').map((x) => SCROLL_SKILLS[x]).join(' / '));
+    $("#craft-results-skills").html(scroll.slice(4).split('').map((x) => SCROLL_SKILLS[x]).join(' | '));
     $("#craft-results-container").show();
 }
 

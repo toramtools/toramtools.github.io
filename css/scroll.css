@@ -92,16 +92,19 @@ label > select, label > button {
 }
 
 #craft-results {
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
+    text-align: center;
     margin-top: 1em;
-    border-top: 1px solid black;
     padding-top: 1em;
+    border-top: 1px solid black;
 }
 
-#craft-results span:first-child {
-    text-align: center;
+#craft-results > span:first-child, #craft-results > span:nth-child(3) {
+    font-weight: bold;
+    display: block;
+}
+
+#craft-results > span:nth-child(3) {
+    margin-top: 1vh;
 }
 
 #craft-results > span > span {
