@@ -6,8 +6,16 @@ const SCROLL_SKILLS = {'-1': 'Any', '0': 'Random', '1': 'Fire Release', '2': 'Th
 const WEAPON_TYPES = {'1': '1H Sword', '2': '2H Sword', '3': 'Bow', '4': 'Bowgun', '5': 'Katana', '6': 'Halberd', '7': 'Staff', '8': 'Magic Device', '9': 'Knuckles'};
 const WEAPON_ICONS = {'1': 'ohs', '2': 'ths', '3': 'bow', '4': 'bg', '5': 'ktn', '6': 'hb', '7': 'stf', '8': 'md', '9': 'knx'}
 /*const SCROLL_TYPES = {'0': 'Any Scroll', '1': 'Fire Scroll', '2': 'Water Scroll', '3': 'Earth Scroll', '4': 'Lightning Scroll', '5': 'Metal Scroll', '6': 'Dark Scroll', '7': 'Wind Scroll'};*/
-const SCROLL_TYPES = {'1': 'Fire', '2': 'Lighting', '3': 'Wind', '4': 'Water', '5': 'Earth', '6': 'Dark', '7': 'Metal', '8': 'Metal'}
-const SCROLL_STATS = {'1': 'MATK +1%, With Staffs: Magic Pierce +5%', '2': 'Ailment Resistance +5%, With Magic Tools: Aggro -10%', '3': 'MaxHP +10%, With One Handed Swords: Fractional Barrier +10%', '4': 'Stability +5%, With Katanas: Accuracy +10%', '5': 'Critical Rate +5', '6': 'Aggro -10%', '7': 'Attack Speed +250, With Katanas: Critical Rate +5'}
+const SCROLL_TYPES = {'1': 'Fire', '2': 'Lightning', '3': 'Wind', '4': 'Water', '5': 'Earth', '6': 'Dark', '7': 'Metal', '8': 'Metal'}
+const SCROLL_STATS = {
+    '1': 'MATK +1%, With Staffs: Magic Pierce +5%', 
+    '2': 'Stability +5%, With Katanas: Accuracy +10%', 
+    '3': 'Attack Speed +250, With Katanas: Critical Rate +5', 
+    '4': 'Ailment Resistance +5%, With Magic Tools: Aggro -10%', 
+    '5': 'MaxHP +10%, With One Handed Swords: Fractional Barrier +10%', 
+    '6': 'Aggro -10%', 
+    '7': 'Critical Rate +5'
+}
 
 const findCombination = function (combination) {
     let matches = [];
