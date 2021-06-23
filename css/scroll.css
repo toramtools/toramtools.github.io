@@ -111,7 +111,7 @@ label > select, label > button {
 }
 
 .scroll-type {
-    display: block;
+    display: inline;
     white-space: nowrap;
     width: 100%;
     text-align: center;
