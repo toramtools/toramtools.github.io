@@ -47,10 +47,26 @@ const clickCombinationBox = function () {
     //location.href = "#HEADER";
 }
 
+const scrollTypeList = function (scroll) {
+    let skills = scroll.slice(4);
+    if (skills.split('0').length - 1 < 2) {
+        let types = [];
+        skills.split('').forEach(function (value) {
+            if (value > 0) {
+                types.push(SCROLL_TYPES[value]);
+            }
+        });
+        return types.map((x) => `<span>${x}</span>`).join('\n');
+    }
+    else {
+        return "Any";
+    }
+}
+
 const generateScrollBlock = function (array) {
     let result = new String();
     for (scroll of array) {
-        result += `<div class="combination-box" data-id="${scroll.slice(0, 3)}"><div><img src="./media/images/${WEAPON_ICONS[scroll[0]]}.png"><img src="./media/images/${WEAPON_ICONS[scroll[1]]}.png"><img src="./media/images/${WEAPON_ICONS[scroll[2]]}.png"></div><div>${SCROLL_TYPES[scroll[3]]}</div></div>\n`
+        result += `<div class="combination-box" data-id="${scroll.slice(0, 3)}"><div><img src="./media/images/${WEAPON_ICONS[scroll[0]]}.png"><img src="./media/images/${WEAPON_ICONS[scroll[1]]}.png"><img src="./media/images/${WEAPON_ICONS[scroll[2]]}.png"></div><div class="scroll-type">${scrollTypeList(scroll)}</div></div>\n`
     }
     return result;
 }
@@ -107,7 +123,6 @@ const craftScroll = function () {
     let scroll = SCROLL_COMBINATIONS.find((x) => x.startsWith(components));
     let skills = scroll.slice(4);
 
-    /*
     if (skills.split('0').length - 1 < 2) {
         let types = [];
         skills.split('').forEach(function (value) {
@@ -120,9 +135,8 @@ const craftScroll = function () {
     else {
         $("#craft-results-type").html("Any");
     }
-    */
 
-    $("#craft-results-type").html(SCROLL_TYPES[scroll[3]]);
+    //$("#craft-results-type").html(SCROLL_TYPES[scroll[3]]);
     $("#craft-results-skills").html(scroll.slice(4).split('').map((x) => SCROLL_SKILLS[x]).join(' | '));
     $("#craft-results-container").show();
 }

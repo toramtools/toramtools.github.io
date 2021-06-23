@@ -61,7 +61,7 @@ label > select, label > button {
     justify-content: center;
 }
 
-.combination-box div {
+.combination-box div:first-child {
     display: flex;
     justify-content: center;
 }
@@ -86,7 +86,7 @@ label > select, label > button {
     grid-column-gap: 1em;
     margin: 2vh 1em;
     grid-gap: 3vh 2em;
-    grid-template-columns: repeat(auto-fill, 100px);
+    grid-template-columns: repeat(auto-fill, 175px);
 }
 
 #results-warning {
@@ -110,16 +110,23 @@ label > select, label > button {
     margin-top: 1vh;
 }
 
-#craft-results > span > span {
+.scroll-type {
+    display: block;
+    white-space: nowrap;
+    width: 100%;
+    text-align: center;
+}
+
+.scroll-type > span > span {
     font-weight: normal;
 }
 
-#craft-results-type span:not(:last-child):not(:nth-last-child(2))::after {
+.scroll-type span:not(:last-child):not(:nth-last-child(2))::after {
     content: ", ";
 }
 
-#craft-results-type span:last-child::before {
-    content: " and "
+.scroll-type span:last-child::before {
+    content: " or ";
 }
 
 #scroll-skills-container {
