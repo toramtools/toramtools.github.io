@@ -60,7 +60,7 @@ const potentialHandler = function () {
     $("#total-potential").val(potential);
 }
 
-const setDefaultStats = function (primary, secondary, difficulty = ANNIV_DIFFICULTY) {
+const setDefaultStats = function (primary, secondary, difficulty = WEAPON_DIFFICULTY) {
     $("#STR").val('');
     $("#DEX").val(''); 
     $("#INT").val(''); 
@@ -73,7 +73,7 @@ const setDefaultStats = function (primary, secondary, difficulty = ANNIV_DIFFICU
 
     $("#equipment-difficulty").val(difficulty);
 
-    if (difficulty == ANNIV_DIFFICULTY) {
+    if (difficulty == WEAPON_DIFFICULTY) {
         $("#base-potential").val(HIGHEST_WPN_POT);
     }
     else {
