@@ -106,7 +106,10 @@ const mq_data = {
     "The Goddess of Justice and the Squatters":31600000,
     "Navigator of the Ark":33100000,
     "Witch in the Woods": 34600000,
-    "The Duel in Nov Diela": 36200000
+    "The Duel in Nov Diela": 36200000,
+    "Chapter 11":"",
+    "Flying the Ark":37800000,
+    "Land of the Unknown":49000000
  };
 
 
@@ -160,7 +163,7 @@ const addXP = function (begin, beginPercentage, extraXP) {
         totalXP += getXP(lv);
     }
     lv -= 1;
-    lvPercentage = 100-floor(100*(totalXP-targetXP)/getXP(lv));
+    lvPercentage = min(99, 100-floor(100*(totalXP-targetXP)/getXP(lv)));
     return [lv, lvPercentage];
 }
 
@@ -197,11 +200,12 @@ const evaluateMQ = function () {
                 mqStop = i;
             }
         }
+        $("#mq-xp").html(`<strong>XP</strong>: ${new Intl.NumberFormat().format(mqXP)}`);
         let [mqLv, mqLvP] = addXP(lv, lvP, mqXP);
         $("#mq-eval").html(`After doing Main Quest's above range you'll reach <strong>Lv.${mqLv} (${mqLvP}%)</strong>`);
         if (mqStopTesting) {
             let quest = $(`#mq-until option[value="${mqStop}"]`).text();
-            $("#mq-stop").html(`You may stop after quest <strong>${quest}</strong> to reach target level.`);
+            $("#mq-stop").html(`You may stop after quest <strong>${quest}</strong> to reach target level`);
         }
         else {
             $("#mq-stop").html("");

@@ -121,8 +121,10 @@ const bothHandler = function () {
 }
 
 
-
-$("body form").on("input", bothHandler);
-$("body form").trigger("input");
-$("#craft-type").on("input", craftHandler);
-$("#craft-type").trigger("input");
+$(document).ready(function () {
+    $("#proeficiency").val(HIGHEST_PROF);
+    $("body form").on("input", bothHandler);
+    $("body form").trigger("input");
+    $("#craft-type").on("input", craftHandler);
+    $("#craft-type").trigger("input");
+});

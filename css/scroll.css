@@ -59,6 +59,7 @@ label > select, label > button {
     font-weight: bold;
     grid-gap: 0.5vh 0vw;
     justify-content: center;
+    cursor: pointer;
 }
 
 .combination-box div:first-child {
