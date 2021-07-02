@@ -73,7 +73,7 @@
                     <div class="ph-05">
                         <div ng-hide="!SS.recipePot"><strong>Recipe Potential</strong>: {{SS.recipePot}}</div>
                         <div><strong>Starting Potential ({{(SS.itemNature == "W")?"Weapon":"Armor"}})</strong>: {{SS.startingPot}}</div><br/>
-                        <div ng-repeat="shownStep in SS.shownSteps track by shownStep.repr+shownStep.pot+shownStep.repeat"><strong>#Step {{$index+1}}</strong>: {{shownStep.repr}} (x{{shownStep.repeat}}) [{{shownStep.pot}}]</div><br/>
+                        <div ng-repeat="shownStep in SS.shownSteps track by $index"><strong>#Step {{$index+1}}</strong>: {{shownStep.repr}} (x{{shownStep.repeat}}) [{{shownStep.pot}}]</div><br/>
                         <div><strong>Success Rate</strong> = {{SS.successRate}}%</div>
                     </div>
                 </fieldset>
