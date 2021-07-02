@@ -98,7 +98,7 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
     SS.lvcap = LV_CAP;
     SS.recipePot = 0;
     SS.itemNature = "W";
-    SS.startingPot = 86;
+    SS.startingPot = floor(HIGHEST_WPN_POT*1.3)+floor((PRIMARY_STAT+SECONDARY_STAT)/20);
 
     SS.showthisbs = function () {
     }
