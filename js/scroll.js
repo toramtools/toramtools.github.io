@@ -148,6 +148,9 @@ const craftScroll = function (searchAny = false) {
         $("#craft-results-skills").html(scroll.slice(4).split('').map((x) => SCROLL_SKILLS[x]).join(' | '));
         $("#craft-results-container").show();
     }
+    else {
+        $("#craft-results-container").hide();
+    }
 
     if (searchAny == true) {
         let results = String();
@@ -195,12 +198,15 @@ $(document).ready(function () {
     $('select[id^="scroll-component-"').change(limitWeaponCombinations);
     $('#scroll-search').on("click", searchScroll);
     $('#craft-scroll').on("click", () => craftScroll(true));
-    $('.reset-skill').on("click", resetChoosenSkill);
+    //$('.reset-skill').on("click", resetChoosenSkill);
 
     $("#cs-popup").on("click", function () {
         alert("Scroll type is bound to its skills, but each type has specific stats:\n\n" + Object.keys(SCROLL_STATS).map((x) => `${SCROLL_TYPES[x]} = ${SCROLL_STATS[x]}`).join('; \n') + '.');
     });
     $("#results-popup").on("click", function () {
         alert("For more details, click on a combination to push it to craft section.");
+    });
+    $("#sss-popup").on("click", function () {
+        alert("Random = Question Mark Skill (?)\nAny = Random (?) or Fixed (Wind, Water, etc.)");
     });
 });
