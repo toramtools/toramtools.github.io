@@ -15,3 +15,5 @@ const expandST = function () {
         }
     }
 }
+
+$(".justify-content-between > button:first-child").on("click", expandST);
