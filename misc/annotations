@@ -9,4 +9,5 @@ Although, full formula for ignite damage is unknown. It's known that MATK/Ignite
 * If arrow has element and bow too, arrow element takes priority even if bow element is advantageous;
 * Bow skills with fixed element have dual element with arrow.
 
-- ['1st Weapon', '2nd Weapon', '3rd Weapon', 'Scroll Type', '1st Skill', '2nd Skill', '3rd Skill']
+- ATK/MATK UP (STAT) only applies to base stats (coryn wrongly applies to total stat).
+

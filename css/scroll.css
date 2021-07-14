@@ -126,7 +126,7 @@ label > select, label > button {
     content: ", ";
 }
 
-.scroll-type span:last-child::before {
+.scroll-type span:last-child:not(:first-child)::before {
     content: " or ";
 }
 
