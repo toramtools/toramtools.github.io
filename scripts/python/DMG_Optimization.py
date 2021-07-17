@@ -159,7 +159,7 @@ class DamageContext:
 
         enemyLv = self.monster['level']
         enemyPRes = self.monster['pres%']
-        enemyDef = self.monster['def']
+        enemyDef = (self.monster['def']+myStats['enemy def'])*(100-min(100, myStats['ppierce%']))//100
 
         constant = self.skill['constant'](myStats)+myStats[self.skill['unsheathe']+'+']
         mult = self.skill['multiplier'](myStats)
@@ -174,9 +174,12 @@ class DamageContext:
         totalPDMG = prorationPDMG = totalPDMG*self.skill['proration']
         totalPDMG = rangePDMG = totalPDMG*(100+myStats[self.skill['distance']])//100
 
+        avgStab = (min(100, stability)/2+100)/2 if self.skill['graze'] else (min(100, stability)+100)/2
+        avgPDMG = totalPDMG*avgStab//100
+
         self.stats = myStats
         
-        return ddict({'effective atk': effectiveATK, 'main atk': mainATK, 'sub atk': subATK, 'cdmg': CDMG, 'stability%': stability, 'sub stability%': subStability, 'base damage': basePDMG, 'damage': totalPDMG})
+        return ddict({'effective atk': effectiveATK, 'main atk': mainATK, 'sub atk': subATK, 'cdmg': CDMG, 'stability%': stability, 'sub stability%': subStability, 'base damage': basePDMG, 'damage': totalPDMG, 'average damage': avgPDMG, 'ampr': AMPR, 'mp': maxMP, 'aspd': ASPD, 'hp': maxHP, 'cr': CR})
 
 EXAMPLE_MONSTER = ddict({
     'level': 103,
@@ -306,5 +309,6 @@ EXAMPLE_CHARACTER = ddict({
     }),
 })
 
-example = DamageContext(EXAMPLE_CHARACTER, EXAMPLE_MONSTER, EXAMPLE_SKILL)
-print(example.calculate())
+if __name__ == '__main__':
+    example = DamageContext(EXAMPLE_CHARACTER, EXAMPLE_MONSTER, EXAMPLE_SKILL)
+    print(example.calculate())

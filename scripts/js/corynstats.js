@@ -1,3 +1,5 @@
+// Descontinued, using scripts/DMG_Optimization.py
+
 // sp2: sub stability view
 $("#stability").after('<p class="accent-medium">Sub-Stability %</p><p id="sub-stability">0 %</p>');
 $("#ATKcrit").after('<p class="accent-medium">ATK %</p><p id="ATKmodifier">0 %</p>');
