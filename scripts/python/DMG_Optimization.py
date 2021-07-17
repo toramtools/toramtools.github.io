@@ -167,6 +167,7 @@ class DamageContext:
         totalPDMG = basePDMG = (Lv-enemyLv+effectiveATK)*(100-enemyPRes)//100+constant-enemyDef
         totalPDMG = critPDMG = totalPDMG*(CDMG if self.skill['crit'] else 100)//100
         totalPDMG = unsheathePDMG = totalPDMG*(100+myStats[self.skill['unsheathe']+'%'])//100
+        totalPDMG = dtePDMG = totalPDMG*(100+myStats['dte%'])//100
         totalPDMG = skillPDMG = int(totalPDMG*trunc2(mult))
         totalPDMG = othersPDMG = totalPDMG*self.skill['others']
         totalPDMG = comboPDMG = totalPDMG*self.skill['combo']
@@ -217,9 +218,10 @@ EXAMPLE_CHARACTER = ddict({
     }),
     'sub': ddict({
         'type': '1h sword',
-        'base attack': 335,
+        'base attack': 338,
         'base stability': 80,
-        'refine': 13
+        'refine': 13,
+        'dte%': 25
     }),
     'armor': ddict({
         'atk%': 7,
