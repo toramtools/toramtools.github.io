@@ -1,9 +1,10 @@
-# Python3 syntax, don't run on Python2
-# python -m idlelib.idle -r ./scripts/DMG_Optimization.py
+# WARNING: Python3 syntax, include proper headers to run on Python2
+# python -m idlelib.idle -r ./scripts/python/DMG_Optimization.py
 
 import collections, math
 
 ddict = lambda aDict={}, aDefault=lambda: 0: collections.defaultdict(aDefault, aDict)
+trunc2 = lambda x: int(x*100)/100
 
 class DamageContext:
     def __init__ (self, character, monster, skill):
@@ -19,7 +20,7 @@ class DamageContext:
         mainWATK = self.character['main']['base attack']
         mainRefine = self.character['main']['refine']
         mainStability = self.character['main']['base stability']
-        weaponATK = mainWATK*(100+mainRefine**2)/100+mainWATK*stats['watk%']/100+mainRefine+stats['watk+']
+        weaponATK = mainWATK+mainWATK*(mainRefine**2)//100+mainWATK*(stats['watk%']+stats['main watk%'])//100+mainRefine+stats['watk+']
 
         if main == '1h sword' and sub != '1h sword':
             ATK = Lv+STR*2+DEX*2+weaponATK
@@ -72,12 +73,12 @@ class DamageContext:
             stability = (STR*3+DEX)/40
             ASPD = 200+Lv+AGI*3.9+STR*0.3
         elif main == 'bare hand':
-            ATK = Lv+STR
-            MATK = Lv+INT*3+DEX
+            ATK = Lv+STR+1
+            MATK = Lv+INT*3+DEX+1
             stability = 0 
             ASPD = 1000+Lv+AGI*9.6
             
-        return ddict({'atk': ATK+2, 'matk': MATK, 'stability': mainStability+stability, 'aspd': ASPD})
+        return ddict({'atk': ATK//1, 'matk': MATK//1, 'stability': mainStability+stability//1, 'aspd': ASPD})
 
     def subStats (self, stats):
         main = self.character['main']['type'] if self.character['main']['type'] != 0 else 'bare hand'
@@ -96,13 +97,13 @@ class DamageContext:
             subStability = subBaseStability//2
         elif main == '1h sword' and sub == '1h sword':
             subATK = Lv+STR+AGI*3
-            subATK += subWATK*(200+subRefine**2)/200+subRefine+subWATK*stats['watk%']/100+stats['watk+']
+            subATK += subWATK+subWATK*(subRefine**2)//200+subRefine+subWATK*stats['watk%']//100+stats['watk+']
             subStability = subBaseStability//2+(STR*3+AGI*2)/50
         else:
             subATK = 0
             subStability = 0
 
-        return ddict({'sub atk': subATK, 'sub stability': subStability})
+        return ddict({'sub atk': subATK//1, 'sub stability': subStability//1})
 
     def calculate (self):
         myStats = ddict()
@@ -126,18 +127,21 @@ class DamageContext:
         Lv, STR, DEX, INT, AGI, VIT = myStats['level'], myStats['total str'], myStats['total dex'], myStats['total int'], myStats['total agi'], myStats['total vit']
         TEC, CRT = myStats['tec'], myStats['crt']
 
-        stability = mainSpecifics['stability']//1+myStats['stability%']+myStats['main stability%']
+        stability = mainSpecifics['stability']+myStats['stability%']+myStats['main stability%']
         subStability = subSpecifics['sub stability']//1
 
         if mainType == '1h sword' and subType == '1h sword':
             subStability += myStats['stability%']
-            mainATK = effectiveATK = mainSpecifics['atk']*(100+myStats['atk%'])/100+myStats['atk+']
-            subATK = (subSpecifics['sub atk']*(100+myStats['atk%'])/100+myStats['atk+'])
-            effectiveATK += (min(subStability, 100)/100)*subATK
+            mainATK = effectiveATK = mainSpecifics['atk']*(100+myStats['atk%'])//100+myStats['atk+']
+            subATK = (subSpecifics['sub atk']*(100+myStats['atk%'])//100+myStats['atk+'])
+            effectiveATK += int((min(subStability, 100)/100)*subATK)    
         else:
-            stability += subSpecifics['sub stability']//1
+            stability += subSpecifics['sub stability']
             subATK = subSpecifics['sub atk']
-            mainATK = effectiveATK = (mainSpecifics['atk']+subSpecifics['sub atk'])*(100+myStats['atk%'])/100+myStats['atk+']
+            mainATK = effectiveATK = (mainSpecifics['atk']+subSpecifics['sub atk'])*(100+myStats['atk%'])//100+myStats['atk+']
+
+            if self.skill['crit'] and mainType == "katana" and subType in ['bare hand', 'scroll']:
+                effectiveATK = int(effectiveATK*1.5)
 
         CDMG = (150+myStats['total str']//5)*(100+myStats['cd%'])//100+myStats['cd+']
         if CDMG > 300:
@@ -157,27 +161,41 @@ class DamageContext:
         enemyPRes = self.monster['pres%']
         enemyDef = self.monster['def']
 
-        constant = self.skill['constant'](myStats)
+        constant = self.skill['constant'](myStats)+myStats[self.skill['unsheathe']+'+']
         mult = self.skill['multiplier'](myStats)
-
-        baseDMG = Lv-enemyLv+(100-enemyPRes)*effectiveATK//100+constant-enemyDef
-        skillDMG = baseDMG * mult
+ 
+        totalPDMG = basePDMG = (Lv-enemyLv+effectiveATK)*(100-enemyPRes)//100+constant-enemyDef
+        totalPDMG = critPDMG = totalPDMG*(CDMG if self.skill['crit'] else 100)//100
+        totalPDMG = unsheathePDMG = totalPDMG*(100+myStats[self.skill['unsheathe']+'%'])//100
+        totalPDMG = skillPDMG = int(totalPDMG*trunc2(mult))
+        totalPDMG = othersPDMG = totalPDMG*self.skill['others']
+        totalPDMG = comboPDMG = totalPDMG*self.skill['combo']
+        totalPDMG = prorationPDMG = totalPDMG*self.skill['proration']
+        totalPDMG = rangePDMG = totalPDMG*(100+myStats[self.skill['distance']])//100
 
         self.stats = myStats
         
-        return ddict({'effective atk': effectiveATK//1, 'main atk': mainATK//1, 'sub atk': subATK//1, 'base atk': mainSpecifics['atk']//1, 'cdmg': CDMG, 'cr': CR, 'mp': maxMP, 'ampr': AMPR, 'hp': maxHP, 'aspd': ASPD, 'stability%': stability, 'sub stability%': subStability, 'damage': skillDMG})
+        return ddict({'effective atk': effectiveATK, 'main atk': mainATK, 'sub atk': subATK, 'cdmg': CDMG, 'stability%': stability, 'sub stability%': subStability, 'base damage': basePDMG, 'damage': totalPDMG})
 
 EXAMPLE_MONSTER = ddict({
-    'level': 1,
-    'def': 0,
+    'level': 103,
+    'def': 206,
     'mdef': 0,
-    'pres%': 0,
+    'pres%': 4,
     'mres%': 0
 })
 
 EXAMPLE_SKILL = ddict({
-    'constant': lambda s: 150,
-    'multiplier': lambda s: 2
+    'constant': lambda s: 300,
+    'multiplier': lambda s: 4+(s['total str']+s['total dex']+s['total agi'])*0.2/100,
+    #'constant': lambda s: 150,
+    #'multiplier': lambda s: 2,
+    'distance': 'srd%',
+    'unsheathe': 'not_unsheathe',
+    'crit': True,
+    'others': 1.1,
+    'combo': 1.5,
+    'proration': 2.5,
 })
 
 EXAMPLE_CHARACTER = ddict({
@@ -191,36 +209,61 @@ EXAMPLE_CHARACTER = ddict({
     }, lambda: 1),
     'main': ddict({
         'type': '1h sword',
-        'base attack': 338,
-        'base stability': 80,
-        'refine': 13,
-        'stability%': 5
+        'base attack': 152,
+        'base stability': 100,
+        'refine': 13
     }),
     'main xtal': ddict({
     }),
     'sub': ddict({
         'type': '1h sword',
-        'base attack': 152,
-        'base stability': 100,
-        'refine': 13,
+        'base attack': 335,
+        'base stability': 80,
+        'refine': 13
     }),
     'armor': ddict({
-        'cr+': -20,
-        'cr%': -20,
-        'stability%': 5
+        'atk%': 7,
+        'cd%': 10,
+        'cd+': 20,
+        'cr+': 22
     }),
     'light armor': ddict({
         'aspd%': 50
+    }),
+    'armor xtal 1': ddict({
+        'atk%': 6,
+        'cd+': 8,
+        'motion%': -1
+    }),
+    'armor xtal 2': ddict({
+        'ampr+': 10
     }),
     'add': ddict({
         'hp%': 25,
         'cr+': 5,
         'stability%': 15
     }),
+    'add xtal': ddict({
+        'atk%': 4,
+        'aspd%': 20,
+        'srd%': 3
+    }),
     'ring': ddict({
+        'mp': 500,
+        'tumble': 1
+        #'dex%': -100,
+        #'agi%': -100
+    }),
+    'ring xtal 1': ddict({
+        'atk%': 8,
+        'ampr+': 3,
+        'mp': -150,
+    }),
+    'ring xtal 2': ddict({
+        'ampr+': 15
     }),
     'food': ddict({
-        'watk+': 56,
+        'watk+': 58,
         'cr+': 26,
         'ampr+': 26,
         'mp': 860
@@ -246,6 +289,14 @@ EXAMPLE_CHARACTER = ddict({
         'atk+': 30,
         'mp': 100,
         'hp+': 1000
+    }),
+    'quick aura': ddict({
+        'aspd%': 25,
+        'aspd+': 500
+    }),
+    'gsw': ddict({
+        'aspd+': 900,
+        'motion%': 30
     }),
     'bushido': ddict({
         'mp': 50,
