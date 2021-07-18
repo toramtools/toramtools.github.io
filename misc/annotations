@@ -9,8 +9,12 @@ Although, full formula for ignite damage is unknown. It's known that MATK/Ignite
 * If arrow has element and bow too, arrow element takes priority even if bow element is advantageous;
 * Bow skills with fixed element have dual element with arrow.
 
-- ATK/MATK UP (STAT) only applies to base stats (coryn wrongly applies to total stat).
+- ATK/MATK UP (STAT) only takes base stats (coryn wrongly applies to total stat). They also are added only on main hand atk.
 
 - Brave aura and Long Range Mastery don't share same step (1*1.1*1.2 instead 1+0.1+0.2). Brave aura's weapon atk% is applied only to main hand.
 
+- Brave aura and Whack don't share same step.
+
 - DW AUTO: baseDMG main + baseDMG sub, include def/lv/pres in both steps (ofc).
+
+- Flash blast's weapon atk% only applies to main hand.
