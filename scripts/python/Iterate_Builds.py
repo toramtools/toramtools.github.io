@@ -1,13 +1,19 @@
+# noqa # pylint: disable=unused-wildcard-import
 from DMG_Optimization import ddict, trunc2, DamageContext, convert2dict
 import itertools, time
 from Items import *
 
 class Iterate_Builds:
     def __init__ (self, character_base, items, xtals, target, skills, requirements = {}):
-        iterOrder = [{'id': key, 'repeat': -1} for key in items.keys()]
-        iterList = [items[key] for key in items.keys()]
+        iterOrder = []
+        iterList = []
+
+        for key in items.keys():
+            iterOrder.append({'id': key, 'repeat': -1})
+            iterList.append(items[key])
+
         for key in xtals.keys():
-            iterOrder += [{'id': key, 'repeat': xtals[key]['slots']}]
+            iterOrder.append({'id': key, 'repeat': xtals[key]['slots']})
             iterList.append(itertools.combinations(xtals[key]['choices'], xtals[key]['slots']))
 
         self.ordering = iterOrder
@@ -36,7 +42,9 @@ class Iterate_Builds:
                 elif order_data['repeat'] == 0:
                     continue
                 else:
-                    for i in range(order_data['repeat']):
+                    xtalContainer = self.character_base[order_data['id'].split()[0]]
+                    slotRange = order_data['repeat'] if 'slots' not in xtalContainer else xtalContainer['slots']
+                    for i in range(slotRange):
                         self.character_base[order_data['id'] + ' %s' % (i+1)] = build[idx][i]
 
             totalDMG = 0
@@ -60,6 +68,7 @@ class Iterate_Builds:
         bestStats = best[1].data
 
         print('# Simulation finished (runtime: %ss)' % (trunc2(time.time()-ti)))
+        print('# There are %s item combinations for selected items' % counter)
         print('# There are %s item combinations for selected items' % counter)
         print('# There are %s combinations which satisfy minimum requirements' % len(fit))
         print('# The "best" among them has following stats:')

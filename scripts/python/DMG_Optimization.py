@@ -1,3 +1,4 @@
+# noqa # pylint: disable=unused-variable, unused-wildcard-import
 # WARNING: Python3 syntax, include proper headers to run on Python2
 # python -m idlelib.idle -r ./scripts/python/DMG_Optimization.py
 
@@ -116,15 +117,22 @@ class DamageContext:
 
     def calculate (self):
         myStats = ddict()
-
+        variableStats = list()
+        
         for key in self.character:
             for stat in self.character[key]:
+                if callable(self.character[key][stat]):
+                    variableStats.append(self.character[key][stat])
+
                 try:
                     myStats[stat] += self.character[key][stat]
                 except TypeError: # Not a number (+= operation fail)
                     myStats[stat] = self.character[key][stat]
         
         for stat in self.skill['stats']:
+            if callable(self.skill['stats'][stat]):
+                variableStats.append(self.skill['stats'][stat])
+
             try:
                 myStats[stat] += self.skill['stats'][stat]
             except TypeError: # Not a number (+= operation fail)
@@ -132,7 +140,15 @@ class DamageContext:
 
         for stat in ['str', 'dex', 'int', 'agi', 'vit']:
             myStats['total '+stat] = myStats[stat]*(100+myStats[stat+'%'])//100+myStats[stat+'+']
-
+        
+        for var in variableStats:
+            varResult = var(myStats)
+            for stat in varResult:
+                try:
+                    myStats[stat] += varResult[stat]
+                except TypeError: # Not a number (+= operation fail)
+                    myStats[stat] = varResult[stat]
+        
         mainSpecifics = self.mainStats(myStats)
         subSpecifics = self.subStats(myStats)
 
@@ -184,7 +200,7 @@ class DamageContext:
         totalPDMG = basePDMG = (Lv-enemyLv+effectiveATK)*(100-enemyPRes)//100+constant-enemyDef
         totalPDMG = critPDMG = totalPDMG*(CDMG if self.skill['crit'] else 100)//100
         totalPDMG = unsheathePDMG = totalPDMG*(100+myStats[self.skill['unsheathe']+'%'])//100
-        totalPDMG = dtePDMG = totalPDMG*(100+myStats['dte%'])//100
+        totalPDMG = dtePDMG = totalPDMG*(100+(0 if self.skill['ignore element'] else myStats['dte%']))//100
         totalPDMG = skillPDMG = int(totalPDMG*trunc2(mult))
         totalPDMG = othersPDMG = totalPDMG*self.skill['others']
         totalPDMG = comboPDMG = totalPDMG*self.skill['combo']
@@ -196,7 +212,7 @@ class DamageContext:
 
         self.stats = myStats
 
-        self.data = ddict({'effective atk': effectiveATK, 'main atk': mainATK, 'sub atk': subATK, 'cdmg': CDMG, 'stability%': stability, 'sub stability%': subStability, 'base damage': basePDMG, 'damage': totalPDMG, 'average damage': avgPDMG, 'ampr': AMPR, 'mp': maxMP, 'aspd': ASPD, 'hp': maxHP, 'cr': CR, 'motion%': motion, 'average stability': avgStab})
+        self.data = ddict({'effective atk': effectiveATK, 'main atk': mainATK, 'sub atk': subATK, 'cdmg': CDMG, 'stability%': stability, 'sub stability%': subStability, 'damage': totalPDMG, 'average damage': avgPDMG, 'ampr': AMPR, 'mp': maxMP, 'aspd': ASPD, 'hp': maxHP, 'cr': CR, 'motion%': motion, 'average stability': avgStab})
         
         return self.data
 
