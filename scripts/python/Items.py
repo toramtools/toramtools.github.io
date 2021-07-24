@@ -1,5 +1,11 @@
 from DMG_Optimization import ddict
 
+AVATAR_BOT_CD = ddict({
+    'cd%': 2,
+    'watk+': 6,
+    'hp+': 800
+})
+
 AVATAR_ACC_AMPR = ddict({
     'ampr+': 7
 })
@@ -49,9 +55,9 @@ AVATAR_BOT_CR = ddict({
 })
 
 ARMOR_DTECDCDCR = ddict({
-    'dte%': 21,
-    'cd%': 10,
-    'cd+': 21,
+    'dte%': 20,
+    'cd%': 9,
+    'cd+': 20,
     'cr+': 23
 })
 
@@ -81,8 +87,8 @@ OHS_ASCDCRCR_NEW = ddict({
     'base attack': 385,
     'base stability': 80,
     'refine': 15,
-    'atk%': 10,
-    'cd%': 5,
+    'atk%': 11,
+    'cd%': 3,
     'str%': 10,
     'cd+': 20,
     'cr+': 23
@@ -203,19 +209,7 @@ XTAL_ADD_ROYAL_OX_KING = ddict({
     'hp%': -20
 })
 
-BOW_ADCDCRCR_NEW = ddict({
-    'type': 'bow',
-    'base attack': 231,
-    'base stability': 60,
-    'refine': 15,
-    'atk%': 10,
-    'cd%': 5,
-    'dex%': 10,
-    'cd+': 20,
-    'cr+': 23
-})
-
-BOW_ASCDCDCR_OLD = ddict({
+BOW_ADCDCDCR_OLD = ddict({
     'type': 'bow',
     'base attack': 231,
     'base stability': 60,
@@ -233,7 +227,7 @@ RING_MACHINA_RING = ddict({
 
 ARROW_LOVE_ARROW = ddict({
     'type': 'arrow',
-    'base attack': 74,
+    'base attack': 73,
     'base stability': 20,
     'cr+': 5
 })
@@ -301,4 +295,52 @@ XTAL_ARM_ARACHNIDEMON = ddict({
     'cr+': 8,
     'mp': -400,
     'hp+': -400
+})
+
+XTAL_RING_VENENA_I = ddict({
+    'atk%': 1,
+    'stability%': 2,
+    'mp': 500
+})
+
+ADD_LOVE_SCARF = ddict({
+    'ppierce%': 10,
+    'ampr+': 10
+})
+
+XTAL_ANY_GRAVICEP = ddict({
+    'mp': 200,
+    'srd%': 7,
+    'cr+': -5
+})
+
+XTAL_ADD_MEGA_ALPOCA = ddict({
+    'srd%': 6,
+    'mp': 300,
+    'hp+': 300
+})
+
+XTAL_ANY_MYTHURNA_LYNX = ddict({
+    'stability%': 3,
+    'srd%': 3
+})
+
+ADD_FULL_BEARD = ddict({
+    'aspd+': 400,
+    'str%': 5,
+    'srd%': 6
+})
+
+XTAL_ADD_MERCY = ddict({
+    'cr+': 15
+})
+
+XTAL_ADD_KING_PITON = ddict({
+    'cr+': 10,
+    'cd+': 4
+})
+
+XTAL_ADD_GESPENST_2 = ddict({
+    'cr+': 10,
+    'mp': 200
 })
