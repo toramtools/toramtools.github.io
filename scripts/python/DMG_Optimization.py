@@ -170,15 +170,27 @@ class DamageContext:
             stability += subSpecifics['sub stability']
             subATK = subSpecifics['sub atk']
             mainATK = effectiveATK = (mainSpecifics['atk']+subSpecifics['sub atk'])*(100+myStats['atk%'])//100+myStats['atk+']
+            mainMATK = mainSpecifics['matk']*(100+myStats['matk%'])//100+myStats['matk+']
 
             if self.skill['crit'] and mainType == "katana" and subType in ['bare hand', 'scroll']:
                 effectiveATK = int(effectiveATK*1.5)
 
         CDMG = (150+myStats['total str']//5)*(100+myStats['cd%'])//100+myStats['cd+']
+        CR = (25+CRT//3.4)*(100+myStats['cr%'])//100+myStats['cr+']
+        
+        # MATK XGH
+        if self.skill['use mstab']:
+            stability = min(90, (100+stability)//2)
+
+        if self.skill['use matk']:
+            effectiveATK = mainMATK
+
+        if self.skill['use mcrit']:
+            CDMG = int(100+(CDMG-100)*0.75)
+            CR = CR//4
+
         if CDMG > 300:
             CDMG = 300+(CDMG-300)//2
-
-        CR = (25+CRT//3.4)*(100+myStats['cr%'])//100+myStats['cr+']
 
         maxMP = int(100+Lv+INT/10+max(TEC-1,0))+myStats['mp']
         
@@ -191,160 +203,27 @@ class DamageContext:
         motion = myStats['motion%'] if ASPD <= 1000 else myStats['motion%']+(ASPD-1000)//180
 
         enemyLv = self.monster['level']
-        enemyPRes = self.monster['pres%']
-        enemyDef = (self.monster['def']+myStats['enemy def'])*(100-min(100, myStats['ppierce%']))//100
+        enemyRes = self.monster[self.skill['resistance']]
+        enemyDef = (self.monster[self.skill['defense']]+myStats['enemy def'])*(100-min(100, myStats[self.skill['resistance'][0]+'pierce%']))//100
 
         constant = self.skill['constant'](myStats)+myStats[self.skill['unsheathe']+'+']
         mult = self.skill['multiplier'](myStats)
  
-        totalPDMG = basePDMG = (Lv-enemyLv+effectiveATK)*(100-enemyPRes)//100+constant-enemyDef
+        totalPDMG = basePDMG = (Lv-enemyLv+effectiveATK)*(100-enemyRes)//100+constant-enemyDef
         totalPDMG = critPDMG = totalPDMG*(CDMG if self.skill['crit'] else 100)//100
         totalPDMG = unsheathePDMG = totalPDMG*(100+myStats[self.skill['unsheathe']+'%'])//100
-        totalPDMG = dtePDMG = totalPDMG*(100+(0 if self.skill['ignore element'] else myStats['dte%']))//100
+        totalPDMG = dtePDMG = totalPDMG*(100+myStats['dte%'])//100
         totalPDMG = skillPDMG = int(totalPDMG*trunc2(mult))
         totalPDMG = othersPDMG = totalPDMG*self.skill['others']
         totalPDMG = comboPDMG = totalPDMG*self.skill['combo']
         totalPDMG = prorationPDMG = totalPDMG*self.skill['proration']
         totalPDMG = rangePDMG = totalPDMG*(100+myStats[self.skill['distance']])//100
 
-        avgStab = (min(100, stability)/2+100)//2 if self.skill['graze'] else (min(100, stability)+100)//2
+        avgStab = (min(100, stability)/2+100)//2 if self.monster['graze'] and not self.skill['use mstab'] else (min(100, stability)+100)//2
         avgPDMG = totalPDMG*avgStab//100
 
         self.stats = myStats
 
-        self.data = ddict({'effective atk': effectiveATK, 'main atk': mainATK, 'sub atk': subATK, 'cdmg': CDMG, 'stability%': stability, 'sub stability%': subStability, 'damage': totalPDMG, 'average damage': avgPDMG, 'ampr': AMPR, 'mp': maxMP, 'aspd': ASPD, 'hp': maxHP, 'cr': CR, 'motion%': motion, 'average stability': avgStab})
+        self.data = ddict({'effective atk': effectiveATK, 'main atk': mainATK, 'sub atk': subATK, 'cdmg': CDMG, 'stability%': stability, 'sub stability%': subStability, 'max damage': totalPDMG, 'average damage': avgPDMG, 'ampr': AMPR, 'mp': maxMP, 'aspd': ASPD, 'hp': maxHP, 'cr': CR, 'motion%': motion, 'average stability': avgStab})
         
         return self.data
-
-if __name__ == '__main__':
-    from Items import *
-
-    EXAMPLE_MONSTER = ddict({
-        'level': 1,
-        'def': 0,
-        'mdef': 0,
-        'pres%': 0,
-        'mres%': 0
-    })
-
-    '''
-    EXAMPLE_SKILL = ddict({
-        'constant': lambda s: 400,
-        'multiplier': lambda s: 47.5+s['dex']/100,
-        'distance': 'srd%',
-        'unsheathe': 'not_unsheathe',
-        'crit': True,
-        'others': 1.1*1.2,
-        'combo': 1.5,
-        'proration': 2.5,
-        'graze': False
-    })
-    '''
-    EXAMPLE_SKILL = ddict({
-        'constant': lambda s: 300,
-        'multiplier': lambda s: 1*(10+s['total dex']/100),
-        'distance': 'placed',
-        #'constant': lambda s: 400,
-        #'multiplier': lambda s: 10,
-        #'distance': 'srd%',
-        'unsheathe': 'kekw',
-        'crit': True,
-        'others': 1,
-        'combo': 1,
-        'proration': 1,
-        'stats': ddict({
-            'ppierce%': 100,
-        })
-    })
-
-    EXAMPLE_CHARACTER = ddict({
-        'base stats': ddict({
-            'level': 221,
-            'str': 247,
-            'int': 1,
-            'vit': 1,
-            'agi': 1,
-            'dex': 332
-        }, lambda: 1),
-        'main': ddict({
-            'type': 'bow',
-            'base attack': 205,
-            'base stability': 80,
-            'refine': 15,
-            'atk%': 10,
-            'dex%': 5,
-            'cd%': 10,
-            'cd+': 20,
-            'cr+': 21
-        }),
-        'main xtal': XTAL_W_MARDULA,
-        'sub': ARROW_LOVE_ARROW,
-        #'sub': ddict({}),
-        'armor': ARMOR_DTECDCDCR,
-        'armor xtal 1': XTAL_ANY_AGELADANIOS,
-        'armor xtal 2': XTAL_ANY_BLACK_SHADOW,
-        'light armor': ddict({
-            'aspd%': 50
-        }),
-        'add': ADD_PHANTOM_THIEF_RICOTTA,
-        'add xtal': XTAL_ANY_AGELADANIOS,
-        'ring': RING_HALLUCINATION_SPORE,
-        'ring xtal 1': XTAL_ANY_BLACK_SHADOW,
-        'ring xtal 2': XTAL_RING_PATISSIA,
-        'food': ddict({
-            'watk+': 58,
-            'cr+': 26,
-            'ampr+': 26,
-            'mp': 860
-        }),
-        'avatar 1': AVATAR_ACC_ATK,
-        'avatar 2': AVATAR_TOP_AMPR,
-        'avatar 3': AVATAR_BOT_CD,
-        'masteries': ddict({
-            'watk%': 30,
-            'atk%': 3
-        }),
-        'battle skills': ddict({
-            'atk+': 110,
-            'cd%': 5,
-            'cr+': 5
-        }),
-        'registlet': ddict({
-            'atk+': 30,
-            'mp': 100,
-            'hp+': 1000
-        }),
-        'quick aura': ddict({
-            'aspd%': 25,
-            'aspd+': 500
-        }),
-        'gsw': ddict({
-            'aspd+': 900,
-            'motion%': 30
-        }),
-        'bushido': ddict({
-            'mp': 50,
-            'hp+': 50
-        }),
-        'brave aura': ddict({
-            #'main watk%': 30
-        }),
-        'kakiri': ddict({
-            #'atk+': 100
-        }),
-        'consumable': ddict({
-            #'dte%': 5
-        }),
-        'matching ele': ddict({
-            'dte%': 25
-        }),
-        'warcry': ddict({
-            #'atk%': 10
-        }),
-        'enm': ddict({
-            #'enemy def': -103
-        })
-    })
-
-    example = DamageContext(EXAMPLE_CHARACTER, EXAMPLE_MONSTER, EXAMPLE_SKILL)
-    print(example.calculate())

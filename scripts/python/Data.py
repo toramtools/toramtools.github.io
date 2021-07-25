@@ -1,5 +1,57 @@
 from DMG_Optimization import ddict
 
+def BASE_STATS (primary, secondary):
+    CURRENT_CAP = 230
+    CURRENT_PRIMARY_STAT_MAX = 350
+    CURRENT_SECONDARY_STAT_MAX = 247
+
+    base = ddict({
+        'level': CURRENT_CAP,
+        'str': 1,
+        'int': 1,
+        'vit': 1,
+        'agi': 1,
+        'dex': 1,
+    }, lambda: 1)
+
+    base[primary] = CURRENT_PRIMARY_STAT_MAX
+    base[secondary] = CURRENT_SECONDARY_STAT_MAX
+
+    return base
+
+def UPDATE_STATS (base, specifics):
+    new = ddict(base)
+    new.update(specifics)
+    return new
+
+TARGET_DON_YETI = ddict({
+    'level': 103,
+    'pres%': 4,
+    'def': 206,
+    'graze': False
+})
+
+TARGET_KUZTO_ULTIMATE = ddict({
+    'level': 218,
+    'pres%': 7,
+    'def': 3320,
+    'graze': True
+})
+
+TARGET_QUASAR_ULTIMATE = ddict({
+    'level': 226,
+    'pres%': 7,
+    'def': 5550,
+    'graze': True
+})
+
+TARGET_GRAVICEP_LRD_ULTIMATE = ddict({
+    'level': 224,
+    'pres%': 7,
+    'def': 1110,
+    'graze': True
+})
+
 AVATAR_BOT_CD = ddict({
     'cd%': 2,
     'watk+': 6,
@@ -55,16 +107,16 @@ AVATAR_BOT_CR = ddict({
 })
 
 ARMOR_DTECDCDCR = ddict({
-    'dte%': 20,
-    'cd%': 9,
-    'cd+': 20,
+    'dte%': 21,
+    'cd%': 10,
+    'cd+': 21,
     'cr+': 23
 })
 
 ARMOR_DTESCDCR = ddict({
-    'dte%': 20,
+    'dte%': 21,
     'str%': 10,
-    'cd+': 20,
+    'cd+': 21,
     'cr+': 23
 })
 
@@ -82,7 +134,7 @@ ARMOR_ASCDCR = ddict({
     'cr+': 23
 })
 
-OHS_ASCDCRCR_NEW = ddict({
+OHS_ASCDCRCR_SCD = ddict({
     'type': '1h sword',
     'base attack': 385,
     'base stability': 80,
@@ -94,7 +146,7 @@ OHS_ASCDCRCR_NEW = ddict({
     'cr+': 23
 })
 
-OHS_ASCDCDCR_OLD = ddict({
+OHS_ASCDCDCR_CDS = ddict({
     'type': '1h sword',
     'base attack': 385,
     'base stability': 80,
@@ -209,7 +261,7 @@ XTAL_ADD_ROYAL_OX_KING = ddict({
     'hp%': -20
 })
 
-BOW_ADCDCDCR_OLD = ddict({
+BOW_ADCDCDCR_CDD = ddict({
     'type': 'bow',
     'base attack': 231,
     'base stability': 60,
@@ -343,4 +395,11 @@ XTAL_ADD_KING_PITON = ddict({
 XTAL_ADD_GESPENST_2 = ddict({
     'cr+': 10,
     'mp': 200
+})
+
+ADD_REINDEER_HEADBAND = ddict({
+    'str%': 4,
+    'dex%': 4,
+    'srd%': 4,
+    'lrd%': 4
 })
