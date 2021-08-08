@@ -503,7 +503,8 @@ angular.module("StattingSim", []).controller("StattingSimController", function (
 
         if (SS.curPot < 0) {
             const sr = 160+230*SS.curPot/max(SS.prevPot, max(1, SS.recipePot));
-            $scope.SS.successRate = min(100, max(0, trunc(sr)));
+            //$scope.SS.successRate = min(100, max(0, trunc(sr)));
+            $scope.SS.successRate = Math.trunc(sr*100)/100;
         }
         else {
             $scope.SS.successRate = 100;

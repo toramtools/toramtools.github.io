@@ -105,25 +105,26 @@ character_base = ddict({
     })
 })
 
-BOW_2S = UPDATE_STATS(BOW_ADCDCDCR_CDD, {'slots': 2, 'dex%': 7})
-BOWGUN_2S = UPDATE_STATS(BOW_ADCDCDCR_CDD, {
-    'slots': 2, 'base attack': 304, 'type': 'bowgun', 'base stability': 50, 'dex%': 7})
-ARMOR_NEUTRAL_2S = UPDATE_STATS(ARMOR_ACDCDCR, {'slots': 2, 'atk%': 7, 'cd%': 10, 'cd+': 20, 'cr+': 22})
-ARMOR_DTE_2S = UPDATE_STATS(ARMOR_DTECDCDCR, {'slots': 2, 'dte%': 20, 'cd%':9, 'cd+': 20})
+BOW_2S = UPDATE_STATS(BOW_ADCDCDCR_CDD, {'slots': 2, 'base attack': 240, 'cd+': 21})
+BOWGUN_2S = UPDATE_STATS(BOW_ADCDCDCR_CDD, {'slots': 2, 'base attack': 304, 'base stability': 50, 'type': 'bowgun'})
+
+BOW_2S_DCD = UPDATE_STATS(BOW_2S, {'dex%': 10, 'cd%': 7})
+BOW_2S_ADCD = UPDATE_STATS(BOW_2S, {'dex%': 10, 'cd%': 5, 'atk%': 11})
+BOW_2S_ACDD = UPDATE_STATS(BOW_2S, {'dex%': 7, 'cd%': 10, 'atk%': 10})
 
 items = ddict({
-    'main': [BOW_2S, BOWGUN_2S],
-    'armor': [ARMOR_DTE_2S, ARMOR_NEUTRAL_2S],
-    'add': [ADD_PHANTOM_THIEF_RICOTTA, ADD_LACE_HEADRESS, ADD_REINDEER_HEADBAND],
-    'avatar 1': [AVATAR_ACC_AMPR, AVATAR_ACC_PPIERCE, AVATAR_ACC_ATK],
-    'avatar 2': [AVATAR_TOP_AMPR, AVATAR_TOP_PPIERCE, AVATAR_TOP_ATK, AVATAR_TOP_CR],
+    'main': [BOW_2S_DCD, BOW_2S_ADCD, BOW_2S_ACDD],
+    'sub': [ARROW_LOVE_ARROW],
+    'armor': [ARMOR_ADCDCDCR],
+    'add': [ADD_PHANTOM_THIEF_RICOTTA, ADD_LACE_HEADRESS],
+    'avatar 1': [AVATAR_ACC_AMPR, AVATAR_ACC_PPIERCE, AVATAR_ACC_ATK, AVATAR_BOT_CD],
+    'avatar 2': [AVATAR_TOP_AMPR, AVATAR_TOP_PPIERCE, AVATAR_TOP_ATK, AVATAR_TOP_CR, AVATAR_BOT_CD],
     'avatar 3': [AVATAR_BOT_AMPR, AVATAR_BOT_PPIERCE, AVATAR_BOT_ATK, AVATAR_BOT_CD, AVATAR_BOT_CR]
 })
 
 xtals = ddict({
     'main xtal': {'choices': [XTAL_W_VULTURE, XTAL_W_HEXTER], 'slots': 2},
-    'armor xtal': {'choices': [XTAL_ANY_AGELADANIOS, XTAL_ANY_BLACK_SHADOW, ], 'slots': 2},
-    'add xtal': {'choices': [XTAL_ANY_AGELADANIOS, XTAL_ADD_BAPHOMELA, XTAL_ADD_GESPENST_2, XTAL_ADD_STELLAR_OOZE, XTAL_ANY_BLACK_SHADOW], 'slots': 1},
-    #'add xtal': {'choices': [XTAL_ADD_BAPHOMELA], 'slots': 1},
-    'ring xtal': {'choices': [XTAL_RING_PATISSIA, XTAL_ANY_BLACK_SHADOW], 'slots': 2}
+    'armor xtal': {'choices': [XTAL_ANY_AGELADANIOS, XTAL_ANY_BLACK_SHADOW, XTAL_ARM_ARACHNIDEMON], 'slots': 2},
+    'add xtal': {'choices': [XTAL_ANY_AGELADANIOS, XTAL_ADD_BAPHOMELA, XTAL_ADD_STELLAR_OOZE, XTAL_ANY_BLACK_SHADOW], 'slots': 2},
+    'ring xtal': {'choices': [XTAL_RING_PATISSIA, XTAL_ANY_BLACK_SHADOW, XTAL_ANY_AGELADANIOS], 'slots': 2}
 })

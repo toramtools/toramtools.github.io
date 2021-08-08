@@ -62,7 +62,7 @@ class Iterate_Builds:
                 else:
                     break
             else:
-                fit.append([totalDMG, contexts[-1]])
+                fit.append([totalDMG, contexts[0]])
 
         fit.sort(key = lambda x: x[0])
 

@@ -103,7 +103,7 @@ class DamageContext:
             subATK = subWATK
             subStability = subBaseStability
         elif main == 'bowgun' and sub == 'arrow':
-            subATK = subWATK
+            subATK = subWATK//2
             subStability = subBaseStability//2
         elif main == '1h sword' and sub == '1h sword':
             subATK = Lv+STR+AGI*3
@@ -123,6 +123,7 @@ class DamageContext:
             for stat in self.character[key]:
                 if callable(self.character[key][stat]):
                     variableStats.append(self.character[key][stat])
+                    continue
 
                 try:
                     myStats[stat] += self.character[key][stat]
@@ -161,6 +162,9 @@ class DamageContext:
         stability = mainSpecifics['stability']+myStats['stability%']+myStats['main stability%']
         subStability = subSpecifics['sub stability']//1
 
+
+        mainMATK = mainSpecifics['matk']*(100+myStats['matk%'])//100+myStats['matk+']
+        
         if mainType == '1h sword' and subType == '1h sword':
             subStability += myStats['stability%']
             mainATK = effectiveATK = mainSpecifics['atk']*(100+myStats['atk%'])//100+myStats['atk+']+myStats['main atk+']
@@ -170,7 +174,6 @@ class DamageContext:
             stability += subSpecifics['sub stability']
             subATK = subSpecifics['sub atk']
             mainATK = effectiveATK = (mainSpecifics['atk']+subSpecifics['sub atk'])*(100+myStats['atk%'])//100+myStats['atk+']
-            mainMATK = mainSpecifics['matk']*(100+myStats['matk%'])//100+myStats['matk+']
 
             if self.skill['crit'] and mainType == "katana" and subType in ['bare hand', 'scroll']:
                 effectiveATK = int(effectiveATK*1.5)
@@ -219,11 +222,13 @@ class DamageContext:
         totalPDMG = prorationPDMG = totalPDMG*self.skill['proration']
         totalPDMG = rangePDMG = totalPDMG*(100+myStats[self.skill['distance']])//100
 
-        avgStab = (min(100, stability)/2+100)//2 if self.monster['graze'] and not self.skill['use mstab'] else (min(100, stability)+100)//2
+        avgStab = (min(100, stability)/2+100)/2 if self.monster['graze'] and not self.skill['use mstab'] else (min(100, stability)+100)/2
         avgPDMG = totalPDMG*avgStab//100
+
+        ncAvgPDMG = avgPDMG//((CDMG if self.skill['crit'] else 100)//100)
 
         self.stats = myStats
 
-        self.data = ddict({'effective atk': effectiveATK, 'main atk': mainATK, 'sub atk': subATK, 'cdmg': CDMG, 'stability%': stability, 'sub stability%': subStability, 'max damage': totalPDMG, 'average damage': avgPDMG, 'ampr': AMPR, 'mp': maxMP, 'aspd': ASPD, 'hp': maxHP, 'cr': CR, 'motion%': motion, 'average stability': avgStab})
+        self.data = ddict({'effective atk': effectiveATK, 'main atk': mainATK, 'sub atk': subATK, 'cdmg': CDMG, 'stability%': stability, 'sub stability%': subStability, 'max damage': totalPDMG, 'average damage': avgPDMG, 'ampr': AMPR, 'mp': maxMP, 'aspd': ASPD, 'hp': maxHP, 'cr': CR, 'motion%': motion, 'average stability': avgStab, 'main matk': mainMATK, 'white damage': ncAvgPDMG})
         
         return self.data

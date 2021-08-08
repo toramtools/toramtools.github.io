@@ -89,22 +89,27 @@ character_base = ddict({
     })
 })
 
-ARMOR_NEUTRAL_2S = UPDATE_STATS(ARMOR_ASCDCR, {'slots': 2, 'atk%': 7, 'cd%': 10, 'cd+': 20, 'cr+': 22})
-ARMOR_DTE_2S = UPDATE_STATS(ARMOR_DTECDCDCR, {'slots': 2, 'dte%': 20, 'cd%': 9, 'cd+': 20})
+OHS1 = UPDATE_STATS(OHS_ASCDCDCR_SCD, {'base attack': 390, 'cd%': 3})
+
+OHS_DTE1 = UPDATE_STATS(ddict(), {'base attack': 380, 'dte%': 20, 'atk%': 11, 'cd%': 5, 'cd+': 21, 'cr+': 23, 'refine': 15, 'slots': 2, 'type': '1h sword', 'base stability': 80})
+OHS_DTE2 = UPDATE_STATS(ddict(), {'base attack': 380, 'dte%': 20, 'atk%': 8, 'cd%': 10, 'cd+': 21, 'cr+': 23, 'refine': 15, 'slots': 2, 'type': '1h sword', 'base stability': 80})
+
+ARMOR_DTE = UPDATE_STATS(ARMOR_DTESCDCR, {'slots': 2})
 
 items = ddict({
-    'main': [OHS_ASCDCRCR_SCD, OHS_PCR],
-    'armor': [ARMOR_DTE_2S, ARMOR_NEUTRAL_2S],
+    'base stats': [BASE_STATS('str', 'agi')],
+    'main': [OHS_DTE1, OHS_DTE2, OHS_PCR],
+    'armor': [ARMOR_DTE],
     'add': [ADD_COOKIE_EARRINGS, ADD_GLADIATOR_HELMET],
     'ring': [RING_HALLUCINATION_SPORE],
     'avatar 1': [AVATAR_ACC_AMPR, AVATAR_ACC_PPIERCE, AVATAR_ACC_ATK],
-    'avatar 2': [AVATAR_TOP_AMPR, AVATAR_TOP_PPIERCE, AVATAR_TOP_ATK, AVATAR_TOP_CR],
-    'avatar 3': [AVATAR_BOT_AMPR, AVATAR_BOT_PPIERCE, AVATAR_BOT_ATK, AVATAR_BOT_CD, AVATAR_BOT_CR]
+    'avatar 2': [AVATAR_TOP_AMPR, AVATAR_TOP_PPIERCE, AVATAR_TOP_ATK],
+    'avatar 3': [AVATAR_BOT_AMPR, AVATAR_BOT_PPIERCE, AVATAR_BOT_ATK, AVATAR_BOT_CD]
 })
 
 xtals = ddict({
-    'main xtal': {'choices': [XTAL_W_CLAWED_IRON_WITCH, XTAL_W_HEXTER], 'slots': 1},
-    'armor xtal': {'choices': [XTAL_ANY_AGELADANIOS, XTAL_ANY_BLACK_SHADOW], 'slots': 2},
-    'add xtal': {'choices': [XTAL_ANY_AGELADANIOS, XTAL_ANY_GRAVICEP, XTAL_ADD_STELLAR_OOZE, XTAL_ANY_BLACK_SHADOW, XTAL_ADD_ALFENIX], 'slots': 1},
-    'ring xtal': {'choices': [XTAL_RING_PATISSIA, XTAL_ANY_BLACK_SHADOW,], 'slots': 2}
+    'main xtal': {'choices': [XTAL_W_HEXTER, XTAL_W_CLAWED_IRON_WITCH, XTAL_W_MARDULA, XTAL_W_BLANCANINE], 'slots': 2},
+    'armor xtal': {'choices': [XTAL_ARM_DOC_POM, XTAL_ARM_ARACHNIDEMON, XTAL_ANY_AGELADANIOS, XTAL_ANY_BLACK_SHADOW], 'slots': 2},
+    'add xtal': {'choices': [XTAL_ANY_GRAVICEP, XTAL_ADD_ALFENIX, XTAL_ADD_ROYAL_OX_KING, XTAL_ADD_DARK_LORD], 'slots': 2},
+    'ring xtal': {'choices': [XTAL_RING_PATISSIA, XTAL_ANY_BLACK_SHADOW, XTAL_ANY_GRAVICEP, XTAL_ANY_AGELADANIOS], 'slots': 2}
 })

@@ -24,9 +24,20 @@ def UPDATE_STATS (base, specifics):
     new.update(specifics)
     return new
 
+TARGET_RAFFY_LV1 = ddict({
+    'level': 1,
+    'pres%': 0,
+    'mres%': 0,
+    'def': 0,
+    'mdef': 0,
+    'graze': False
+})
+
 TARGET_DON_YETI = ddict({
     'level': 103,
     'pres%': 4,
+    'mres%': 4,
+    'mdef': 206,
     'def': 206,
     'graze': False
 })
@@ -34,7 +45,9 @@ TARGET_DON_YETI = ddict({
 TARGET_KUZTO_ULTIMATE = ddict({
     'level': 218,
     'pres%': 7,
+    'mres%': 7,
     'def': 3320,
+    'mdef': 3320,
     'graze': True
 })
 
@@ -48,8 +61,14 @@ TARGET_QUASAR_ULTIMATE = ddict({
 TARGET_GRAVICEP_LRD_ULTIMATE = ddict({
     'level': 224,
     'pres%': 7,
+    'mres%': 21,
     'def': 1110,
+    'mdef': 3330,
     'graze': True
+})
+
+AVATAR_TOP_SRD = ddict({
+    'srd%': 2
 })
 
 AVATAR_BOT_CD = ddict({
@@ -127,6 +146,14 @@ ARMOR_ACDCDCR = ddict({
     'cr+': 23
 })
 
+ARMOR_ADCDCDCR = ddict({
+    'dex%': 10,
+    'atk%': 5,
+    'cd%': 10,
+    'cd+': 21,
+    'cr+': 23
+})
+
 ARMOR_ASCDCR = ddict({
     'atk%': 11,
     'str%': 10,
@@ -134,26 +161,14 @@ ARMOR_ASCDCR = ddict({
     'cr+': 23
 })
 
-OHS_ASCDCRCR_SCD = ddict({
+OHS_ASCDCDCR_SCD = ddict({
     'type': '1h sword',
-    'base attack': 385,
+    'base attack': 379,
     'base stability': 80,
     'refine': 15,
     'atk%': 11,
-    'cd%': 3,
+    'cd%': 5,
     'str%': 10,
-    'cd+': 20,
-    'cr+': 23
-})
-
-OHS_ASCDCDCR_CDS = ddict({
-    'type': '1h sword',
-    'base attack': 385,
-    'base stability': 80,
-    'refine': 15,
-    'atk%': 10,
-    'cd%': 10,
-    'str%': 5,
     'cd+': 20,
     'cr+': 23
 })
@@ -212,6 +227,7 @@ XTAL_ARM_GOPHERGA = ddict({
 
 XTAL_ANY_BLACK_SHADOW = ddict({
     'atk%': 8,
+    'matk%': 8,
     'ampr+': 3,
     'mp': -150
 })
@@ -263,12 +279,12 @@ XTAL_ADD_ROYAL_OX_KING = ddict({
 
 BOW_ADCDCDCR_CDD = ddict({
     'type': 'bow',
-    'base attack': 231,
+    'base attack': 228,
     'base stability': 60,
     'refine': 15,
     'atk%': 10,
     'cd%': 10,
-    'dex%': 5,
+    'dex%': 7,
     'cd+': 20,
     'cr+': 23
 })
@@ -346,11 +362,13 @@ XTAL_ARM_ARACHNIDEMON = ddict({
     'atk%': 8,
     'cr+': 8,
     'mp': -400,
-    'hp+': -400
+    'hp+': -400,
+    'srd%': lambda s: {} if s['type'].find('shield') == -1 else {'srd%': 4}
 })
 
 XTAL_RING_VENENA_I = ddict({
     'atk%': 1,
+    'matk%': 1,
     'stability%': 2,
     'mp': 500
 })
@@ -394,7 +412,9 @@ XTAL_ADD_KING_PITON = ddict({
 
 XTAL_ADD_GESPENST_2 = ddict({
     'cr+': 10,
-    'mp': 200
+    'mp': 200,
+    'cspd+': 600,
+    'acc+': 60
 })
 
 ADD_REINDEER_HEADBAND = ddict({
@@ -402,4 +422,115 @@ ADD_REINDEER_HEADBAND = ddict({
     'dex%': 4,
     'srd%': 4,
     'lrd%': 4
+})
+
+ARROW_TEMPEST_ARROW = ddict({
+    'base attack': 19,
+    'base stability': 20,
+    'cd%': 1
+})
+
+XTAL_W_BLANCANINE = ddict({
+    'atk%': 7,
+    'agi%': 4,
+    'ampr+': 1,
+    'hp%': -12
+})
+
+XTAL_W_FINSTERN = ddict({
+    'matk%': 7,
+    'mp': 300
+})
+
+XTAL_ARM_YULE_CAT = ddict({
+    'matk%': 7,
+    'int%': 3,
+    'cspd%': 35,
+    'ampr%': 10
+})
+
+ADD_MAGICAL_STOLE = ddict({
+    'matk%': 7,
+    'int%': 7,
+    'hp+': 500
+})
+
+XTAL_ADD_UNDERWATER_RUINS_MONSTER = ddict({
+    'matk%': 8,
+    'hp+': 1000,
+    'cd+': 8
+})
+
+KTN_5TH_ANNIV = ddict({
+    'base attack': 130,
+    'base stability': 70,
+    'type': 'katana',
+    'refine': 15,
+    'dex%': 7,
+    'unsheathe%': 14,
+    'ppierce%': 15,
+    'cr+': 30,
+    'srd%': 7
+})
+
+ADD_SAND_BANDIT_MASK = ddict({
+    'ppierce%': 12,
+    'unsheathe%': 12
+})
+
+XTAL_ANY_TAPPLER = ddict({
+    'unsheathe%': 12,
+    'mp': -50
+})
+
+XTAL_ARM_GEMMA = ddict({
+    'ppierce%': 5,
+    'unsheathe%': 7,
+    'cd+': 6
+})
+
+XTAL_SPECTER_OF_DEATH = ddict({
+    'unsheathe%': 10
+})
+
+RING_DARK_POWER = ddict({
+    'atk%': 3,
+    'mp': 300
+})
+
+XTAL_W_IRESTIDA = ddict({
+    'matk%': 8,
+    'mpierce%': 6
+})
+
+XTAL_ARM_IRON_EMPRESS = ddict({
+    'matk%': 5,
+    'mpierce%': 10,
+    'hp%': 20,
+    'cspd%': 20,
+    'mp': -300
+})
+
+XTAL_ARM_EVIL_SHADOW = ddict({
+    'matk%': 6,
+    'mp': 300,
+    'hp+': 1500
+})
+
+ADD_IRON_WITCH_VEIL = ddict({
+    'mpierce%': 20,
+    'mp': 300,
+    'cspd+': 400
+})
+
+XTAL_ADD_GARNACHE = ddict({
+    'mpierce%': 10,
+    'matk%': 3,
+    'hp%': 18
+})
+
+XTAL_W_ARMASITE = ddict({
+    'cspd%': -20,
+    'matk%': 5,
+    'mpierce%': 20
 })
