@@ -1,13 +1,14 @@
 # noqa # pylint: disable=unused-wildcard-import
 from Iterate_Builds import *
 from Data import *
-from data.mage import *
+from data.dw import *
 
-target = TARGET_KUZTO_ULTIMATE
+target = TARGET_FINSTERN_ULTIMATE
 
 if __name__ == '__main__':
     #character_base.update({'matching ele': ddict({'dte%': 0})})
-    #ARMOR_DTE_2S.update({'dte%': 0})
+    #ARMOR_DTE2.update({'dte%': 0})
+    #ARMOR_DTE1.update({'dte%': 0})
     #character_base['consumables'].update({'dte%': 0})
     #items['armor'] = [UPDATE_STATS(ARMOR_ADCDCDCR, {'slots': 1})]
     #items['armor'] = [UPDATE_STATS(ARMOR_ACDCDCR, {'slots': 2, 'atk%': 7, 'cd+': 20, 'cr+': 23})]

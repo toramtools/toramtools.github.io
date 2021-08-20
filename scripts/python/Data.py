@@ -24,6 +24,13 @@ def UPDATE_STATS (base, specifics):
     new.update(specifics)
     return new
 
+TARGET_ALTOBLEPAS = ddict({
+    'graze': False,
+    'level': 174,
+    'def': 174,
+    'pres%': 6
+})
+
 TARGET_RAFFY_LV1 = ddict({
     'level': 1,
     'pres%': 0,
@@ -65,6 +72,13 @@ TARGET_GRAVICEP_LRD_ULTIMATE = ddict({
     'def': 1110,
     'mdef': 3330,
     'graze': True
+})
+
+TARGET_FINSTERN_ULTIMATE = ddict({
+    'level': 206,
+    'def': 1494,
+    'pres%': 6,
+    'graze': False
 })
 
 AVATAR_TOP_SRD = ddict({
@@ -163,13 +177,13 @@ ARMOR_ASCDCR = ddict({
 
 OHS_ASCDCDCR_SCD = ddict({
     'type': '1h sword',
-    'base attack': 379,
+    'base attack': 390,
     'base stability': 80,
     'refine': 15,
     'atk%': 11,
-    'cd%': 5,
+    'cd%': 3,
     'str%': 10,
-    'cd+': 20,
+    'cd+': 21,
     'cr+': 23
 })
 
@@ -533,4 +547,54 @@ XTAL_W_ARMASITE = ddict({
     'cspd%': -20,
     'matk%': 5,
     'mpierce%': 20
+})
+
+ADD_TATTERED_CLOAK = ddict({
+    'stability%': 10,
+    'cr+': 10
+})
+
+AVATAR_TOP_CD = ddict({
+    'cd+': 4
+})
+
+AVATAR_TOP_SRD = ddict({
+    'srd%': 2,
+    'agi+': 3
+})
+
+RING_GLOWING_SEA_TALISMAN = ddict({
+    'stability%': 10
+})
+
+XTAL_ARM_YUVERIA = ddict({
+    'mp': 300,
+    'srd%': 6
+})
+
+ADD_YORK_PENDANT = ddict({
+    'tumble': 1,
+    'stability%': 10
+})
+
+XTAL_ARM_DEMONIC_EYE = ddict({
+    'tumble': 1,
+    'hp+': 1000,
+    'aspd+': 300
+})
+
+XTAL_ADD_ZARTH = ddict({
+    'ampr+': 12,
+    'cd+': 4
+})
+
+XTAL_W_KUZTO = ddict({
+    'cr+': 7,
+    'matk%': 7
+})
+
+DAGGER_FALLEN_ANGEL = ddict({
+    'type': 'dagger',
+    'atk%': 3,
+    'cd+': 3
 })

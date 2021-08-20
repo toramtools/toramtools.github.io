@@ -27,8 +27,10 @@ class Iterate_Builds:
         self.requirements = requirements
 
     def iterate (self):
-        fit = []
         counter = 0
+        fit = 0
+        highestDMG = 0
+        best = []
 
         print("# Running simulation...")
         ti = time.time()
@@ -62,17 +64,17 @@ class Iterate_Builds:
                 else:
                     break
             else:
-                fit.append([totalDMG, contexts[0]])
+                fit += 1
+                if totalDMG > highestDMG:
+                    highestDMG = totalDMG
+                    best = [totalDMG, contexts[0]]
 
-        fit.sort(key = lambda x: x[0])
-
-        best = fit[-1]
         bestBuild = convert2dict(best[1].character)
         bestStats = best[1].data
 
         print('# Simulation finished (runtime: %ss)' % (trunc2(time.time()-ti)))
         print('# There are %s item combinations for selected items' % counter)
-        print('# There are %s combinations which satisfy minimum requirements' % len(fit))
+        print('# There are %s combinations which satisfy minimum requirements' % fit)
         print('# The "best" among them has following stats:')
         print('# Average DMG:', best[0])
         print('# Stats:\n', dict(bestStats))

@@ -178,7 +178,7 @@ class DamageContext:
             if self.skill['crit'] and mainType == "katana" and subType in ['bare hand', 'scroll']:
                 effectiveATK = int(effectiveATK*1.5)
 
-        CDMG = (150+myStats['total str']//5)*(100+myStats['cd%'])//100+myStats['cd+']
+        CDMG = self.CDMG_PC = (150+myStats['total str']//5)*(100+myStats['cd%'])//100+myStats['cd+']
         CR = (25+CRT//3.4)*(100+myStats['cr%'])//100+myStats['cr+']
         
         # MATK XGH
@@ -197,7 +197,7 @@ class DamageContext:
 
         maxMP = int(100+Lv+INT/10+max(TEC-1,0))+myStats['mp']
         
-        AMPR = (10+maxMP//100)*(100+myStats['ampr%'])//100+myStats['ampr+']+myStats['main ampr+']
+        AMPR = (10+min(maxMP, 2000)//100)*(100+myStats['ampr%'])//100+myStats['ampr+']+myStats['main ampr+']
 
         maxHP = int((VIT+22.4)*Lv/3+93)*(100+myStats['hp%'])//100+myStats['hp+']
 
