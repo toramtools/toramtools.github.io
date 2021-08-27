@@ -140,23 +140,23 @@ AVATAR_BOT_CR = ddict({
 })
 
 ARMOR_DTECDCDCR = ddict({
-    'dte%': 21,
+    'dte%': 20,
     'cd%': 10,
     'cd+': 21,
     'cr+': 23
 })
 
 ARMOR_DTESCDCR = ddict({
-    'dte%': 21,
+    'dte%': 20,
     'str%': 10,
-    'cd+': 21,
+    'cd+': 20,
     'cr+': 23
 })
 
 ARMOR_ACDCDCR = ddict({
-    'atk%': 11,
+    'atk%': 9,
     'cd%': 10,
-    'cd+': 21,
+    'cd+': 20,
     'cr+': 23
 })
 
@@ -164,14 +164,14 @@ ARMOR_ADCDCDCR = ddict({
     'dex%': 10,
     'atk%': 5,
     'cd%': 10,
-    'cd+': 21,
+    'cd+': 20,
     'cr+': 23
 })
 
 ARMOR_ASCDCR = ddict({
-    'atk%': 11,
+    'atk%': 10,
     'str%': 10,
-    'cd+': 21,
+    'cd+': 20,
     'cr+': 23
 })
 
@@ -183,7 +183,7 @@ OHS_ASCDCDCR_SCD = ddict({
     'atk%': 11,
     'cd%': 3,
     'str%': 10,
-    'cd+': 21,
+    'cd+': 20,
     'cr+': 23
 })
 
@@ -597,4 +597,30 @@ DAGGER_FALLEN_ANGEL = ddict({
     'type': 'dagger',
     'atk%': 3,
     'cd+': 3
+})
+
+XTAL_ADD_WANDERING_WHEEL = ddict({
+    'atk%': 5,
+    'aspd%': 75,
+    'lrd%': -14
+})
+
+XTAL_RING_VOLGAGON = ddict({
+    'aspd+': 1000,
+    'cr%': 20
+})
+
+RING_TIME_WARP_WATCH = ddict({
+    'aspd+': 1000
+})
+
+ADD_XMAS_RIBBON = ddict({
+    'stabilit%': 10,
+    'watk%': 15,
+    'cr%': 5
+})
+
+ADD_DEMON_MANTLE = ddict({
+    'atk%': 7,
+    'stability%': 7
 })

@@ -15,23 +15,7 @@ skill1 = ddict({
     'crit': True,
     'others': 1.1*1.2,
     'combo': 1.5,
-    'proration': 1
-})
-
-skill2 = ddict({
-    'constant': lambda s: 100,
-    'multiplier': lambda s: 2,
-    'resistance': 'pres%',
-    'defense': 'def',
-    'distance': 'srd%',
-    'unsheathe': 'not_unsheathe',
-    'crit': True,
-    'others': 1,
-    'combo': 1,
-    'proration': 1,
-    'stats': ddict({
-        #'cd+': 90
-    })
+    'proration': 2.5
 })
 
 skills = [skill1]
@@ -54,11 +38,11 @@ character_base = ddict({
         'aspd%': 50
     }),
     'food': ddict({
-        'watk+': 86,
-        'cr+': 26,
-        'str+': 26,
-        'agi+': 26,
-        'ampr+': 26
+        'watk+': 100,
+        'cr+': 30,
+        'str+': 30,
+        'agi+': 30,
+        'ampr+': 30
     }),
     'masteries': ddict({
         'watk%': 30,
@@ -70,7 +54,7 @@ character_base = ddict({
         'unsheathe%': 25
     }),
     'battle skills': ddict({
-        'atk+': 112,
+        'atk+': 114,
         'cd%': 5,
         'cr+': 5
     }),
@@ -92,8 +76,8 @@ character_base = ddict({
     'consumables': ddict({
         'dte%': 5,
         'mp': 300,
-        'atk%': 3,
-        'ppierce%': 10
+        'atk%': 5,
+        'atk+': 50
     }),
     'flash blast': ddict({
         'main watk%': 25
@@ -109,13 +93,8 @@ character_base = ddict({
     'matching ele': ddict({
         'dte%': 25
     }),
-    'pet skills': ddict({
-        'atk+': 75,
-        'atk%': 10,
-        'cd+': 12
-    }),
     'enm': ddict({
-        'enemy def': -124
+        'enemy def': -87
     })
 })
 
@@ -138,6 +117,8 @@ OHS = ddict({
     'dte%': 21
 })
 
+OHS2 = UPDATE_STATS(OHS, {'dte%': 0, 'cd%': 10})
+
 ARMOR = ddict({
     'dte%': 21,
     'agi%': 10,
@@ -147,13 +128,16 @@ ARMOR = ddict({
 
 items = ddict({
     'base stats': [UPDATE_STATS(BASE_STATS('agi', 'str'), {'agi': 300, 'str': 297, 'level': 230})],
-    'main': [OHS],
-    'armor': [ARMOR],
+    'main': [OHS2],
+    'armor': [ARMOR_ACDCDCR, ARMOR],
     'add': [ADD_GLADIATOR_HELMET, ADD_COOKIE_EARRINGS],
     'ring': [ddict({'mp': 600, 'str+': 10}), RING_GLOWING_SEA_TALISMAN],
-    'avatar 1': [ddict({'stability%': 3, 'srd%': 2})],
-    'avatar 2': [ddict({'cd+': 4, 'atk%': 3})],
-    'avatar 3': [ddict({'stability%': 2, 'agi%': 3, 'cr+': 2})],
+    #'avatar 1': [ddict({'stability%': 3, 'srd%': 2})],
+    #'avatar 2': [ddict({'cd+': 4, 'atk%': 3})],
+    #'avatar 3': [ddict({'stability%': 2, 'agi%': 3, 'cr+': 2})],
+    'avatar 1': [AVATAR_ACC_PPIERCE, AVATAR_ACC_ATK],
+    'avatar 2': [AVATAR_TOP_PPIERCE, AVATAR_TOP_SRD, AVATAR_TOP_ATK],
+    'avatar 3': [AVATAR_BOT_PPIERCE, AVATAR_BOT_ATK],
     'berserk': [BERSERK, ddict({})]
 })
 

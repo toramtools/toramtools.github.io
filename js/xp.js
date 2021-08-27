@@ -109,7 +109,8 @@ const mq_data = {
     "The Duel in Nov Diela": 36200000,
     "Chapter 11":"",
     "Flying the Ark":37800000,
-    "Land of the Unknown":49000000
+    "Land of the Unknown":49000000,
+    "The Strolling Forest":51000000
  };
 
 
