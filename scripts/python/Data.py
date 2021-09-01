@@ -1,5 +1,10 @@
 from DMG_Optimization import ddict
 
+def UPDATE_STATS (base, specifics):
+    new = ddict(base)
+    new.update(specifics)
+    return new
+
 def BASE_STATS (primary, secondary):
     CURRENT_CAP = 230
     CURRENT_PRIMARY_STAT_MAX = 350
@@ -19,10 +24,8 @@ def BASE_STATS (primary, secondary):
 
     return base
 
-def UPDATE_STATS (base, specifics):
-    new = ddict(base)
-    new.update(specifics)
-    return new
+def BALANCED_STATS (primary, secondary):
+    return UPDATE_STATS(BASE_STATS(primary, secondary), {primary: 300, secondary: 297})
 
 TARGET_ALTOBLEPAS = ddict({
     'graze': False,
@@ -81,8 +84,21 @@ TARGET_FINSTERN_ULTIMATE = ddict({
     'graze': False
 })
 
-AVATAR_TOP_SRD = ddict({
+AVATAR_TOP_CD = ddict({
+    'cd+': 4
+})
+
+AVATAR_TOP_STAB = ddict({
+    'stability%': 2
+})
+
+AVATAR_BOT_SRD = ddict({
     'srd%': 2
+})
+
+AVATAR_TOP_SRD = ddict({
+    'srd%': 2,
+    'dex+': 5
 })
 
 AVATAR_BOT_CD = ddict({
@@ -91,8 +107,9 @@ AVATAR_BOT_CD = ddict({
     'hp+': 800
 })
 
-AVATAR_ACC_AMPR = ddict({
-    'ampr+': 7
+AVATAR_ACC_PP_AMPR = ddict({
+    'ampr+': 6,
+    'ppierce%': 6
 })
 
 AVATAR_TOP_AMPR = ddict({
@@ -100,8 +117,7 @@ AVATAR_TOP_AMPR = ddict({
 })
 
 AVATAR_BOT_AMPR = ddict({
-    'ampr+': 6,
-    'agi': 6
+    'ampr+': 7
 })
 
 AVATAR_ACC_ATK = ddict({
@@ -127,10 +143,6 @@ AVATAR_BOT_PPIERCE = ddict({
     'str+': 5
 })
 
-AVATAR_ACC_PPIERCE = ddict({
-    'ppierce%': 7
-})
-
 AVATAR_TOP_CR = ddict({
     'cr+': 4
 })
@@ -142,7 +154,7 @@ AVATAR_BOT_CR = ddict({
 ARMOR_DTECDCDCR = ddict({
     'dte%': 20,
     'cd%': 10,
-    'cd+': 21,
+    'cd+': 20,
     'cr+': 23
 })
 
@@ -620,7 +632,7 @@ ADD_XMAS_RIBBON = ddict({
     'cr%': 5
 })
 
-ADD_DEMON_MANTLE = ddict({
-    'atk%': 7,
-    'stability%': 7
-})
+POTION_ENERGY_PILL = ddict({'atk%': 5, 'atk+': 50})
+
+POTION_PEN_OIL = ddict({'atk%': 3, 'ppierce%': 10})
+
