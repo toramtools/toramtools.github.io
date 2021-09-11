@@ -128,7 +128,7 @@ ARMOR = ddict({
 
 items = ddict({
     'base stats': [UPDATE_STATS(BASE_STATS('agi', 'str'), {'agi': 300, 'str': 297, 'level': 230})],
-    'main': [OHS2],
+    'main': [OHS2, OHS_PCR],
     'armor': [ARMOR_ACDCDCR, ARMOR],
     'add': [ADD_GLADIATOR_HELMET, ADD_COOKIE_EARRINGS],
     'ring': [ddict({'mp': 600, 'str+': 10}), RING_GLOWING_SEA_TALISMAN],
