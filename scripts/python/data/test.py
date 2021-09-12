@@ -135,7 +135,7 @@ items = ddict({
     #'avatar 1': [ddict({'stability%': 3, 'srd%': 2})],
     #'avatar 2': [ddict({'cd+': 4, 'atk%': 3})],
     #'avatar 3': [ddict({'stability%': 2, 'agi%': 3, 'cr+': 2})],
-    'avatar 1': [AVATAR_ACC_PPIERCE, AVATAR_ACC_ATK],
+    'avatar 1': [AVATAR_ACC_ATK],
     'avatar 2': [AVATAR_TOP_PPIERCE, AVATAR_TOP_SRD, AVATAR_TOP_ATK],
     'avatar 3': [AVATAR_BOT_PPIERCE, AVATAR_BOT_ATK],
     'berserk': [BERSERK, ddict({})]

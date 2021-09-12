@@ -79,7 +79,7 @@ const mq_data = {
     "Chapter 8":"",
     "The Mine Where Monsters Lurk":8400000,
     "The Mysterious Shadow":8500000,
-    "The New Diel Country":"",
+    "The New Diel Country":8600000,
     "The Ruins of the Gods":8800000,
     "The Former God of Justice":9100000,
     "The Remaining Thrones in the Shrine":9700000,
