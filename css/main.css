@@ -1,0 +1,255 @@
+/* Main end: 412x692 viewport */
+
+html {
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+select {
+    padding-right: 0.5rem;
+}
+
+a:-webkit-any-link {
+    color: blue;
+}
+
+.header-title {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.25rem 0;
+}
+
+.header {
+    border: 1px solid #333333;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #333333;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.main {
+    flex-grow: 1;
+}
+
+.main > *:not(:last-child) {
+    margin-bottom: 2vh;
+}
+
+.footer {
+    border: 1px solid #333333;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 1rem;
+    background-color: #333333;
+    color: white;
+    font-style: italic;
+    margin-top: 5px;
+    padding: 0.25rem 0;
+    font-weight: bold;
+}
+
+.header, .main, .footer {
+    flex-shrink: 0;
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
+}
+
+.section > legend {
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.section {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    border: solid 1px;
+    border-radius: 10px;
+    padding-bottom: 0.5em;
+    box-sizing: border-box;
+}
+
+.small-input {
+    font-size: 1rem;
+    height: 1rem;
+    width: 3rem;
+    border: 1px solid;
+}
+
+.medium-input {
+    width: 4rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    text-align: right;
+    grid-gap: 2vh 0.5rem;
+    padding: 0.5rem 0;
+}
+
+.grid-2 {
+    grid-template-columns: 1fr repeat(2, auto) 1fr;
+}
+
+.grid-3 {
+    grid-template-columns: 1fr repeat(3, auto) 1fr;
+}
+
+.grid-4 {
+    grid-template-columns: 1fr repeat(4, auto) 1fr;
+}
+
+.grid-5 {
+    grid-template-columns: 1fr repeat(5, auto) 1fr;
+}
+
+.grid-6 {
+    grid-template-columns: 1fr repeat(6, auto) 1fr;
+}
+
+.col-1 {
+    grid-column: 2;
+}
+
+.col-2 {
+    grid-column: 3;
+}
+
+.col-3 {
+    grid-column: 4;
+}
+
+.col-4 {
+    grid-column: 5;
+}
+
+.col-5 {
+    grid-column: 6;
+}
+
+.grid.grid-2:not(.ignore) .col-1:not(.ignore), .grid.grid-2:not(.ignore) .col-2:not(.ignore) {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.grid.grid-2:not(.ignore) .col-1:not(.ignore) label, .grid.grid-2:not(.ignore) .col-2:not(.ignore) label {
+    margin-right: 5px;
+}
+
+.nogap {
+    grid-gap: 0;
+}
+
+.smaller-font {
+    font-size: 0.75rem;
+}
+
+.highlight {
+    background-color: #38ff81;
+}
+
+.error {
+    background-color: #ff4141;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input[type=checkbox] {
+    vertical-align: text-top;
+}
+
+.label-checkbox {
+    font-size: calc(1rem + 1px);
+}
+
+.v-align > div {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+}
+
+.v-align input[type="number"], .v-align select {
+    margin-left: 0.5rem;
+}
+
+.subsection-title {
+    font-size: 0.75rem;
+    margin: 0;
+    text-align: center;
+}
+
+.section > legend > div {
+    display: flex;
+    align-items: center;
+}
+
+.section > legend > div > img, .question-mark {
+    cursor: pointer;
+    width: 1.1em;
+    margin-left: 3px;
+    content: url(https://cdn1.iconfinder.com/data/icons/material-set-6/48/543-512.png);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (min-width: 500px) {
+    .container {
+        width: 480px;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .multiple-1 {
+        height: calc(1rem + 2px);
+    }
+
+    .multiple-5 {
+        height: calc(5rem + 2px);
+    }
+}
+
+.radio-group {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+}
+
+.radio-group > label:not(last-child) {
+    margin-right: 1rem;
+}

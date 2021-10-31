@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-141HZ4L42J"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-141HZ4L42J');
+        </script>
+        <title>Toram Tools</title>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="keywords" content="Toram, Toram Online, Ninja Scroll, Combinations, List, Simulator, Database, Crafting"/>
+        <meta name="description" content="Ninja Scroll Database"/>
+        <link rel="stylesheet" href="css/main.css"/>
+        <link rel="stylesheet" href="css/scroll.css"/>
+    </head>
+
+    <body>
+        <div class="header" id="HEADER">
+            <a href="index.html"><div class="header-title">Ninja Scroll Database</div></a>
+        </div>
+
+        <div class="main">
+            <div class="scroll-container">
+                <fieldset class="section" id="scroll-skills-container">
+                    <legend>
+                        <div>
+                            <span>Search by Scroll Skills</span>
+                            <img id="sss-popup">
+                        </div>
+                    </legend>
+                    <div class="scroll-section" id="scroll-skills">
+                        <!-- label>Type<select id="scroll-type"></select></!-->
+                        <label>Skill 1<select id="scroll-skill-1" data-prev="-1"></select><!--<button class="reset-skill" data-id="1">R</button> --></label>
+                        <label>Skill 2<select id="scroll-skill-2" data-prev="-1"></select><!--<button class="reset-skill" data-id="2">R</button> --></label>
+                        <label>Skill 3<select id="scroll-skill-3" data-prev="-1"></select><!--<button class="reset-skill" data-id="3">R</button> --></label>
+                        <div class="button-group">
+                            <button id="scroll-search">Search</button>
+                            <button id="scroll-search-reset">Reset</button>
+                        </div>
+                    </div>
+                </fieldset>
+                
+                <fieldset class="section" style="height: 100%;">
+                    <legend>
+                        <div>
+                            <span>Craft a Scroll</span>
+                            <img id="cs-popup">
+                        </div>
+                    </legend>
+                    <form action="javascript: void(0);" class="scroll-section" id="scroll-craft-components">
+                        <label>Weapon 1<select required id="scroll-component-1" data-prev="-1"></select></label>
+                        <label>Weapon 2<select required id="scroll-component-2" data-prev="-1"></select></label>
+                        <label>Weapon 3<select required id="scroll-component-3" data-prev="-1"></select></label>
+                        <div>
+                            <button id="craft-scroll">Craft</button>
+                            <button type="button" id="craft-scroll-reset">Reset</button>
+                        </div>
+                        <div id="craft-results-container" class="hidden">
+                            <div id="craft-results">
+                                <span class="block-header">Possible Types</span>
+                                <span class="text-center"><span class="scroll-type" id="craft-results-type"></span> Ninjustu Scroll</span></span>
+                                <span class="block-header">Skills</span>
+                                <span class="text-center"><span id="craft-results-skills"></span></span>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </fieldset>
+            </div>
+
+            <div class="results-parent">
+                <fieldset class="section">
+                    <legend>
+                        <div>
+                            <span>Results</span>
+                            <img id="results-popup">
+                        </div>
+                    </legend>
+                    <div class="results-container">
+                        <div id="results"></div>
+                        <div id="results-warning">Oops, it seems that this combination isn't possible unless one of the skills is random ("Any" or "Random" options). Try another combination, leaving one of the fields as random.</div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="footer">Developed by: Insane23</div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/scroll.js"></script>
+</html>

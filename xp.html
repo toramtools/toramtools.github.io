@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html class="blacksmith">
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-141HZ4L42J"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-141HZ4L42J');
+        </script>
+        <title>Toram Tools</title>
+        <meta name="keywords" content="Toram, Toram Online, Toram Tools, Experience Simulator, Main Quest Simulator, Quest Calculator, Exp, XP"/>
+        <meta name="description" content="Toram Online's Experience, Quest and Main Quest Calculator & Simulator."/>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="keywords" content="Toram Online, Game Tools, Simulator, Calculator, Experience, Exp, XP"/>
+        <link rel="stylesheet" href="css/main.css"/>
+        <link rel="stylesheet" href="css/xp.css"/>
+    </head>
+
+    <body>
+        <div class="header">
+            <a href="index.html"><div class="header-title">Experience Calculator</div></a>
+        </div>
+
+        <form class="container main">
+            <fieldset class="section">
+                <legend>Level</legend>
+                <div class="grid grid-3">
+                    <div class="col-1">
+                        <label for="level">Lv</label>
+                        <input type="number" class="small-input" id="level" min="1" value="1"/>
+                    </div>
+                    <div class="col-2">
+                        <label for="level-percentage">%</label>
+                        <input type="number" class="small-input" id="level-percentage" min="0" max="99" value="0"/>
+                    </div>
+                    <div class="col-3">
+                        <label for="target-level">TargetLv</label>
+                        <input type="number" class="small-input" id="target-level" min="1"/>
+                    </div>
+                </div>
+                <div class="quest-info">
+                    <p>
+                        <strong>Total XP required</strong>: <span id="xp-required"></span>
+                    </p>
+                </div>
+            </fieldset>
+
+            <div class="radio-group">
+                <input type="radio" name="ui-select" id="mq-ui" data-selector="1" checked/>
+                <label for="mq-ui">Main Quest</label>
+                <input type="radio" name="ui-select" id="npc-ui" data-selector="2"/>
+                <label for="npc-ui">NPC Quest</label>
+            </div>
+
+            <fieldset id="npc-group" class="section ui-group" style="display: none;">
+                <legend class="v-align">
+                    <div>
+                        <span>NPC Quest</span>
+                        <img id="quest-popup" class="question-mark"/>
+                    </div>
+                </legend>
+                <div class="grid grid-1 quest-block">
+                    <div class="col-1">
+                        <label for="quest-name">Quest</label>
+                        <select id="quest-name"></select>   
+                    </div>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="col-1">
+                        <label for="quest-name">Exp</label>
+                        <input type="number" id="quest-exp" min="0"/>
+                    </div>
+                    <div class="col-2">
+                        <label for="quest-times">N° of Times</label>
+                        <input type="number" id="quest-times" min="0" value="1"/>
+                    </div>
+                </div>
+
+                <div class="quest-info">
+                    <p>
+                        Repeat this quest <strong><span id="target-times"></span> times</strong> to reach target level
+                    </p>
+                    <p>
+                        By doing this quest for <strong><span id="times-value"></span> times</strong>, you'll reach <strong>Level <span id="times-level"></span></strong> 
+                    </p>
+                </div>
+            </fieldset>
+
+            <fieldset id="mq-group" class="section ui-group">
+                <legend>Main Quest</legend>
+                <div class="grid grid-1 nogap mq-block">
+                    <div class="col-1 grid grid-1 nogap">
+                        <label class="col-1 text-center" for="mq-from">From</label>
+                        <select class="col-1" id="mq-from"></select>
+                    </div>
+
+                    <div class="col-1 grid grid-1 nogap">
+                        <label class="col-1 text-center" for="mq-until">Until</label>
+                        <select class="col-1" id="mq-until"></select>
+                    </div>
+
+                    <div class="col-1 quest-info">
+                        <p id="mq-xp"></p>
+                        <p id="mq-eval"></p>
+                        <p id="mq-startFrom"></p>
+                        <p id="mq-stopAt"></p>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+        <div class="footer">Developed by: Insane23</div>
+    </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/xp.js"></script>
+</html>

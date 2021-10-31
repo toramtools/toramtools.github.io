@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-141HZ4L42J"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-141HZ4L42J');
+        </script>
+        <title>Toram Tools</title>
+        <meta name="keywords" content="Toram, Toram Online, Toram Tools, Stats Points Calculator, Skill Points Calculator, SP"/>
+        <meta name="description" content="Toram Online's Stats and Skill Points Calculator."/>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="css/main.css"/>
+        <link rel="stylesheet" href="css/sp.css"/>
+    </head>
+
+    <body>
+        <div class="header">
+            <a href="index.html"><div class="header-title">Stat &amp; Skill Points Calculator</div></a>
+        </div>
+
+        <div class="container main">
+
+            <form id="base-sp" action='javascript:void(0);'>
+                <fieldset class="section">
+                    <legend>Level, Stat &amp; Skill Points</legend>
+                    <div class="grid grid-2">
+                        <div class="col-1">
+                            <label for="level">Lv</label>
+                            <input class="small-input" id="level" type="number" min="1"/>
+                        </div>
+                        <div class="col-2">
+                            <label for="lvcap">MaxLv</label>
+                            <input class="small-input" id="lvcap" type="number" min="1"/>
+                        </div>
+
+                        <div class="col-1">
+                            <label for="stat-points">Stat Points</label>
+                            <input class="small-input" id="stat-points" type="number" min="1"/>
+                        </div>
+                        <div class="col-2">
+                            <label for="skill-points">Skill Points</label>
+                            <input class="small-input" id="skill-points" type="number" min="1"/>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+            <fieldset class="section emblems-section">
+                <legend class="section-title v-align">
+                    <div>
+                        <span>Emblems</span>
+                        <img class="question-mark" id="emblem-popup">
+                    </div>
+                </legend>
+                <div>
+                    <div class="grid grid-2">
+                        <div class="col-1">
+                            <label for="extra-skill-points">Skill Points</label>
+                            <input id="extra-skill-points" class="small-input" type="number" min="0"/>
+                        </div>
+                        <div class="col-2">
+                            <button type="button" id="show-skill-emblems">Show All</button>
+                        </div>
+
+                        <div class="col-1 ignore hidden" id="extra-stp">
+                            <label for="extra-stat-points">Stat Points</label>
+                            <input id="extra-stat-points" class="small-input" type="number" min="0" disabled/>
+                        </div>
+                    </div>
+
+                    <form id="extra-sp" class="hidden" action='javascript:void(0);'>
+                        <h2 class="subsection-title">Player Level</h2>
+                        <div class="grid grid-1">
+                            <div class="col-1">
+                                <label for="highest-level">Highest Lv</label>
+                                <input class="small-input" type="number" id="highest-level" min="1"/>
+                            </div>
+                        </div>
+
+                        <h2 class="subsection-title">Results</h2>
+                        <div class="grid grid-2">
+                            <div class="col-1">
+                                <label for="highest-level">Attacker</label>
+                                <select id="attacker-rank"></select>
+                            </div>
+                            <div class="col-2">
+                                <label for="highest-level">Defender</label>
+                                <select id="defender-rank"></select>
+                            </div>
+
+                            <div class="col-1">
+                                <label for="highest-level">Supporter</label>
+                                <select id="supporter-rank"></select>
+                            </div>
+                            <div class="col-2">
+                                <label for="highest-level">Breaker</label>
+                                <select id="breaker-rank"></select>
+                            </div>
+                        </div>
+                    
+                        <h2 class="subsection-title">Learning Skills</h2>
+                        <div class="grid grid-2">
+                            <div class="col-1">
+                                <label for="mastered-skills">Mastered Skills</label>
+                                <select id="mastered-skills"></select>
+                            </div>
+                            <div class="col-2">
+                                <label for="mastered-trees">Mastered Trees</label>
+                                <select id="mastered-trees"></select>
+                            </div>
+                        </div>
+
+                        <h2 class="subsection-title">Consecutive Time Played</h2>
+                        <div class="grid grid-1">
+                            <div class="col-1">
+                                <label for="consecutive-time">Time</label>
+                                <select id="consecutive-time"></select>
+                            </div>
+                        </div>
+
+                        <h2 class="subsection-title">Other</h2>
+                        <div class="grid grid-2">
+                            <div class="col-1">
+                                <label for="first-aid">First Aid</label>
+                                <select id="first-aid"></select>
+                            </div>
+                            <div class="col-2">
+                                <label for="KO">Knocked Out</label>
+                                <select id="KO"></select>
+                            </div>
+                        </div>
+
+                        <h2 class="subsection-title">Housing</h2>
+                        <div class="grid" id="housing">
+                            <div class="col-1">
+                                <label for="minigame">20k Points on Black Knight Mini Game</label>
+                            </div>
+                            <div class="col-1 grid grid-2" id="housing-options">
+                                <div class="col-1">
+                                    <input type="radio" name="minigame" value="1" id="minigame-yes"/>
+                                    <label for="minigame-yes">Yes</label>
+                                </div>
+                                <div class="col-2">
+                                    <input type="radio" name="minigame" value="0" id="minigame-no" checked/>
+                                    <label for="minigame-no">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </fieldset>
+
+        </div>
+
+        <div class="footer">
+            Developed by: Insane23
+        </div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/sp.js"></script>
+</html>

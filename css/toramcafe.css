@@ -1,0 +1,35 @@
+.search-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    column-gap: 5px;
+    row-gap: 10px;
+    flex-wrap: wrap;
+}
+
+#results {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2px;
+    align-items: center;
+}
+
+#results > a {
+    width: max-content;
+    display: block;
+}
+
+#error-msg {
+    color: red;
+    text-align: center;
+}
+
+.translator {
+    display: flex;
+    justify-content: center;
+}
+
+.category-container {
+    flex: 1 0 100%;
+    text-align: center;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-141HZ4L42J"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-141HZ4L42J');
+    </script>
+    <title>Toram Tools</title>
+    <meta name="keywords" content="Toram, Toram Online, Toram Tools, Advanced Item Search" />
+    <meta name="description" content="Toramcafe English Wrapper." />
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/toramcafe.css" />
+    <link rel="stylesheet" href="css/chrome.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <a href="index.html">
+            <div class="header-title">ToramCafe Wrapper</div>
+        </a>
+    </div>
+
+    <div class="main">
+        <fieldset class="section container">
+            <legend>Search by Name [ToramCafe English Search]</legend>
+            <form action="javascript:void(0);">
+                <div class="search-container">
+                    <label for="item-name">Item Name</label>
+                    <input id="item-name" type="text">
+                    <button id="search" type="submit">Search</button>
+                    <span id="error-msg" class="hidden">Something went wrong. Try again.</span>
+                    <div class="category-container">
+                        <label for="item-category">Category</label>
+                        <select id="item-category">
+                            <option value="item">Items</option>
+                            <option value="weapon">Weapons</option>
+                            <option value="equipment">Equipments</option>
+                            <option value="crysta">Crystas</option>
+                            <option value="myland">Furniture</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="translator">
+                    <label for="translate-api">Use Google Translator?</label>
+                    <input type="checkbox" id="translate-api" checked />
+                </div>
+            </form>
+        </fieldset>
+
+        <fieldset id="results-container" class="section container hidden">
+            <legend>Results</legend>
+            <div id="results">
+
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="footer">Developed by: Insane23</div>
+</body>
+<script src="js/main.js"></script>
+<script src="js/toramcafe.js"></script>
+
+</html>

@@ -1,0 +1,145 @@
+.scroll-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: fit-content;
+    width: -moz-fit-content;
+    margin: 0 auto;
+}
+
+.scroll-container > div {
+    height: fit-content;
+    height: -moz-fit-content;
+}
+
+@media (max-width: 480px) {
+    .scroll-container {
+        grid-template-columns: 1fr;
+        grid-row-gap: 2vh;
+    }
+}
+
+label > select, label > button {
+    margin-left: 5px;
+}
+
+.scroll-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-section button {
+    width: fit-content;
+    width: -moz-fit-content;
+}
+
+.scroll-section > label:not(:last-child) {
+    margin-bottom: 1em;
+}
+
+.scroll-section > label {
+    font-weight: bold;
+    text-align: center;
+}
+
+#scroll-craft-components {
+    height: calc(100% - 0.75rem + 3px);
+    box-sizing: border-box;
+    padding: 0.5em 0;
+}
+
+#scroll-skills {
+    padding: 0.5em 0;
+}
+
+.combination-box {
+    display: grid;
+    grid-template-columns: repeat(1, min-content);
+    font-weight: bold;
+    grid-gap: 0.5vh 0vw;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.combination-box div:first-child {
+    display: flex;
+    justify-content: center;
+}
+
+.combination-box span {
+    display: inline-block;
+    height: min-content;
+    margin: auto 0;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.combination-box img {
+    width: 30px;
+    border-radius: 15px;
+    margin: 0 0.25em;
+}
+
+#results {
+    display: grid;
+    justify-content: center;
+    grid-column-gap: 1em;
+    margin: 2vh 1em;
+    grid-gap: 3vh 2em;
+    grid-template-columns: repeat(auto-fill, 175px);
+}
+
+#results-warning {
+    margin: 1vh;
+    text-align: justify;
+}
+
+#craft-results {
+    text-align: center;
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid black;
+}
+
+#craft-results > span:first-child, #craft-results > span:nth-child(3) {
+    font-weight: bold;
+    display: block;
+}
+
+#craft-results > span:nth-child(3) {
+    margin-top: 1vh;
+}
+
+.scroll-type {
+    display: inline;
+    white-space: nowrap;
+    width: 100%;
+    text-align: center;
+}
+
+.scroll-type > span > span {
+    font-weight: normal;
+}
+
+.scroll-type span:not(:last-child):not(:nth-last-child(2))::after {
+    content: ", ";
+}
+
+.scroll-type span:last-child:not(:first-child)::before {
+    content: " or ";
+}
+
+#scroll-skills-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.results-parent {
+    display: none;
+    max-width: 90%;
+    margin: 0 auto;
+    min-width: 74px;
+    margin-top: 2vh;
+}

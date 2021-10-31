@@ -1,0 +1,46 @@
+label {
+    font-size: 0.85rem;
+}
+
+.crafting-type {
+    text-align: center;
+}
+
+.crafting-type legend {
+    text-align: left;
+}
+
+.crafting-type > select {
+    margin: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.skill-block {
+    grid-row-gap: 0.25rem;
+}
+
+.skill-block label {
+    text-align: center;
+}
+
+.skill-block > input {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+#difficulty-divider {
+    padding: 0 0.25rem;
+}
+
+#warning {
+    grid-template-columns: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: red;
+    text-align: center;
+    padding: 0.5rem 0;
+}
+
+#warning span {
+    white-space: nowrap;
+}

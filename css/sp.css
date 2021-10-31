@@ -1,0 +1,17 @@
+.emblems-section > div {
+    padding: 0;
+}
+
+.emblem-title {
+    text-align: center;
+}
+
+#housing {
+    text-align: center;
+    grid-row-gap: 0.25rem; 
+}
+
+#housing-options {
+    padding-top: 0;
+    padding-bottom: 0;
+}

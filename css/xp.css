@@ -1,0 +1,33 @@
+#quest-name {
+    padding-right: 0.5rem;
+}
+
+#quest-exp, #quest-times {
+    width: 4rem;
+}
+
+.quest-info {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.quest-info > p {
+    margin: 0;
+    margin-bottom: 0.25rem;
+}
+
+.quest-info > p:last-child {
+    margin-bottom: 0;
+}
+
+.mq-block {
+    padding: 0;
+}
+
+#mq-stopAt {
+    color: green;
+}
+
+#mq-startFrom {
+    color: red;
+}
