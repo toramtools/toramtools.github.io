@@ -37,7 +37,7 @@ $("#search").on("click", function () {
         }
     })
 })
-//teste
+
 $("#translate-api").on("change", function() {
     $("#search").click();
 })
