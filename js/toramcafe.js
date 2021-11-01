@@ -22,8 +22,15 @@ $("#search").on("click", function () {
             const translator_affix = $("#translate-api").is(":checked")?"https://translate.google.com/translate?sl=ja&tl=en&u=":""
             let results_html = String()
             for (const link of result["data"]) {
-                const viewName = link.substr(link.indexOf("#") + 1).replace("_Crysta", "").match(pattern).join(" ").replace("the ", " the ").replace("of ", " of ").replace(" - ", "-").replace("with ", " with ")
-                results_html += `<a href="${translator_affix+link}" target="_blank">${viewName}</a>`
+                if (category == "boss") {
+                    const bossName = Object.keys(link)[0];
+                    const viewName = bossName.match(pattern).join(" ").replace("the ", " the ").replace("of ", " of ").replace(" -", " - ").replace("with ", " with ").replace("- lv", "- Lv")
+                    results_html += `<a href="${translator_affix+link[bossName]}" target="_blank">${viewName}</a>`
+                }
+                else{
+                    const viewName = link.substr(link.indexOf("#") + 1).replace("_Crysta", "").match(pattern).join(" ").replace("the ", " the ").replace("of ", " of ").replace(" - ", "-").replace("with ", " with ")
+                    results_html += `<a href="${translator_affix+link}" target="_blank">${viewName}</a>`
+                }
             }
 
             if (results_html == "") {
