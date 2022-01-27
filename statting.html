@@ -26,10 +26,10 @@
 
     <body ng-controller="StattingSimController as SS">
         <div class="header">
-            <a href="index.html"><div class="header-title">Statting Simulator</div></a>
+            <a href="index.html"><div class="header-title">Statting Simulator (Descontinued)</div></a>
         </div>
 
-        <form ng-cloak class="{{bodyClass}} r-grid main">
+        <form ng-cloak class="{{bodyClass}} r-grid main" style="visibility: hidden;">
             <div ng-class="{'configuration': SS.configDisabled, 'only-configuration': !SS.configDisabled}">
                 <fieldset class="section">
                     <legend ng-click="SS.showthisbs()">Configuration</legend>
