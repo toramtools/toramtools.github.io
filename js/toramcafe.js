@@ -59,6 +59,13 @@ $(document).ready(async () => {
     await $.ajax({
         type: "GET",
         dataType: "json",
-        url: "https://dot23-api.herokuapp.com/"
+        url: "https://dot23-api.herokuapp.com/",
+        success: function (result) {
+            console.log("ready")
+        },
+        error: function (result) {
+            console.log("error:", result)
+        },
+        timeout: 5000
     })
 }) 
