@@ -20,8 +20,6 @@ $("#search").on("click", async () => {
         url: api+"/"+category+"/"+name,
         success: function (result) {
             $("#error-msg").hide()
-            $("#results-container").show()
-            $("#loading-container").hide()
 
             const pattern = /([0-9A-Z\+]+|[\-\[\]★\(\)\&])[a-z\'\.♪\:]*/g
             const translator_affix = $("#translate-api").is(":checked")?"https://translate.google.com/translate?sl=ja&tl=en&u=":""
@@ -37,6 +35,9 @@ $("#search").on("click", async () => {
                     results_html += `<a href="${translator_affix+link}" target="_blank">${viewName}</a>`
                 }
             }
+
+            $("#results-container").show()
+            $("#loading-container").hide()
 
             if (results_html == "") {
                 results_html = "Seems we found nothing."
