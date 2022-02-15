@@ -33,3 +33,14 @@
     flex: 1 0 100%;
     text-align: center;
 }
+
+#loading-container {
+    width: 100%;
+    overflow-y: hidden;
+    text-align: center;
+    display: none;
+}
+
+#loading-container > img {
+    height: 50px;
+}

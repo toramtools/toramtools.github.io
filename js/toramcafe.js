@@ -1,22 +1,27 @@
-$("#search").on("click", function () {
+const api = "https://dot23-api.herokuapp.com/toramcafe"
+//const api = "http://localhost:5000/toramcafe"
+
+$("#search").on("click", async () => {
     const name = $("#item-name").val()
     const category = $("#item-category").val()
 
     if (name == "") {
         $("#error-msg").hide()
+        $("#results-container").hide()
+        $("#loading-container").hide()
         return;
     }
 
-    const api = "https://dot23-api.herokuapp.com/toramcafe"
-    //const api = "http://localhost:5000/toramcafe"
-
-    $.ajax({
+    $("#results-container").hide()
+    $("#loading-container").show()
+    await $.ajax({
         type: "GET",
         dataType: "json",
         url: api+"/"+category+"/"+name,
         success: function (result) {
             $("#error-msg").hide()
             $("#results-container").show()
+            $("#loading-container").hide()
 
             const pattern = /([0-9A-Z\+]+|[\-\[\]★\(\)\&])[a-z\'\.♪\:]*/g
             const translator_affix = $("#translate-api").is(":checked")?"https://translate.google.com/translate?sl=ja&tl=en&u=":""
@@ -41,6 +46,7 @@ $("#search").on("click", function () {
         },
         error: function (result) {
             $("#error-msg").show()
+            $("#loading-container").hide()
         }
     })
 })
@@ -48,3 +54,11 @@ $("#search").on("click", function () {
 $("#translate-api").on("change", function() {
     $("#search").click();
 })
+
+$(document).ready(async () => {
+    await $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "https://dot23-api.herokuapp.com/"
+    })
+}) 
