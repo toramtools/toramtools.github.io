@@ -1,7 +1,7 @@
 const api = "https://dot23-api.herokuapp.com/toramcafe"
 //const api = "http://localhost:5000/toramcafe"
 
-$("#search").on("click", () => {
+$("#search").on("click", async () => {
     const name = $("#item-name").val()
     const category = $("#item-category").val()
 
@@ -14,7 +14,7 @@ $("#search").on("click", () => {
 
     $("#results-container").hide()
     $("#loading-container").show()
-    $.ajax({
+    await $.ajax({
         type: "GET",
         dataType: "json",
         url: api+"/"+category+"/"+name,
@@ -55,8 +55,8 @@ $("#translate-api").on("change", function() {
     $("#search").click();
 })
 
-$(document).ready(() => {
-    $.ajax({
+$(document).ready(async () => {
+    await $.ajax({
         type: "GET",
         dataType: "json",
         url: "https://dot23-api.herokuapp.com/",
