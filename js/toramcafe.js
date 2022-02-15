@@ -56,7 +56,7 @@ $("#translate-api").on("change", function() {
 })
 
 $(document).ready(() => {
-    a$.ajax({
+    $.ajax({
         type: "GET",
         dataType: "json",
         url: "https://dot23-api.herokuapp.com/",
