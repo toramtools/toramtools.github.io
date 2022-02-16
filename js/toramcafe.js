@@ -59,7 +59,6 @@ $("#translate-api").on("change", function() {
 let wakeUpTries = 0;
 
 const wakeUpServer = async () => {
-    $("button, input, select").prop("disabled", true)
     await $.ajax({
         type: "GET",
         dataType: "html",

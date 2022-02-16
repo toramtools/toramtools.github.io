@@ -34,12 +34,12 @@
             <form action="javascript:void(0);">
                 <div class="search-container">
                     <label for="item-name">Item Name</label>
-                    <input id="item-name" type="text">
-                    <button id="search" type="submit">Search</button>
+                    <input id="item-name" type="text" disabled>
+                    <button id="search" type="submit" disabled>Search</button>
                     <span id="error-msg" class="hidden">Something went wrong. Try again.</span>
                     <div class="category-container">
                         <label for="item-category">Category</label>
-                        <select id="item-category">
+                        <select id="item-category" disabled>
                             <option value="item">Items</option>
                             <option value="weapon">Weapons</option>
                             <option value="equipment">Equipments</option>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="translator">
                     <label for="translate-api">Use Google Translator?</label>
-                    <input type="checkbox" id="translate-api" checked />
+                    <input type="checkbox" id="translate-api" checked disabled/>
                 </div>
             </form>
         </fieldset>
