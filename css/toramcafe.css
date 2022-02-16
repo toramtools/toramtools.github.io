@@ -44,3 +44,11 @@
 #loading-container > img {
     height: 50px;
 }
+
+#api-error {
+    display: none;
+    text-align: center;
+    color: red;
+    font-weight: bold;
+    font-size: 1em;
+}

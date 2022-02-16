@@ -56,17 +56,28 @@ $("#translate-api").on("change", function() {
     $("#search").click();
 })
 
-$(document).ready(async () => {
+let wakeUpTries = 0;
+
+const wakeUpServer = async () => {
+    $("button, input, select").prop("disabled", true)
     await $.ajax({
         type: "GET",
-        dataType: "json",
+        dataType: "html",
         url: "https://dot23-api.herokuapp.com/",
         success: function (result) {
             console.log("ready")
+            $("button, input, select").prop("disabled", false)
         },
         error: function (result) {
             console.log("error:", result)
+            wakeUpTries += 1
+            if (wakeUpTries <= 2)
+                wakeUpServer()
+            else
+                $("#api-error").show()
         },
-        timeout: 5000
+        timeout: 3333
     })
-}) 
+}
+
+$(document).ready(wakeUpServer)
