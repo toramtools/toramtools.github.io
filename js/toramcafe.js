@@ -65,15 +65,18 @@ const wakeUpServer = async () => {
         url: "https://dot23-api.herokuapp.com/",
         success: function (result) {
             console.log("ready")
-            $("button, input, select").prop("disabled", false)
+            $("#loading-container").hide()
+            $("#tc-search").show()
         },
         error: function (result) {
             console.log("error:", result)
             wakeUpTries += 1
             if (wakeUpTries <= 2)
                 wakeUpServer()
-            else
+            else {
+                $("#loading-container").hide()
                 $("#api-error").show()
+            }
         },
         timeout: 3333
     })

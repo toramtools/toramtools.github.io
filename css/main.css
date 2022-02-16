@@ -42,6 +42,7 @@ a:-webkit-any-link {
 
 .main {
     flex-grow: 1;
+    box-sizing: border-box;
 }
 
 .main > *:not(:last-child) {
