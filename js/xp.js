@@ -113,7 +113,8 @@ const mq_data = {
     "The Strolling Forest":51000000,
     "Eumanos the Forest Dwellers": 53400000,
     "A Sproutling is Born": 55700000,
-    "The Blessing-Bearer": 58100000
+    "The Blessing-Bearer": 58100000,
+    "Intense Battle in Coenubia's Stronghold": 60500000
  };
 
 
