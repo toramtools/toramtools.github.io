@@ -71,7 +71,7 @@ const wakeUpServer = async () => {
         error: function (result) {
             console.log("error:", result)
             wakeUpTries += 1
-            if (wakeUpTries <= 2)
+            if (wakeUpTries < 5)
                 wakeUpServer()
             else {
                 $("#loading-container").hide()
