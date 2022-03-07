@@ -151,7 +151,8 @@ const EFF_NAME = {
     'MATK DOWN (INT)': '198',
     'MATK DOWN (AGI)': '199',
     'MATK UP (DEX)': '200',
-    'Teleport to Dikkit Sector': '201'
+    'Teleport to Dikkit Sector': '201',
+    'Gem Dust Drop Amount %': '207'
 };
 const ITEM_TYPES = {
     'Any': '-1',
