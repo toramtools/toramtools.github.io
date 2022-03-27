@@ -114,7 +114,8 @@ const mq_data = {
     "Eumanos the Forest Dwellers": 53400000,
     "A Sproutling is Born": 55700000,
     "The Blessing-Bearer": 58100000,
-    "Intense Battle in Coenubia's Stronghold": 60500000
+    "Intense Battle in Coenubia's Stronghold": 60500000,
+    "The Shadow of a Smoky Mountain": 63000000
  };
 
 
