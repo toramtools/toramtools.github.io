@@ -115,7 +115,8 @@ const mq_data = {
     "A Sproutling is Born": 55700000,
     "The Blessing-Bearer": 58100000,
     "Intense Battle in Coenubia's Stronghold": 60500000,
-    "The Shadow of a Smoky Mountain": 63000000
+    "The Shadow of a Smoky Mountain": 63000000,
+    "The Weredragons & the Underground World": 65500000
  };
 
 
