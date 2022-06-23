@@ -116,7 +116,9 @@ const mq_data = {
     "The Blessing-Bearer": 58100000,
     "Intense Battle in Coenubia's Stronghold": 60500000,
     "The Shadow of a Smoky Mountain": 63000000,
-    "The Weredragons & the Underground World": 65500000
+    "The Weredragons & the Underground World": 65500000,
+    "Chapter 12": "",
+    "The Sky with a Ceiling": 73400000
  };
 
 
