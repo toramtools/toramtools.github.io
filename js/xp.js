@@ -165,7 +165,6 @@ const getTotalXP = function (begin, beginPercentage, end) {
 }
 
 const addXP = function (begin, beginPercentage, extraXP) {
-    let totalXP = getTotalXP(1, 0, begin)
     let remainingXP = extraXP
     let lv, lvPercentage
 
