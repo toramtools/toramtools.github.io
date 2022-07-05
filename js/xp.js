@@ -165,15 +165,25 @@ const getTotalXP = function (begin, beginPercentage, end) {
 }
 
 const addXP = function (begin, beginPercentage, extraXP) {
-    let totalXP = getTotalXP(1, 0, begin);
-    let targetXP = totalXP+floor(beginPercentage/100*getXP(begin))+extraXP;
-    let lv, lvPercentage;
-    for (lv = begin; totalXP <= targetXP; lv++) {
-        totalXP += getXP(lv);
-    }
-    lv -= 1;
-    lvPercentage = min(99, 100-floor(100*(totalXP-targetXP)/getXP(lv)));
-    return [lv, lvPercentage];
+    let totalXP = getTotalXP(1, 0, begin)
+    let remainingXP = extraXP
+    let lv, lvPercentage
+
+    let XPRequiredNextLv = (1-beginPercentage/100)*getXP(begin)
+
+    if (extraXP < XPRequiredNextLv) {
+        let currentXP = beginPercentage/100*getXP(begin)+extraXP
+        return [begin, floor(100*currentXP/getXP(begin))]
+    } else {
+        remainingXP -= XPRequiredNextLv
+        lv = begin + 1
+        while (getXP(lv) <= remainingXP) {
+            remainingXP -= getXP(lv)
+            lv += 1
+        }
+        lvPercentage = floor(100*remainingXP/getXP(lv));
+        return [lv, lvPercentage];
+    }  
 }
 
 const evaluateTarget = function () {
