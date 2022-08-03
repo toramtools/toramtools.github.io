@@ -1,5 +1,16 @@
 /* Main end: 412x692 viewport */
 
+:root {
+    --highlight-color: #38ff81;
+    --error-color: #ff4141;
+    --weapon-crysta: red;
+    --normal-crysta: blue;
+    --special-crysta: #7A0B83;
+    --additional-crysta: #9C9801;
+    --armor-crysta: #058142;
+    --enhancer-crysta: #444444;
+}
+
 html {
     font-size: 16px;
     width: 100%;
@@ -253,4 +264,8 @@ input[type=checkbox] {
 
 .radio-group > label:not(last-child) {
     margin-right: 1rem;
+}
+
+.h-align-center {
+    text-align: center;
 }

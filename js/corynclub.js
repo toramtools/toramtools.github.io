@@ -152,8 +152,12 @@ const EFF_NAME = {
     'MATK DOWN (AGI)': '199',
     'MATK UP (DEX)': '200',
     'Teleport to Dikkit Sector': '201',
-    'Gem Dust Drop Amount %': '207'
+    'Gem Dust Drop Amount %': '207',
+    'Permanently unlock an unique emotion': '208',
+    'Teleport to Naiata': '210',
+    'Attack Range (m)': '211'
 };
+
 const ITEM_TYPES = {
     'Any': '-1',
     'All Equipments': '-2',
@@ -186,54 +190,95 @@ const ITEM_TYPES = {
     'Usable': '1'
 };
 
-angular.module('corynclub', []).controller("StatListController", function () {
-    var st = this;
-    st.type = 0;
+let statList = [];
+let statCounter = 0;
 
-    st.entries = EFF_NAME;
-    st.types = function() {
-        let dict = {};
-        for (const key of Object.keys(ITEM_TYPES)) {
-            dict[ITEM_TYPES[key]] = key;
-        }
-        console.log(dict);
-        return dict;
-    }();
+const addStatLine = function() {
+    $("#stat-lines-block").append(`<div class="col-1 stats-block" id="stat-line-${statCounter}">
+        <input class="input-stats" list="stat-choices" type="text" onInput="validateEffectName(this, ${statCounter})"/>
+        <select id="op-${statCounter}" class="chrome-select" name="">
+            <option value=">=" selected="">≥</option>
+            <option value=">">&gt;</option>
+            <option value="=">=</option>
+            <option value="<">&lt;</option>
+            <option value="<=">≤</option>
+        </select>
+        <input id="effect-${statCounter}" class="small-input" type="number" name="" value="0" />
+        <button class="chrome-button" type="button" onClick="$('#stat-line-${statCounter}').remove()">-</button>
+        </div>`);
+    statCounter += 1;
+}
 
-    st.itemOptions = Object.entries(ITEM_TYPES);
-    st.operators = ['>=', '=', '<=', '>', '<'];
-    st.statEntries = Object.entries(EFF_NAME);
-
-    st.itemList = [];
-    st.statList = [];
-
-    st.addStat = function () {
-        st.statList.push({'stat': '', 'op': '>=', 'amount': '0'});
-        console.log(st.itemList);
+const validateEffectName = function (obj, id) {
+    const textInput = $(obj).val();
+    if (textInput == "") {
+        $(obj).css("background-color", "unset");
+        $(`#op-${id}`).attr("name", "");
+        $(`#effect-${id}`).attr("name", "");
+        return;
     }
 
-    st.removeStat = function (index) {
-        st.statList.splice(index, 1);
+    const textQuery = Object.keys(EFF_NAME).find(e => e.toLowerCase() == textInput.trim().toLowerCase());
+    if (textQuery !== undefined) {
+        $(obj).css("background-color", $(":root").css("--highlight-color"));
+        $(`#op-${id}`).attr("name", `op[${EFF_NAME[textQuery]}]`);
+        $(`#effect-${id}`).attr("name", `effect[${EFF_NAME[textQuery]}]`);
+    } else {
+        $(obj).css("background-color", $(":root").css("--error-color"));
+        $(`#op-${id}`).attr("name", "");
+        $(`#effect-${id}`).attr("name", "");
+    }
+}
+
+const writeSelectedTypes = function () {
+    const itemTypes = $("#item-types").val() || [];
+    if (!itemTypes.length) {
+        return;
     }
 
-    st.statBgColor = function (value) {
-        return st.entries.hasOwnProperty(value)?"highlight":"error";
+    const R_ITEM_TYPES = Object.fromEntries(Object.entries(ITEM_TYPES).map(e => [e[1], e[0]]));
+    let typeNames = [];
+    for (const type of itemTypes) {
+        typeNames.push(R_ITEM_TYPES[type]);
     }
+    let s = typeNames.join(', ')
+    const commaPos = s.lastIndexOf(',');
+    if (commaPos != -1) {
+        $("#selected-types").html(s.substring(0, commaPos) + ' and ' + s.substring(commaPos + 1));
+    }
+    else {
+        $("#selected-types").html(s);
+    }
+}
 
-    st.fix = function () {
-        if (!st.itemList.length) {
-            console.log("?????");
-            st.itemList.push("-1");
-        }
-        if (!st.statList.length) {
-            st.statList.push({'stat': '', 'op': '>=', 'amount': ''});
-        }
-        for (var entry of st.statList) {
-            if (st.statBgColor(entry.stat) == "error") {
-                entry.stat = "";
-                entry.amount = "";
-            }
-        }
-        console.log(st.itemList[0], st.statList[0]);
+const populateItemTypes = function () {
+    for (const type of Object.keys(ITEM_TYPES)) {
+        $("#item-types-cg").append(`<label class="${(type.toLocaleLowerCase().replace(/ /g, '-').replace(/[\(\)]/g, ''))}"><input type="checkbox" name="itype[]" value="${ITEM_TYPES[type]}"/>${type}</label>\n`);
     }
-});
+}
+
+const fixbs = function () {
+    if ($("#item-type-selection-pc").css("display") != "none") {
+        if ($('.checkbox-group input[type="checkbox"]:checked').length == 0) {
+            $($('.checkbox-group input[type="checkbox"]')[0]).prop("checked", "true");
+        }
+    } else {
+        if ($("#item-type-selection-mb select")[0].value == '') {
+            $("#item-type-selection-mb select")[0].value = '-1';
+        }
+    }
+}
+
+const windowResizeHandler = function () {
+    if ($("#item-type-selection-mb").css('display') != 'none') {
+        $("#item-type-selection-pc *[name='itype[]']").prop('checked', false);
+    } else if ($("#item-type-selection-pc").css('display') != 'none') {
+        $("#item-type-selection-mb *[name='itype[]']").val([]);
+    }
+}
+
+$("#item-types").html(fillOptions(Object.values(ITEM_TYPES), Object.keys(ITEM_TYPES)));
+$("#stat-choices").html(fillOptions(Object.keys(EFF_NAME)));
+writeSelectedTypes();
+populateItemTypes();
+$(window).resize(windowResizeHandler);

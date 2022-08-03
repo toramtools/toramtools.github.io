@@ -1,0 +1,19 @@
+.weapon-crysta {
+    color: var(--weapon-crysta);
+}
+
+.normal-crysta {
+    color: var(--normal-crysta);
+}
+
+.additional-crysta {
+    color: var(--additional-crysta);
+}
+
+.special-crysta {
+    color: var(--special-crysta);
+}
+
+.armor-crysta {
+    color: var(--armor-crysta);
+}

@@ -18,15 +18,21 @@ const range = function (begin, end, step=1) {
     return list;
 }
 
-const fillOptions = function (values, keys=null) {
+const fillOptions = function (values, keys=null, selected=false) {
+    if (values.length == 0) {
+        return;
+    }
+
     let s = "";
     if (keys != null) {
-        for (var i = 0; i < values.length; i++) {
+        s += `<option value="${values[0]}"${selected ? " selected" : ""}>${keys[0]}</option>\n`;
+        for (var i = 1; i < values.length; i++) {
             s += `<option value="${values[i]}">${keys[i]}</option>\n`;
         }
     }
     else {
-        for (var i = 0; i < values.length; i++) {
+        s += `<option value="${values[i]}"${selected ? " selected" : ""}>${values[i]}</option>\n`;
+        for (var i = 1; i < values.length; i++) {
             s += `<option value="${values[i]}">${values[i]}</option>\n`;
         }
     }
