@@ -2,6 +2,16 @@
 <html>
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MYEEKJHPR4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MYEEKJHPR4');
+    </script>
+    
     <title>Toram Tools</title>
     <meta name="keywords" content="Toram Online, Tools, Item Search" />
     <meta name="description" content="Toram Online's Advanced Item Search by Insane23. Powered by Coryn Club." />
@@ -9,15 +19,6 @@
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/chrome.css" />
     <link rel="stylesheet" href="css/corynclub.css" />
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-141HZ4L42J"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-141HZ4L42J');
-    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         @media (min-width: 100vh) {
@@ -38,7 +39,7 @@
                 width: 480px;
                 margin: 0 auto;
             }
-        }        
+        }
 
         @media (min-width: 99.9vh) {
             .advsearch-container {
@@ -80,10 +81,12 @@
 
     <div class="main">
         <ul class="index-ul">
-            <li><a href="https://coryn.club/item.php?&show=50&order=id%20DESC,name" target="_blank">[Coryn.Club] Sort by lastest items</a></li>
+            <li><a href="https://coryn.club/item.php?&show=50&order=id%20DESC,name" target="_blank">[Coryn.Club] Sort by
+                    lastest items</a></li>
         </ul>
 
-        <form class="advsearch-container" method="POST" action="https://coryn.club/itemsearch_handler.php" target="_blank" onSubmit="fixbs()">
+        <form class="advsearch-container" method="POST" action="https://coryn.club/itemsearch_handler.php"
+            target="_blank" onSubmit="fixbs()">
             <input type="hidden" name="iprocess" value="-1" />
 
             <fieldset class="section">
@@ -92,7 +95,8 @@
                     <div class="col-1 v-align">
                         <div style="margin: 1.5px 0;">
                             <label>Item Types</label>
-                            <select id="item-types" class="chrome-select" name="itype[]" onChange="writeSelectedTypes()" multiple>
+                            <select id="item-types" class="chrome-select" name="itype[]" onChange="writeSelectedTypes()"
+                                multiple>
                             </select>
                         </div>
                     </div>
@@ -103,7 +107,8 @@
                         </div>
                     </div>
 
-                    <div style="text-align: center; font-weight: bold; grid-column: 1 / 5;">Selected type(s): <span style="font-weight: normal" id="selected-types"></span></div>
+                    <div style="text-align: center; font-weight: bold; grid-column: 1 / 5;">Selected type(s): <span
+                            style="font-weight: normal" id="selected-types"></span></div>
                 </div>
 
                 <div id="item-type-selection-pc" class="hidden">
@@ -111,13 +116,13 @@
                     <div class="v-align h-align-center">
                         <button class="chrome-button" type="button" onClick="addStatLine()">+</button>
                     </div>
-                </div>  
+                </div>
 
                 <div class="grid" id="stat-lines-block">
                     <datalist id="stat-choices">
                         <!-- option value=""></option -->
                     </datalist>
-                    <input type="hidden" name="op[]" value=">="/>
+                    <input type="hidden" name="op[]" value=">=" />
                 </div>
                 <div class="grid">
                     <button class="chrome-button col-1" type="submit">Search</button>

@@ -1,114 +1,131 @@
 <!DOCTYPE html>
 <html ng-app="StattingSim">
-    <head>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-141HZ4L42J"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
 
-            gtag('config', 'G-141HZ4L42J');
-        </script>
-        <title>Toram Tools</title>
-        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta name="keywords" content="Statting Simulator, Toram, Toram Online, Toram Tools, Cap 230"/>
-        <meta name="description" content="Toram Online's Statting Simulator (Cap 230)."/>
-        <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
-        <link rel="stylesheet" href="css/main.css"/>
-        <link rel="stylesheet" href="css/chrome.css"/>
-        <link rel="stylesheet" href="css/statting.css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/statting.js"></script>
-    </head>
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MYEEKJHPR4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-    <body ng-controller="StattingSimController as SS">
-        <div class="header">
-            <a href="index.html"><div class="header-title">Statting Simulator (Descontinued)</div></a>
+        gtag('config', 'G-MYEEKJHPR4');
+    </script>
+
+    <title>Toram Tools</title>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="Statting Simulator, Toram, Toram Online, Toram Tools, Cap 230" />
+    <meta name="description" content="Toram Online's Statting Simulator (Cap 230)." />
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/chrome.css" />
+    <link rel="stylesheet" href="css/statting.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/statting.js"></script>
+</head>
+
+<body ng-controller="StattingSimController as SS">
+    <div class="header">
+        <a href="index.html">
+            <div class="header-title">Statting Simulator (Descontinued)</div>
+        </a>
+    </div>
+
+    <form ng-cloak class="{{bodyClass}} r-grid main" style="visibility: hidden;">
+        <div ng-class="{'configuration': SS.configDisabled, 'only-configuration': !SS.configDisabled}">
+            <fieldset class="section">
+                <legend ng-click="SS.showthisbs()">Configuration</legend>
+                <div class="grid grid-2">
+                    <div class="col-1">
+                        <label for="potential">Potential</label>
+                        <input ng-model="SS.startingPot" class="small-input" type="number" id="potential"
+                            ng-disabled="SS.configDisabled" />
+                    </div>
+                    <div class="col-2">
+                        <label for="level">Lv</label>
+                        <input ng-model="SS.lvcap" class="small-input" type="number" id="level"
+                            ng-disabled="SS.configDisabled" />
+                    </div>
+
+                    <div class="col-1">
+                        <label for="statting-type">Type</label>
+                        <select class="chrome-select" id="statting-type" ng-model="SS.itemNature"
+                            ng-disabled="SS.configDisabled">
+                            <option value="W">Weapon</option>
+                            <option value="A">Armor</option>
+                        </select>
+                    </div>
+                    <div class="col-2">
+                        <label for="recipe">Recipe</label>
+                        <input ng-model="SS.recipePot" class="small-input" type="number" id="recipe" value="1"
+                            ng-disabled="SS.configDisabled" />
+                    </div>
+
+                    <div style="grid-column: 2 / span 2; text-align: center">
+                        <label class="label-checkbox">Matching Element? <input ng-model="SS.matchingElement"
+                                type="checkbox" ng-disabled="SS.configDisabled" /></label>
+                    </div>
+
+                    <div style="grid-column: 2 / span 2; text-align: center" class="button-group">
+                        <button class="chrome-button" type="button" ng-click="SS.setPot()"
+                            ng-disabled="SS.configDisabled">Start</button>
+                        <button class="chrome-button" type="button" ng-click="SS.resetPot()">Reset</button>
+                    </div>
+                </div>
+            </fieldset>
         </div>
 
-        <form ng-cloak class="{{bodyClass}} r-grid main" style="visibility: hidden;">
-            <div ng-class="{'configuration': SS.configDisabled, 'only-configuration': !SS.configDisabled}">
-                <fieldset class="section">
-                    <legend ng-click="SS.showthisbs()">Configuration</legend>
-                    <div class="grid grid-2">
-                        <div class="col-1">
-                            <label for="potential">Potential</label>
-                            <input ng-model="SS.startingPot" class="small-input" type="number" id="potential" ng-disabled="SS.configDisabled"/>
-                        </div>
-                        <div class="col-2">
-                            <label for="level">Lv</label>
-                            <input ng-model="SS.lvcap" class="small-input" type="number" id="level" ng-disabled="SS.configDisabled"/>
-                        </div>
-                        
-                        <div class="col-1">
-                            <label for="statting-type">Type</label>
-                            <select class="chrome-select" id="statting-type" ng-model="SS.itemNature" ng-disabled="SS.configDisabled">
-                                <option value="W">Weapon</option>
-                                <option value="A">Armor</option>
-                            </select>
-                        </div>
-                        <div class="col-2">
-                            <label for="recipe">Recipe</label>
-                            <input ng-model="SS.recipePot" class="small-input" type="number" id="recipe" value="1" ng-disabled="SS.configDisabled"/>
-                        </div>
-                        
-                        <div style="grid-column: 2 / span 2; text-align: center">
-                            <label class="label-checkbox">Matching Element? <input ng-model="SS.matchingElement" type="checkbox" ng-disabled="SS.configDisabled"/></label>
-                        </div>
+        <div ng-hide="!SS.configDisabled" class="steps">
+            <fieldset class="section">
+                <legend ng-click="SS.showthisbs()">Formula</legend>
+                <div class="ph-05">
+                    <div ng-hide="!SS.recipePot"><strong>Recipe Potential</strong>: {{SS.recipePot}}</div>
+                    <div><strong>Starting Potential ({{(SS.itemNature == "W")?"Weapon":"Armor"}})</strong>:
+                        {{SS.startingPot}}</div><br />
+                    <div ng-repeat="shownStep in SS.shownSteps track by $index"><strong>#Step {{$index+1}}</strong>:
+                        {{shownStep.repr}} (x{{shownStep.repeat}}) [{{shownStep.pot}}]</div><br />
+                    <div><strong>Success Rate</strong> = {{SS.successRate}}%</div>
+                </div>
+            </fieldset>
+        </div>
 
-                        <div style="grid-column: 2 / span 2; text-align: center" class="button-group">
-                            <button class="chrome-button" type="button" ng-click="SS.setPot()" ng-disabled="SS.configDisabled">Start</button>
-                            <button class="chrome-button" type="button" ng-click="SS.resetPot()">Reset</button>
+        <div ng-hide="!SS.configDisabled" class="stats">
+            <fieldset class="section">
+                <legend class="section-title" ng-click="SS.showthisbs()">Stats ({{SS.curPot}}/{{SS.prevPot}})
+                    [={{SS.successRate}}%]</legend>
+                <div class="grid grid-1">
+                    <div class="col-1 button-group">
+                        <button class="chrome-button" type="button" ng-click="SS.addStep()">Confirm</button>
+                        <button class="chrome-button" type="button" ng-click="SS.repeatStep()">Repeat</button>
+                        <button class="chrome-button" type="button" ng-click="SS.undoStep()">Undo</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-1 nogap">
+                    <div class="col-1 grid grid-1 nogap pb-1" ng-repeat="stat in SS.statList">
+                        <div class="col-1 mb-05 button-group">
+                            <select class="chrome-select"
+                                ng-options="index as entry group by SS.DB[index][7] for (index, entry) in SS.statNames"
+                                ng-model="stat.id" ng-change="SS.clearStatChoice($index)"
+                                ng-disabled="SS.statDisabled($index)"></select>
+                            <button class="chrome-button" type="button" ng-click="SS.setZero($index)">0</button>
+                        </div>
+                        <div class="col-1 button-group" style="text-align: center">
+                            <button class="chrome-button" type="button" ng-click="SS.subMax($index)">&lt;&lt;</button>
+                            <button class="chrome-button" type="button" ng-click="SS.subOne($index)">&lt;</button>
+                            <input ng-model="stat.shownAmount" class="small-input" type="number" disabled />
+                            <button class="chrome-button" type="button" ng-click="SS.addOne($index)">&gt;</button>
+                            <button class="chrome-button" type="button" ng-click="SS.addMax($index)">&gt;&gt;</button>
                         </div>
                     </div>
-                </fieldset>
-            </div>
+                </div>
+            </fieldset>
+        </div>
+    </form>
 
-            <div ng-hide="!SS.configDisabled" class="steps">
-                <fieldset class="section">
-                    <legend ng-click="SS.showthisbs()">Formula</legend>
-                    <div class="ph-05">
-                        <div ng-hide="!SS.recipePot"><strong>Recipe Potential</strong>: {{SS.recipePot}}</div>
-                        <div><strong>Starting Potential ({{(SS.itemNature == "W")?"Weapon":"Armor"}})</strong>: {{SS.startingPot}}</div><br/>
-                        <div ng-repeat="shownStep in SS.shownSteps track by $index"><strong>#Step {{$index+1}}</strong>: {{shownStep.repr}} (x{{shownStep.repeat}}) [{{shownStep.pot}}]</div><br/>
-                        <div><strong>Success Rate</strong> = {{SS.successRate}}%</div>
-                    </div>
-                </fieldset>
-            </div>
+    <div class="footer">Developed by: Insane23</div>
+</body>
 
-            <div ng-hide="!SS.configDisabled" class="stats">
-                <fieldset class="section">
-                    <legend class="section-title" ng-click="SS.showthisbs()">Stats ({{SS.curPot}}/{{SS.prevPot}}) [={{SS.successRate}}%]</legend>
-                    <div class="grid grid-1">
-                        <div class="col-1 button-group">
-                            <button class="chrome-button" type="button" ng-click="SS.addStep()">Confirm</button>
-                            <button class="chrome-button" type="button" ng-click="SS.repeatStep()">Repeat</button>
-                            <button class="chrome-button" type="button" ng-click="SS.undoStep()">Undo</button>
-                        </div>
-                    </div>
-    
-                    <div class="grid grid-1 nogap">
-                        <div class="col-1 grid grid-1 nogap pb-1" ng-repeat="stat in SS.statList">
-                            <div class="col-1 mb-05 button-group">
-                                <select class="chrome-select" ng-options="index as entry group by SS.DB[index][7] for (index, entry) in SS.statNames" ng-model="stat.id" ng-change="SS.clearStatChoice($index)" ng-disabled="SS.statDisabled($index)"></select>
-                                <button class="chrome-button" type="button" ng-click="SS.setZero($index)">0</button>
-                            </div>
-                            <div class="col-1 button-group" style="text-align: center">
-                                <button class="chrome-button" type="button" ng-click="SS.subMax($index)">&lt;&lt;</button>
-                                <button class="chrome-button" type="button" ng-click="SS.subOne($index)">&lt;</button>
-                                <input ng-model="stat.shownAmount" class="small-input" type="number" disabled/>
-                                <button class="chrome-button" type="button" ng-click="SS.addOne($index)">&gt;</button>
-                                <button class="chrome-button" type="button" ng-click="SS.addMax($index)">&gt;&gt;</button>
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-            </div>
-        </form>
-
-        <div class="footer">Developed by: Insane23</div>
-    </body>
 </html>
