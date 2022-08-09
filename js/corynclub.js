@@ -269,11 +269,15 @@ const fixbs = function () {
     }
 }
 
-const windowResizeHandler = function () {
-    if ($("#item-type-selection-mb").css('display') != 'none') {
+const setLayout = function () {
+    if ($(window).width() <= $(window).height()) {
         $("#item-type-selection-pc *[name='itype[]']").prop('checked', false);
-    } else if ($("#item-type-selection-pc").css('display') != 'none') {
+        $("#item-type-selection-pc").remove();
+        $("#item-type-selection-mb").css("display", "grid");
+    } else {
         $("#item-type-selection-mb *[name='itype[]']").val([]);
+        $("#item-type-selection-mb").remove();
+        $("#item-type-selection-pc").show();
     }
 }
 
@@ -281,4 +285,4 @@ $("#item-types").html(fillOptions(Object.values(ITEM_TYPES), Object.keys(ITEM_TY
 $("#stat-choices").html(fillOptions(Object.keys(EFF_NAME)));
 writeSelectedTypes();
 populateItemTypes();
-$(window).resize(windowResizeHandler);
+setLayout();

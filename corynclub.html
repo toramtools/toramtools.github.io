@@ -59,16 +59,6 @@
             margin-bottom: 2vh;
             grid-gap: 5px;
         }
-
-        @media(min-width: 99.9vh) {
-            #item-type-selection-pc {
-                display: block !important;
-            }
-
-            #item-type-selection-mb {
-                display: none !important;
-            }
-        }
     </style>
 </head>
 
@@ -91,7 +81,7 @@
 
             <fieldset class="section">
                 <legend>Advanced Search [Redirects to Coryn.Club]</legend>
-                <div class="grid grid-2" id="item-type-selection-mb">
+                <div class="grid grid-2 hidden" id="item-type-selection-mb">
                     <div class="col-1 v-align">
                         <div style="margin: 1.5px 0;">
                             <label>Item Types</label>
