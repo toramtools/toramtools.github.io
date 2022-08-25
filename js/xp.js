@@ -203,6 +203,7 @@ const evaluateTarget = function () {
 const evaluateMQ = function () {
     let mqBegin = parseInt($("#mq-from").val());
     let mqEnd = parseInt($("#mq-until").val());
+    const skipVenena = $("#skip-venena").prop("checked");
     if (mqBegin <= mqEnd) {
         const keys = Object.keys(mq_data);
         let mqXP = 0;
@@ -218,6 +219,9 @@ const evaluateMQ = function () {
         for (var i = mqBegin; i <= mqEnd; i++) {
             mqXP += Number(mq_data[keys[i]]);
             mqXPReverse += Number(mq_data[keys[mqEnd-(i-mqBegin)]])
+            if (i == 85 && !skipVenena) { // 85 = metacoenubia quest, not skipping gives +12.5m xp after decel fight
+                mqXP += 12500000;
+            }
             if (!mqStopAt && mqXP > targetXP) {
                 mqStopAt = true;
                 mqStopIndex = i;
