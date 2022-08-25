@@ -32,7 +32,12 @@
     color: red;
 }
 
-.skip-venena-label {
+#skip-venena-label > span {
     font-weight: bold;
     font-size: 0.9em;
+}
+
+#skip-venena-label {
+    display: flex;
+    align-items: center;
 }
