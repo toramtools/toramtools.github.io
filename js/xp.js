@@ -119,7 +119,8 @@ const mq_data = {
     "The Weredragons & the Underground World": 65500000,
     "Chapter 12": "",
     "The Sky with a Ceiling": 73400000,
-    "Rivalry Between Dragons and Weredragons": 76300000
+    "Rivalry Between Dragons and Weredragons": 76300000,
+    "Weredragon Couple and A Baby": 79300000
  };
 
 
