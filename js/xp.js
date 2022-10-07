@@ -118,7 +118,8 @@ const mq_data = {
     "The Shadow of a Smoky Mountain": 63000000,
     "The Weredragons & the Underground World": 65500000,
     "Chapter 12": "",
-    "The Sky with a Ceiling": 73400000
+    "The Sky with a Ceiling": 73400000,
+    "Weredragon Couple and A Baby": 79300000
  };
 
 
