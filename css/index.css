@@ -51,9 +51,11 @@
     text-align: justify;
 }
 
+/*
 .index-ul > li > a, .index-ul > li > img {
     float: left;
 }
+*/
 
 .index-ul .question-mark {
     margin-left: 5px;
