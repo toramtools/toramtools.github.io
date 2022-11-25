@@ -120,7 +120,8 @@ const mq_data = {
     "Chapter 12": "",
     "The Sky with a Ceiling": 73400000,
     "Rivalry Between Dragons and Weredragons": 76300000,
-    "Weredragon Couple and a Baby": 79300000
+    "Weredragon Couple and a Baby": 79300000,
+    "Weredragons' Vital Point": 82300000
  };
 
 
