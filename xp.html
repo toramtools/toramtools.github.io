@@ -58,7 +58,7 @@
             <label for="npc-ui">NPC Quest</label>
         </div>
 
-        <fieldset id="npc-group" class="section ui-group" style="display: none;">
+        <fieldset id="npc-group" class="section npc-group ui-group" style="display: none;">
             <legend class="v-align">
                 <div>
                     <span>NPC Quest</span>
@@ -94,7 +94,7 @@
             </div>
         </fieldset>
 
-        <fieldset id="mq-group" class="section ui-group">
+        <fieldset id="mq-group" class="section mq-group ui-group">
             <legend>Main Quest</legend>
             <div class="grid grid-1 nogap mq-block">
                 <div class="col-1 grid grid-1 nogap">
@@ -111,11 +111,41 @@
                     <label class="col-1 text-center" for="skip-venena" id="skip-venena-label"><input type="checkbox" id="skip-venena" checked><span>Skip Pre-Venena Metacoenubia Fight</span></label>
                 </div>
 
+                <div class="col-1 grid grid-1 nogap" style="padding-top: 0;">
+                    <label class="col-1 text-center" for="multiple-mq" id="multiple-mq-label"><input type="checkbox" id="multiple-mq"><span>Spam Adventurer's Diaries</span></label>
+                </div>
+
                 <div class="col-1 quest-info">
                     <p id="mq-xp"></p>
                     <p id="mq-eval"></p>
                     <p id="mq-startFrom"></p>
                     <p id="mq-stopAt"></p>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset id="mq-table" class="section hidden">
+            <legend>Result</legend>
+            <div id="mq-table-results">
+                <div class="col-1 grid nogap" id="mq-table-header">
+                    <div>N°</div>
+                    <div style="text-align: left;">Final Chapter</div>
+                    <div>Lv (%)</div>
+                </div>
+                <div class="col-1 grid nogap" id="mq-table-row">
+                    <div>1</div>
+                    <div style="text-align: left;">A chapter</div>
+                    <div>255 (99%)</div>
+                </div>
+                <div class="col-1 grid nogap" id="mq-table-row">
+                    <div>2</div>
+                    <div style="text-align: left;">A chapter</div>
+                    <div>300 (99%)</div>
+                </div>
+                <div class="col-1 grid nogap" id="mq-table-row">
+                    <div>3</div>
+                    <div style="text-align: left;">A chapter</div>
+                    <div>350 (99%)</div>
                 </div>
             </div>
         </fieldset>

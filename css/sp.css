@@ -11,7 +11,11 @@
     grid-row-gap: 0.25rem; 
 }
 
-#housing-options {
+#housing .col-1 {
+    justify-content: center;
+}
+
+.housing-options {
     padding-top: 0;
     padding-bottom: 0;
 }

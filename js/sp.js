@@ -1,23 +1,5 @@
 "use strict"
 
-$(document).ready(function() {
-    $("#lvcap").val(LV_CAP);
-    $("#level").val(LV_CAP).trigger("input");
-    $("#attacker-rank").html(fillOptions([0, 1, 1.5, 2, 3, 4], [0, 10, 100, 1000, 10000, 100000]));
-    $("#defender-rank").html(fillOptions([0, 1, 1.5, 2, 3, 4], [0, 10, 100, 1000, 10000, 100000]));
-    $("#supporter-rank").html(fillOptions([0, 1, 1.5, 2, 3, 4], [0, 10, 100, 1000, 10000, 100000]));
-    $("#breaker-rank").html(fillOptions([0, 1, 1.5, 2, 3, 4], [0, 10, 100, 1000, 10000, 100000]));
-    $("#mastered-skills").html(fillOptions(range(0, 10)));
-    $("#mastered-trees").html(fillOptions(range(0, 3)));
-    $("#first-aid").html(fillOptions(range(0, 4), [0, 100, 400, 700, 1000]));
-    $("#KO").html(fillOptions(range(0, 4), [0, 100, 400, 700, 1000]));
-    $("#consecutive-time").html(fillOptions(range(0, 8), ['0min', '15min', '30min', '1h', '2h', '3h', '4h', '5h', '6h']));
-});
-
-$("#emblem-popup").on("click", function () {
-    alert('Subsections indicate which tabs you may find mentioned emblems.\n\nHighest Lv = Highest "Player Level" emblem you got.');
-});
-
 // const statPoints = (level) => 2*level+5*(floor((level-level%10)/10)+floor((level%10)/5));
 const statPoints = (level) => level*2;
 const maxLvPoints = (level) => level>=5?5*(floor((level-5)/10)+1):0;
@@ -65,7 +47,7 @@ const levelChange = function () {
         let highestLv = max(level, parseInput('#highest-level'));
         let statp = statPoints(level)+maxLvPoints(highestLv)+rankStatPoints();
         $("#stat-points").val(statp);
-        $("#skill-points").val(skillPoints(level)+parseInput("#extra-skill-points", 0));
+        $("#skill-points").val(skillPoints(level)+extraSkillPoints());
         
         $("#level").removeClass("highlight");
         $("#stat-points").addClass("highlight");
@@ -102,7 +84,7 @@ const statChange = function () {
 const skillChange = function () {
     let skillValue = $("#skill-points").val();
     if (skillValue != "") {
-        binSearch(parseInt(this.value), (level) => skillPoints(level)+parseInput("#extra-skill-points", 0));
+        binSearch(parseInt(this.value), (level) => skillPoints(level)+extraSkillPoints());
         $("#skill-points").removeClass("highlight");
         $("#level").addClass("highlight");
         $("#stat-points").addClass("highlight");
@@ -123,9 +105,11 @@ const extraSkillPoints = function () {
     totalPoints += parseInt($("#defender-rank").val());
     totalPoints += parseInt($("#supporter-rank").val());
     totalPoints += parseInt($("#breaker-rank").val());
+    totalPoints += parseInt($("#max-chapter").val());
     totalPoints += parseInt($("#first-aid").val());
     totalPoints += parseInt($("#KO").val());
-    totalPoints += parseInt($("input[name='minigame']:checked").val());
+    totalPoints += $("#minigame-bk").prop("checked");
+    totalPoints += $("#minigame-cg").prop("checked");
     totalPoints += parseInt($("#mastered-skills").val());
     totalPoints += parseInt($("#mastered-trees").val());
     totalPoints += parseInt($("#consecutive-time").val());
@@ -141,40 +125,46 @@ const extraStatPoints = function () {
     return totalPoints;
 }
 
-$("#lvcap").on("input", function () {
-    $("#level").attr("max", $("#lvcap").val());
-});
-$("#lvcap, #level").on("change", () => $("#extra-sp").trigger("input"));
-$("#level").on("input", levelChange);
-$("#stat-points").on("input", statChange);
-$("#skill-points").on("input", skillChange);
+$(document).ready(() => {
+    $("#lvcap").val(LV_CAP);
+    $("#level").val(LV_CAP).trigger("input");
+    $("#attacker-rank").html(fillOptions([0, 1, 1.5, 2, 3, 4], [0, 10, 100, 1000, 10000, 100000]));
+    $("#defender-rank").html(fillOptions([0, 1, 1.5, 2, 3, 4], [0, 10, 100, 1000, 10000, 100000]));
+    $("#supporter-rank").html(fillOptions([0, 1, 1.5, 2, 3, 4], [0, 10, 100, 1000, 10000, 100000]));
+    $("#breaker-rank").html(fillOptions([0, 1, 1.5, 2, 3, 4], [0, 10, 100, 1000, 10000, 100000]));
+    $("#mastered-skills").html(fillOptions(range(0, 10), range(0, 10)));
+    $("#mastered-trees").html(fillOptions(range(0, 3), range(0, 3)));
+    $("#first-aid").html(fillOptions(range(0, 4), [0, 100, 400, 700, 1000]));
+    $("#KO").html(fillOptions(range(0, 4), [0, 100, 400, 700, 1000]));
+    $("#consecutive-time").html(fillOptions(range(0, 8), ['0min', '15min', '30min', '1h', '2h', '3h', '4h', '5h', '6h']));
 
-var emblemsDisplay = false;
-$("#show-skill-emblems").on("click", function () {
-    if (!emblemsDisplay) {
-        emblemsDisplay = true;
-        this.innerHTML = "Hide All"
-        $("#extra-stp").show();
-        $("#extra-sp").show();
-    }
-    else {
-        emblemsDisplay = false;
-        this.innerHTML = "Show All"
-        $("#extra-stp").hide();
-        $("#extra-sp").hide();
-    }
-});
+    $("#emblem-popup").on("click", function () {
+        alert('Subsections indicate which tabs you may find mentioned emblems.\n\nHighest Lv = Highest "Player Level" emblem you got.');
+    });
 
-$("#extra-sp").on("input", function () {
-    $("#extra-skill-points").val(extraSkillPoints());
-    $("#extra-stat-points").val(extraStatPoints());
-    if (lastState == 'level') {
-        $("#level").trigger("input");
-    }
-    else if (lastState == 'stat') {
-        $("#stat-points").trigger("input");
-    }
-    else if (lastState == 'skill') {
-        $("#skill-points").trigger("input");
-    }
+    $("#lvcap").on("input", function () {
+        $("#level").attr("max", $("#lvcap").val());
+    });
+    $("#lvcap, #level").on("change", () => $("#extra-sp").trigger("input"));
+    $("#level").on("input", levelChange);
+    $("#stat-points").on("input", statChange);
+    $("#skill-points").on("input", skillChange);
+    
+    $("#extra-sp").on("input", function () {
+        $("#extra-skill-points").val(extraSkillPoints());
+        $("#extra-stat-points").val(extraStatPoints());
+        if (lastState == 'level') {
+            $("#level").trigger("input");
+        }
+        else if (lastState == 'stat') {
+            $("#stat-points").trigger("input");
+        }
+        else if (lastState == 'skill') {
+            $("#skill-points").trigger("input");
+        }
+    });
+
+    let e = new Event("input");
+    document.querySelector("#level").dispatchEvent(e);
+    document.querySelector("#extra-sp").dispatchEvent(e);
 });

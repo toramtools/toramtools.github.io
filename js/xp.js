@@ -161,7 +161,7 @@ const getXP = (lv) => floor(0.025*lv**4+2*lv);
 
 const getTotalXP = function (begin, beginPercentage, end) {
     let xp = floor((1-beginPercentage/100)*getXP(begin));
-    for (var i = begin+1; i < end; i++) {
+    for (let i = begin+1; i < end; i++) {
         xp += getXP(i);
     }
     return xp;
@@ -202,6 +202,86 @@ const evaluateTarget = function () {
     $("#xp-required").text(new Intl.NumberFormat().format(xpRequired));
 }
 
+const evaluateDiaries = function () {
+    let mqBegin = parseInt($("#mq-from").val());
+    let mqEnd = parseInt($("#mq-until").val());
+    const skipVenena = $("#skip-venena").prop("checked");
+    if (mqBegin <= mqEnd) {
+        const keys = Object.keys(mq_data);
+        let lv = parseInput("#level");
+        let initialLv = lv;
+        let lvP = parseInput("#level-percentage", 0);
+        let initialLvP = lvP;
+        let targetLv = parseInput("#target-level");
+        let targetXP = getTotalXP(lv, lvP, targetLv); // 1
+
+        let mqXP = 0;
+        for (let i = mqBegin; i <= mqEnd; i++) {
+            mqXP += Number(mq_data[keys[i]]);
+            if (i == 85 && !skipVenena) { // 85 = metacoenubia quest, not skipping gives +12.5m xp after decel fight
+                mqXP += 12500000;
+            }
+        } // 2
+
+        const runs = floor(targetXP/mqXP);
+        const exact_runs = (runs == ceil(targetXP/mqXP)); //#####PAREI AQUI
+
+        if (runs <= 100) {
+            $("#mq-table-results").html(`
+                <div class="col-1 grid nogap" id="mq-table-header">
+                    <div>N°</div>
+                    <div style="text-align: left;">Final Chapter</div>
+                    <div>Lv (%)</div>
+                </div>
+            `);
+        } else {
+            $("#mq-table-results").html(`
+                <div style="padding: 1em;">
+                    <span style="text-align: justify;"><span style="font-weight: bold;">Error</span>: Too many runs required (${runs+1}), select a wider range between quests.</span>
+                </div>
+            `);
+            return;
+        }
+
+        for (let i = 1; i <= runs; i++) {
+            [lv, lvP] = addXP(lv, lvP, mqXP);
+            $("#mq-table-results").append(`
+                <div class="col-1 grid nogap" id="mq-table-row">
+                    <div>${i}</div>
+                    <div>${$(`#mq-until option[value="${mqEnd}"]`).text()}</div>
+                    <div>${lv} (${lvP}%)</div>
+                </div>
+            `);
+        }
+
+        if (!exact_runs) {
+            let mqStopIndex = mqBegin;
+            let curXP = getTotalXP(initialLv, initialLvP, lv)+lvP/100*getXP(lv+1);
+            let stackedXP = 0;
+            for (let i = mqBegin; i <= mqEnd; i++) {
+                curXP += Number(mq_data[keys[i]]);
+                stackedXP += Number(mq_data[keys[i]]);
+                if (i == 85 && !skipVenena) { // 85 = metacoenubia quest, not skipping gives +12.5m xp after decel fight
+                    curXP += 12500000;
+                    stackedXP += Number(mq_data[keys[i]]);
+                }
+                if (curXP > targetXP) {
+                    mqStopIndex = i;
+                    [lv, lvP] = addXP(lv, lvP, stackedXP);
+                    break;
+                }
+            }
+            $("#mq-table-results").append(`
+                <div class="col-1 grid nogap" id="mq-table-row">
+                    <div>${runs+1}</div>
+                    <div>${$(`#mq-until option[value="${mqStopIndex}"]`).text()}</div>
+                    <div>${lv} (${lvP}%)</div>
+                </div>
+            `);
+        }
+    }
+}
+
 const evaluateMQ = function () {
     let mqBegin = parseInt($("#mq-from").val());
     let mqEnd = parseInt($("#mq-until").val());
@@ -218,11 +298,14 @@ const evaluateMQ = function () {
         let mqStartIndex = mqEnd;
         let mqStopAt = false;
         let mqStartFrom = false;
-        for (var i = mqBegin; i <= mqEnd; i++) {
+        for (let i = mqBegin; i <= mqEnd; i++) {
             mqXP += Number(mq_data[keys[i]]);
             mqXPReverse += Number(mq_data[keys[mqEnd-(i-mqBegin)]])
             if (i == 85 && !skipVenena) { // 85 = metacoenubia quest, not skipping gives +12.5m xp after decel fight
                 mqXP += 12500000;
+            }
+            if (mqEnd-(i-mqBegin) == 85 && !skipVenena) {
+                mqXPReverse += 12500000;
             }
             if (!mqStopAt && mqXP > targetXP) {
                 mqStopAt = true;
@@ -261,8 +344,17 @@ const evaluateMQ = function () {
 
 $('input[name="ui-select"]').on("change", function() {
     let tag = $(this).attr("id").split('-')[0];
-    $('.ui-group').not(`#${tag}-group`).hide();
-    $(`#${tag}-group`).show();
+    $('.ui-group').not(`.${tag}-group`).hide();
+    $(`.${tag}-group`).show();
+
+    const spamAdv = $("#multiple-mq").prop("checked");
+    if (spamAdv && tag == "mq") {
+        evaluateDiaries();
+        $("#mq-table").show();
+    }
+    else {
+        $("#mq-table").hide();
+    }
 });
 $("#quest-name").on("input", function () {
     $("#quest-exp").val(this.value);
@@ -270,4 +362,13 @@ $("#quest-name").on("input", function () {
 $("body form").on("input", function () {
     evaluateTarget();
     evaluateMQ();
+
+    const spamAdv = $("#multiple-mq").prop("checked");
+    if (spamAdv) {
+        evaluateDiaries();
+        $("#mq-table").show();
+    }
+    else {
+        $("#mq-table").hide();
+    }
 });

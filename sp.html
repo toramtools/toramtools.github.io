@@ -62,22 +62,7 @@
                 </div>
             </legend>
             <div>
-                <div class="grid grid-2">
-                    <div class="col-1">
-                        <label for="extra-skill-points">Skill Points</label>
-                        <input id="extra-skill-points" class="small-input" type="number" min="0" />
-                    </div>
-                    <div class="col-2">
-                        <button type="button" id="show-skill-emblems">Show All</button>
-                    </div>
-
-                    <div class="col-1 ignore hidden" id="extra-stp">
-                        <label for="extra-stat-points">Stat Points</label>
-                        <input id="extra-stat-points" class="small-input" type="number" min="0" disabled />
-                    </div>
-                </div>
-
-                <form id="extra-sp" class="hidden" action='javascript:void(0);'>
+                <form id="extra-sp" action='javascript:void(0);'>
                     <h2 class="subsection-title">Player Level</h2>
                     <div class="grid grid-1">
                         <div class="col-1">
@@ -93,7 +78,7 @@
                             <select id="attacker-rank"></select>
                         </div>
                         <div class="col-2">
-                            <label for="highest-level">Defender</label>
+                            <label for="highest-level">Tank</label>
                             <select id="defender-rank"></select>
                         </div>
 
@@ -102,7 +87,7 @@
                             <select id="supporter-rank"></select>
                         </div>
                         <div class="col-2">
-                            <label for="highest-level">Breaker</label>
+                            <label for="highest-level">Assister</label>
                             <select id="breaker-rank"></select>
                         </div>
                     </div>
@@ -139,20 +124,36 @@
                         </div>
                     </div>
 
-                    <h2 class="subsection-title">Housing</h2>
-                    <div class="grid" id="housing">
+                    <h2 class="subsection-title">Mission</h2>
+                    <div class="grid grid-1" id="housing">
                         <div class="col-1">
-                            <label for="minigame">20k Points on Black Knight Mini Game</label>
+                            <label for="max-chapter">Highest MQ Chapter Completed</label> 
                         </div>
-                        <div class="col-1 grid grid-2" id="housing-options">
-                            <div class="col-1">
-                                <input type="radio" name="minigame" value="1" id="minigame-yes" />
-                                <label for="minigame-yes">Yes</label>
-                            </div>
-                            <div class="col-2">
-                                <input type="radio" name="minigame" value="0" id="minigame-no" checked />
-                                <label for="minigame-no">No</label>
-                            </div>
+                        <div class="col-1">
+                            <select id="max-chapter">
+                                <option value="0">None</option>
+                                <option value="0">Chapter 1</option>
+                                <option value="0">Chapter 2</option>
+                                <option value="0">Chapter 3</option>
+                                <option value="0">Chapter 4</option>
+                                <option value="0">Chapter 5</option>
+                                <option value="0">Chapter 6</option>
+                                <option value="1">Chapter 7</option>
+                                <option value="1">Chapter 8</option>
+                                <option value="1">Chapter 9</option>
+                                <option value="1">Chapter 10</option>
+                                <option value="2">Chapter 11</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h2 class="subsection-title">Housing</h2>
+                    <div class="grid grid-2" id="housing">
+                        <div class="col-1">
+                            <label for="minigame-bk"><input type="checkbox" id="minigame-bk"> 20k Points on Black Knight Mini Game</label>
+                        </div>
+                        <div class="col-1">
+                            <label for="minigame-cg"><input type="checkbox" id="minigame-cg">Won 10 Times on Card Game</label>
                         </div>
                     </div>
                 </form>
