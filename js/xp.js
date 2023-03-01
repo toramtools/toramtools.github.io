@@ -122,7 +122,9 @@ const mq_data = {
     "Rivalry Between Dragons and Weredragons": 76300000,
     "Weredragon Couple and a Baby": 79300000,
     "Weredragons' Vital Point": 82300000,
-    "Intense Battle in Propulsion System": 85300000
+    "Intense Battle in Propulsion System": 85300000,
+    "Discovering a New Technology": 44200000,
+    "Ark Repair": 92700000
  };
 
 
