@@ -124,7 +124,8 @@ const mq_data = {
     "Weredragons' Vital Point": 82300000,
     "Intense Battle in Propulsion System": 85300000,
     "Discovering a New Technology": 44200000,
-    "Ark Repair": 92700000
+    "Ark Repair": 92700000,
+    "Weredragon Dispute": 96000000
  };
 
 
