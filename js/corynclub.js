@@ -195,7 +195,7 @@ let statCounter = 0;
 
 const addStatLine = function() {
     $("#stat-lines-block").append(`<div class="col-1 stats-block" id="stat-line-${statCounter}">
-        <input class="input-stats" list="stat-choices" type="text" onInput="validateEffectName(this, ${statCounter})"/>
+        <input class="input-stats" id="stat-input-${statCounter}" type="text" onInput="validateEffectName(this, ${statCounter})" onChange="validateEffectName(this, ${statCounter})"/>
         <select id="op-${statCounter}" class="chrome-select" name="">
             <option value=">=" selected="">≥</option>
             <option value=">">&gt;</option>
@@ -206,6 +206,12 @@ const addStatLine = function() {
         <input id="effect-${statCounter}" class="small-input" type="number" name="" value="0" />
         <button class="chrome-button" type="button" onClick="$('#stat-line-${statCounter}').remove()">-</button>
         </div>`);
+    $(`#stat-input-${statCounter}`).autocomplete({
+        source: Object.keys(EFF_NAME),
+        close: function (e, ui) {
+            validateEffectName(this, statCounter)
+        }
+    })
     statCounter += 1;
 }
 
@@ -282,7 +288,7 @@ const setLayout = function () {
 }
 
 $("#item-types").html(fillOptions(Object.values(ITEM_TYPES), Object.keys(ITEM_TYPES)));
-$("#stat-choices").html(fillOptions(Object.keys(EFF_NAME)));
+//$("#stat-choices").html(fillOptions(Object.keys(EFF_NAME)));
 writeSelectedTypes();
 populateItemTypes();
 setLayout();
