@@ -126,7 +126,9 @@ const mq_data = {
     "Discovering a New Technology": 44200000,
     "Ark Repair": 92700000,
     "Weredragon Dispute": 96000000,
-    "Cocoon in the Ice Wall": 99300000
+    "Cocoon in the Ice Wall": 99300000,
+    "Chapter 12":"",
+    "Underwater Inhabitants": 112600000
  };
 
 
