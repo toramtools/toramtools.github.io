@@ -259,7 +259,7 @@ const writeSelectedTypes = function () {
 
 const populateItemTypes = function () {
     for (const type of Object.keys(ITEM_TYPES)) {
-        $("#item-types-cg").append(`<label class="${(type.toLocaleLowerCase().replace(/ /g, '-').replace(/[\(\)]/g, ''))}"><input type="checkbox" name="itype[]" value="${ITEM_TYPES[type]}"/>${type}</label>\n`);
+        $("#item-types-cg").append(`<label class="${(type.toLocaleLowerCase().replace(/ /g, '-').replace(/[\(\)]/g, ''))}"><input type="checkbox" name="itype[]" value="${ITEM_TYPES[type]}"/><span>${type}</span></label>\n`);
     }
 }
 
@@ -292,3 +292,42 @@ $("#item-types").html(fillOptions(Object.values(ITEM_TYPES), Object.keys(ITEM_TY
 writeSelectedTypes();
 populateItemTypes();
 setLayout();
+
+$(document).ready(function() {
+    $(".weapon-crysta > input").click(function() {
+        if ($(this).is(":checked")) {
+            $(".enhancer-crysta-red > input").prop("checked", true);
+        }
+        else {
+            $(".enhancer-crysta-red > input").prop("checked", false);
+        }
+    })
+    $(".additional-crysta > input").click(function() {
+        if ($(this).is(":checked")) {
+            $(".enhancer-crysta-yellow > input").prop("checked", true);
+        } else {
+            $(".enhancer-crysta-yellow > input").prop("checked", false);
+        }
+    })
+    $(".special-crysta > input").click(function() {
+        if ($(this).is(":checked")) {
+            $(".enhancer-crysta-purple > input").prop("checked", true);
+        } else {
+            $(".enhancer-crysta-purple > input").prop("checked", false);
+        }
+    })
+    $(".armor-crysta > input").click(function() {
+        if ($(this).is(":checked")) {
+            $(".enhancer-crysta-green > input").prop("checked", true);
+        } else {
+            $(".enhancer-crysta-green > input").prop("checked", false);
+        }
+    })
+    $(".normal-crysta > input").click(function() {
+        if ($(this).is(":checked")) {
+            $(".enhancer-crysta-blue > input").prop("checked", true);
+        } else {
+            $(".enhancer-crysta-blue > input").prop("checked", false);
+        }
+    })
+})

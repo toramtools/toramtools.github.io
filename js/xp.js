@@ -327,15 +327,19 @@ const evaluateMQ = function () {
         let [mqLv, mqLvP] = addXP(lv, lvP, mqXP);
         $("#mq-eval").html(`After doing Main Quest's above range you'll reach <strong>Lv.${mqLv} (${mqLvP}%)</strong>`);
 
-        if (mqStopAt) {
+        const spamAdv = $("#multiple-mq").prop("checked");
+
+        if (mqStopAt && !spamAdv) {
             let quest = $(`#mq-until option[value="${mqStopIndex}"]`).text();
             $("#mq-stopAt").html(`You may <strong>stop</strong> after quest <strong>${quest}</strong> to reach target level`);
+            $("#mq-or").show();
         }
         else {
             $("#mq-stopAt").html("");
+            $("#mq-or").hide();
         }
 
-        if (mqStartFrom) {
+        if (mqStartFrom && !spamAdv) {
             let quest = $(`#mq-until option[value="${mqStartIndex}"]`).text();
             $("#mq-startFrom").html(`You may <strong>start</strong> from quest <strong>${quest}</strong> to reach target level`);
         }

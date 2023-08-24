@@ -17,3 +17,27 @@
 .armor-crysta {
     color: var(--armor-crysta);
 }
+
+*[class*="enhancer-crysta-"] {
+    color: var(--enhancer-crysta);
+}
+
+.enhancer-crysta-blue > span {
+    text-shadow: 0 0 0.25em var(--normal-crysta);
+}
+
+.enhancer-crysta-green > span {
+    text-shadow: 0 0 0.25em var(--armor-crysta);
+}
+
+.enhancer-crysta-red > span {
+    text-shadow: 0 0 0.25em var(--weapon-crysta);
+}
+
+.enhancer-crysta-yellow > span {
+    text-shadow: 0 0 0.25em var(--additional-crysta);
+}
+
+.enhancer-crysta-purple > span {
+    text-shadow: 0 0 0.25em var(--special-crysta);
+}

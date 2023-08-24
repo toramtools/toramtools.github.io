@@ -79,3 +79,8 @@
 #mq-table-header:not(:last-child) > div, #mq-table-row:not(:last-child) > div {
     border-bottom: 1px solid black;
 }
+
+#mq-or {
+    font-weight: bold;
+    display: none;
+}
