@@ -129,7 +129,9 @@ const mq_data = {
     "Cocoon in the Ice Wall": 99300000,
     "Chapter 13":"",
     "Underwater Inhabitants": 112600000,
-    "Water Dome": 116500000
+    "Water Dome": 116500000,
+    "Underwater City": 60200000,
+    "The Thing in the Abandoned District": 125800000
  };
 
 
