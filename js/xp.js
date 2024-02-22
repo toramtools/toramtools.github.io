@@ -132,7 +132,9 @@ const mq_data = {
     "Water Dome": 116500000,
     "Underwater City": 60200000,
     "The Thing in the Abandoned District": 125800000,
-    "Shadow from the Abyss": 129900000
+    "Shadow from the Abyss": 129900000,
+    "The Ruthless Council": 67000000,
+    "Mysterious Entity in the Little Shrine": 139900000
  };
 
 
