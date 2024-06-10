@@ -135,7 +135,9 @@ const mq_data = {
     "Shadow from the Abyss": 129900000,
     "The Ruthless Council": 67000000,
     "Mysterious Entity in the Little Shrine": 139900000,
-    "The Great Battle Underwater": 144200000
+    "The Great Battle Underwater": 144200000,
+    "Chapter 14":"",
+    "Crisis in the Sky": 159100000
  };
 
 
