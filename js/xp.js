@@ -138,7 +138,9 @@ const mq_data = {
     "The Great Battle Underwater": 144200000,
     "Chapter 14":"",
     "Crisis in the Sky": 159100000,
-    "The Surviving Siblings": 164000000
+    "The Surviving Siblings": 164000000,
+    "Chaotic Situation": 168900000,
+    "The Bitter Truth": 173800000
  };
 
 
