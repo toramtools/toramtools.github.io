@@ -140,7 +140,8 @@ const mq_data = {
     "Crisis in the Sky": 159100000,
     "The Surviving Siblings": 164000000,
     "Chaotic Situation": 168900000,
-    "The Bitter Truth": 173800000
+    "The Bitter Truth": 173800000,
+    "The Uncouth Rana Prince": 178800000
  };
 
 
