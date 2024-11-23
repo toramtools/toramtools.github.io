@@ -41,3 +41,69 @@
 .enhancer-crysta-purple > span {
     text-shadow: 0 0 0.25em var(--special-crysta);
 }
+
+/*  Lixeiras edits starts from here */
+
+body{
+    background-color: #1a2633;
+}
+
+.header-title{
+    color: white;
+}
+
+.main a{
+    text-decoration: none;
+    background-color: lightskyblue;
+    padding: 0.3em 1em 0.3em 1em;
+    border-radius: 0.6em;
+}
+
+li::marker{
+    color: yellowgreen;
+}
+
+.section {
+    background-color: #859cac;
+    box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
+}
+
+p, legend, label, span, div {
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    text-wrap: nowrap;
+}
+
+label{
+    padding: 0.3em 0.5em 0.2em 0.3em;
+    border-radius: 0.3em;
+    background-color: #f5f5f56e;
+}
+
+legend{
+    background-color: white;
+    padding: 0.5em 1em 0.5em 1em;
+    border-radius: 2em;
+    font-weight: 700;
+    box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
+}
+
+select,input,.chrome-select{
+    padding: 0.2em;
+    border-radius: 0.6em;
+    border-style: solid;
+}
+
+.chrome-button{
+    padding: 0.6em 1em 0.6em 1em;
+    border-radius: 2em;
+    border: 0;
+    border-style: solid;
+    cursor: pointer;
+    background-color: lightgreen;
+
+}
