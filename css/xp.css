@@ -126,6 +126,12 @@ select, input{
     border-radius: 0.6em;
 }
 
+select{
+    padding-left: 1em;
+    background-color: white;
+    border: 1px solid black;
+}
+
 input{
     text-align: center; 
 }
