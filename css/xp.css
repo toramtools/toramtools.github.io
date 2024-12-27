@@ -89,6 +89,7 @@
 
 body{
     background-color: #1a2633;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .header-title{
@@ -104,7 +105,6 @@ body{
 
 p, legend, label, span, div {
     color: #000000;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 legend{
@@ -134,4 +134,15 @@ select{
 
 input{
     text-align: center; 
+}
+
+.floating-img-container{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.floating-img{
+    height: 10rem;
 }
