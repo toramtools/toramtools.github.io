@@ -130,6 +130,7 @@ select, input, .grid-3 input{
 
 input:focus, select:focus, .grid-3 input:focus{
     outline: 1px solid rgb(128, 168, 255);
+    box-shadow: 0px 1px 4px 2px var(--shadow-color);
 }
 
 select{
