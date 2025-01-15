@@ -104,6 +104,15 @@ body{
 
 .header, .footer{
     background-color: var(--secondary-color);
+    border: none;
+}
+
+.header{
+    border-bottom: 1px solid var(--shadow-color);
+}
+
+.footer{
+    border-top: 1px solid var(--shadow-color);
 }
 
 #mq-group, .section {
