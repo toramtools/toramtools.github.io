@@ -21,48 +21,81 @@
 }
 
 /*  Lixeiras edits starts from here */
+:root{
+    --bg-color : #212831;
+    --secondary-color: #151b23;
+    --Tertiary-colors: #262c36;
+    --text-color: #d1d7e0;
+    --accent-color: #347d39;
+    --shadow-color: rgba(167, 157, 255, 0.4);
+}
 
 body{
-    background-color: #1a2633;
-}
-
-.header-title{
-    color: white;
-}
-
-#mq-group, .section {
-    background-color: #8fb9dd;
-    box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
-    -webkit-box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
-    -moz-box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
-}
-
-p, legend, label, span, div {
-    color: #000000;
+    background-color: var(--bg-color);
     font-family: Arial, Helvetica, sans-serif;
+    accent-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.header, .footer{
+    background-color: var(--secondary-color);
+    border: none;
+}
+
+.header{
+    border-bottom: 1px solid var(--shadow-color);
+}
+
+.footer{
+    border-top: 1px solid var(--shadow-color);
+}
+
+.section {
+    background-color: var(--secondary-color);
+    box-shadow: 0px 1px 4px 1px var(--shadow-color);
+    border: none;
 }
 
 legend{
-    background-color: white;
+    background-color: var(--Tertiary-colors);
     padding: 0.5em 1em 0.5em 1em;
     border-radius: 2em;
     font-weight: 700;
-    box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
-    -webkit-box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
-    -moz-box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
+    box-shadow: 0px 1px 4px 1px var(--shadow-color);
 }
 
-select, input{
+select, input, .small-input{
+    background-color: var(--Tertiary-colors);
+    color: var(--text-color);
     padding: 0.2em;
+    border: 1px solid var(--shadow-color);
     border-radius: 0.6em;
+}
+
+#stat-points, #skill-points{
+    background-color: #6c7cb9;
+}
+
+input:focus, select:focus{
+    outline: 1px solid rgb(128, 168, 255);
+    box-shadow: 0px 1px 4px 2px var(--shadow-color);
+}
+
+select{
+    padding-left: 1em;
 }
 
 input{
     text-align: center; 
 }
 
-.subsection-title{
-    font-size: 1em;
-    font-weight: 700;
-    margin: 0.4em 0 0.4em 0;
+.floating-img-container{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.floating-img{
+    height: 10rem;
 }
