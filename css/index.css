@@ -68,53 +68,84 @@
 }
 
 /*  Lixeiras edits starts from here */
+:root{
+    --bg-color : #212831;
+    --secondary-color: #151b23;
+    --Tertiary-colors: #262c36;
+    --text-color: #d1d7e0;
+    --accent-color: #347d39;
+    --shadow-color: rgba(167, 157, 255, 0.4);
+}
 
 body{
-    background-color: #1a2633;
-}
-
-.header-title{
-    color: white;
-}
-
-legend{
-    background-color: white;
-    padding: 0.5em 1em 0.5em 1em;
-    border-radius: 2em;
-    font-weight: 700;
-    box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
-    -webkit-box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
-    -moz-box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
-}
-
-fieldset{
-    background-color: #8fb9dd;
-    box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
-    -webkit-box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
-    -moz-box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
-}
-
-div, li, a{
+    background-color: var(--bg-color);
     font-family: Arial, Helvetica, sans-serif;
-    text-decoration: none;
+}
+
+.header, .footer{
+    background-color: var(--secondary-color);
+    border: none;
+}
+
+.header{
+    border-bottom: 1px solid var(--shadow-color);
+}
+
+.footer{
+    border-top: 1px solid var(--shadow-color);
 }
 
 li{
-    background-color: white;
-    padding: 0.5em 1em 0.5em 1em;
-    border-radius: 2em;
-    font-weight: 700;
-    box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
-    -webkit-box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
-    -moz-box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.4);
+    background-color: var(--secondary-color);
+    max-width: 22rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 2rem;
+    font-weight: 500;
+    box-shadow: 0px 1px 1px 1px var(--shadow-color);
+
+    /* this color only affects the current warning */
+    color: #ff4e4e;
 }
 
-@media (min-width: 768px){
-    li{
-        width: 380px;
-    }
+a,a:-webkit-any-link{
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.question-mark{
+    background-color: var(--text-color);
+    padding: 0.1rem;
+    border-radius: 20rem;
 }
 
 li::marker{
     color: yellowgreen;
+}
+
+@media (max-width: 30rem){
+    li{
+        font-size: 1rem;
+    }
+}
+
+legend{
+    background-color: var(--Tertiary-colors);
+    padding: 0.5em 1em 0.5em 1em;
+    border-radius: 2em;
+    font-weight: 700;
+    box-shadow: 0px 1px 1px 1px var(--shadow-color);
+}
+
+.closeable-body{
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    box-shadow: 0px 0px 1px 1px var(--shadow-color);
+    border: none;
+}
+
+.closeable-button {
+    background-color: #ff4e4e;
+    border-radius: 20rem;
+    height: 1rem;
+    width: 1rem;
 }
