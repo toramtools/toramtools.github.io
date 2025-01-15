@@ -160,3 +160,11 @@ input{
 .floating-img{
     height: 10rem;
 }
+
+#mq-startFrom{
+    color: #ff4e4e;
+}
+
+#mq-stopAt{
+    color: #5ecc5e;
+}
