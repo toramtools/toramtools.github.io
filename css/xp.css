@@ -168,26 +168,3 @@ input{
 #mq-stopAt{
     color: #5ecc5e;
 }
-
-/*fade in and up animation*/
-
-.animate{
-    -webkit-animation-duration: 800ms;
-    animation-duration: 800ms;
-    animation-fill-mode: both;
-    animation-name: fadeInUp;
-  }
-  
-  @keyframes fadeInUp{
-    0%{
-      opacity: 0;
-      -webkit-transform: translate3d(0, 100%, 0);
-      transform: translate3d(0, 100%, 0);
-    }
-  100%{
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-  }
-  
