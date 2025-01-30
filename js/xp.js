@@ -141,7 +141,8 @@ const mq_data = {
     "The Surviving Siblings": 164000000,
     "Chaotic Situation": 168900000,
     "The Bitter Truth": 173800000,
-    "The Uncouth Rana Prince": 178800000
+    "The Uncouth Rana Prince": 178800000,
+    "Mutant Coenubia Village": 183900000
  };
 
 
