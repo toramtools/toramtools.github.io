@@ -68,22 +68,12 @@
 }
 
 /*  Lixeiras edits starts from here */
-:root{
-    --bg-color : #212831;
-    --secondary-color: #151b23;
-    --Tertiary-colors: #262c36;
-    --text-color: #d1d7e0;
-    --accent-color: #347d39;
-    --shadow-color: rgba(167, 157, 255, 0.4);
-}
-
 body{
     background-color: var(--bg-color);
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 .header, .footer{
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     border: none;
 }
 
@@ -96,26 +86,17 @@ body{
 }
 
 li{
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     max-width: 22rem;
     padding: 0.5rem 1rem 0.5rem 1rem;
     border-radius: 2rem;
     font-weight: 500;
     box-shadow: 0px 1px 1px 1px var(--shadow-color);
-
-    /* this color only affects the current warning */
-    color: #ff4e4e;
 }
 
 a,a:-webkit-any-link{
     text-decoration: none;
     color: var(--text-color);
-}
-
-.question-mark{
-    background-color: var(--text-color);
-    padding: 0.1rem;
-    border-radius: 20rem;
 }
 
 li::marker{
@@ -129,7 +110,7 @@ li::marker{
 }
 
 legend{
-    background-color: var(--Tertiary-colors);
+    background-color: var(--secondary-color);
     padding: 0.5em 1em 0.5em 1em;
     border-radius: 2em;
     font-weight: 700;
@@ -137,7 +118,7 @@ legend{
 }
 
 .closeable-body{
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     color: var(--text-color);
     box-shadow: 0px 0px 1px 1px var(--shadow-color);
     border: none;

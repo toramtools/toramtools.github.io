@@ -3,8 +3,15 @@
 @import url(font.css);
 
 :root {
-    --highlight-color: #38ff81;
-    --error-color: #ff4141;
+    --bg-color : #212831;
+    --primary-color: #151b23;
+    --secondary-color: #262c36;
+    --text-color: #dbdbdb;
+    --accent-color: #80a8ff;
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    
+    --highlight-color: #5ecc5e;
+    --error-color: #ff4e4e;
     --weapon-crysta: red;
     --normal-crysta: blue;
     --special-crysta: #7A0B83;
@@ -231,7 +238,9 @@ input[type=checkbox] {
     cursor: pointer;
     width: 1.1em;
     margin-left: 3px;
-    content: url(https://cdn1.iconfinder.com/data/icons/material-set-6/48/543-512.png);
+    fill: var(--text-color);
+    content: url(/media/images/question-mark.svg);
+    /* content: url(https://cdn1.iconfinder.com/data/icons/material-set-6/48/543-512.png); */
 }
 
 .text-center {
