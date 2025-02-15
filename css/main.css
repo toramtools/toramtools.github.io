@@ -1,5 +1,7 @@
 /* Main end: 412x692 viewport */
 
+@import url(font.css);
+
 :root {
     --highlight-color: #38ff81;
     --error-color: #ff4141;
@@ -15,9 +17,11 @@ html {
     font-size: 16px;
     width: 100%;
     height: 100%;
+    font-family: Noto Sans;
 }
 
 body {
+    font-family: inherit;
     min-height: 100%;
     display: flex;
     flex-direction: column;
