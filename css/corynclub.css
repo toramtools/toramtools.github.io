@@ -70,12 +70,6 @@ legend{
     border: none;
 }
 
-label{
-    border-radius: 0.3em;
-    background-color: hsl(0, 0%, 5%);
-}
-
-
 select, input, .small-input, .chrome-select{
     background-color: var(--secondary-color);
     color: var(--text-color);
