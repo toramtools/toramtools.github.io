@@ -7,7 +7,7 @@
     --primary-color: #151b23;
     --secondary-color: #262c36;
     --text-color: #dbdbdb;
-    --accent-color: #80a8ff;
+    --accent-color: #2e70ff;
     --shadow-color: rgba(0, 0, 0, 0.15);
     
     --highlight-color: #5ecc5e;
@@ -20,15 +20,19 @@
     --enhancer-crysta: #444444;
 }
 
+*{
+    font-family: inherit;
+}
+
 html {
     font-size: 16px;
     width: 100%;
     height: 100%;
-    font-family: Noto Sans;
 }
 
 body {
-    font-family: inherit;
+    font-family: Noto Sans;
+    background-color: var(--bg-color);
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -43,9 +47,9 @@ select {
     padding-right: 0.5rem;
 }
 
-a:-webkit-any-link {
+/* a:-webkit-any-link {
     color: blue;
-}
+} */
 
 .header-title {
     font-size: 1rem;
