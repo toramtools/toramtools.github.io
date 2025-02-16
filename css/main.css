@@ -345,7 +345,7 @@ input[type=checkbox] {
     width: 1.1em;
     margin-left: 3px;
     fill: var(--text-color);
-    content: url(/media/images/question-mark.svg);
+    content: url(../media/images/question-mark.svg);
     /* content: url(https://cdn1.iconfinder.com/data/icons/material-set-6/48/543-512.png); */
 }
 
