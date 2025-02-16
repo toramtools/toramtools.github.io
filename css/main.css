@@ -7,7 +7,7 @@
     --primary-color: #151b23;
     --secondary-color: #262c36;
     --text-color: #dbdbdb;
-    --accent-color: #2e70ff;
+    --accent-color: #6c7cb9;
     --shadow-color: rgba(0, 0, 0, 0.15);
     
     --highlight-color: #5ecc5e;
@@ -33,6 +33,7 @@ html {
 body {
     font-family: Noto Sans;
     background-color: var(--bg-color);
+    color: var(--text-color);
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -41,6 +42,107 @@ body {
     width: 100%;
     margin: 0;
     padding: 0;
+}
+
+nav {
+    height: 54px;
+    margin-bottom: 2rem;
+    padding-left: 8px;
+    background-color: var(--primary-color);
+    border-bottom: 1px solid var(--shadow-color);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.links-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+nav a {
+    height: 100%;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.links-container a:hover {
+    background-color: var(--accent-color);
+}
+
+.spacer{
+    padding: 0;
+}
+
+nav .spacer {
+    margin-right: auto;
+}
+
+nav svg {
+    fill: var(--text-color);
+}
+
+.toramtools-logo{
+    height: 1.5rem;
+}
+
+#sidebar-active {
+    display: none;
+}
+
+.open-sidebar-button,
+.close-sidebar-button {
+    display: none;
+}
+
+@media(max-width: 720px) {
+    .links-container {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 10;
+        width: 300px;
+
+        background-color: var(--primary-color);
+        box-shadow: -5px 0 5px var(--shadow-color);
+    }
+
+    nav a {
+        box-sizing: border-box;
+        height: auto;
+        width: 100%;
+        padding: 20px 30px;
+        justify-content: flex-start;
+    }
+
+    .open-sidebar-button,
+    .close-sidebar-button {
+        display: block;
+        padding: 20px;
+    }
+
+    #sidebar-active:checked~.links-container {
+        display: flex;
+    }
+
+    #sidebar-active:checked~#overlay {
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9;
+    }
 }
 
 select {

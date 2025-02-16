@@ -34,9 +34,9 @@
 }
 
 .closeable-button {
-    height: 0.75rem;
-    background: white;
-    padding: 0 2px;
+    height: 1rem;
+    padding: 2px;
+    background: var(--accent-color);
     position: absolute;
     top: calc(2.5px - 1em);
     right: calc(0.35em + 4px);
@@ -68,65 +68,58 @@
 }
 
 /*  Lixeiras edits starts from here */
-body{
-    background-color: var(--bg-color);
-}
-
-.header, .footer{
-    background-color: var(--primary-color);
-    border: none;
-}
-
-.header{
-    border-bottom: 1px solid var(--shadow-color);
-}
 
 .footer{
+    background-color: var(--primary-color);
+    border: none;
     border-top: 1px solid var(--shadow-color);
 }
 
+ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
 li{
-    background-color: var(--primary-color);
-    max-width: 22rem;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    border-radius: 2rem;
+    font-size: 1.15rem;
     font-weight: 500;
-    box-shadow: 0px 1px 1px 1px var(--shadow-color);
-}
-
-a,a:-webkit-any-link{
-    text-decoration: none;
+    text-wrap: nowrap;
+    padding: 0.8rem 1rem;
+    min-width: 20rem;
+    border-radius: 0.5rem;
+    background-color: var(--primary-color);
     color: var(--text-color);
+    box-shadow: 0 1px 2px 1px var(--shadow-color);
+    align-content: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
-li::marker{
-    color: yellowgreen;
-}
+li:hover {
+    transform: scale(1.1);
+    box-shadow:  0 0 2px 2px var(--accent-color);
+  }
 
-@media (max-width: 30rem){
-    li{
-        font-size: 1rem;
-    }
+li a{
+    color: var(--text-color);
+    text-decoration: none;
 }
 
 legend{
-    background-color: var(--secondary-color);
-    padding: 0.5em 1em 0.5em 1em;
+    background-color: var(--primary-color);
+    padding: 0.25rem 0.8rem;
     border-radius: 2em;
-    font-weight: 700;
-    box-shadow: 0px 1px 1px 1px var(--shadow-color);
+    font-weight: 500;
+    box-shadow: 0 0 1px 1px var(--shadow-color);
 }
 
 .closeable-body{
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     color: var(--text-color);
-    box-shadow: 0px 0px 1px 1px var(--shadow-color);
+    box-shadow: 0 0 1px 1px var(--shadow-color);
     border: none;
-}
-
-.closeable-button {
-    background-color: #ff4e4e;
-    border-radius: 20rem;
-    height: 1rem;
-    width: 1rem;
 }
