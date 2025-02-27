@@ -94,23 +94,23 @@
 
 #mq-group, .section {
     background-color: var(--primary-color);
-    box-shadow: 0px 1px 4px 1px var(--shadow-color);
-    border: none;
+    border: 1px solid var(--accent-color);
 }
 
 legend{
     background-color: var(--secondary-color);
     padding: 0.25rem 0.8rem;
-    border-radius: 2em;
+    border: 1px solid var(--accent-color);
+    border-radius: 2rem;
     font-weight: 500;
 }
 
 select, input, .grid-3 input{
     background-color: var(--secondary-color);
     color: var(--text-color);
-    padding: 0.3em;
-    border: 1px solid var(--shadow-color);
-    border-radius: 0.6em;
+    padding: 0.3rem;
+    border: 1px solid hsl(0, 0%, 30%);
+    border-radius: 0.6rem;
 }
 
 input:focus, select:focus, .grid-3 input:focus{
@@ -118,7 +118,8 @@ input:focus, select:focus, .grid-3 input:focus{
 }
 
 select{
-    padding: inherit 1em;
+padding-left: 1rem;
+border-radius: 6px;
 }
 
 input{
