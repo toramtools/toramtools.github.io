@@ -142,7 +142,8 @@ const mq_data = {
     "Chaotic Situation": 168900000,
     "The Bitter Truth": 173800000,
     "The Uncouth Rana Prince": 178800000,
-    "Mutant Coenubia Village": 183900000
+    "Mutant Coenubia Village": 183900000,
+    "Fierce Battle with Mutant Lixis": 189000000
  };
 
 
