@@ -118,8 +118,8 @@ input:focus, select:focus, .grid-3 input:focus{
 }
 
 select{
-padding-left: 1rem;
 border-radius: 6px;
+text-align: center;
 }
 
 input{
