@@ -108,7 +108,7 @@ legend{
 select, input, .grid-3 input{
     background-color: var(--secondary-color);
     color: var(--text-color);
-    padding: 0.3rem;
+    padding: 0.3rem 0;
     border: 1px solid hsl(0, 0%, 30%);
     border-radius: 0.6rem;
 }
@@ -120,6 +120,7 @@ input:focus, select:focus, .grid-3 input:focus{
 select{
 border-radius: 6px;
 text-align: center;
+max-width: 90dvw;
 }
 
 input{
@@ -143,4 +144,10 @@ input{
 
 #mq-stopAt{
     color: #5ecc5e;
+}
+
+@media (max-width:320px) {
+    html{
+        font-size: 12px;
+    }   
 }
