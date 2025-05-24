@@ -146,6 +146,7 @@ const mq_data = {
     "Fierce Battle with Mutant Lixis": 189000000,
     "Chapter 15":"",
     "Ark Crisis": 210500000,
+    "Coastal Clash": 216300000,
  };
 
 
