@@ -64,11 +64,11 @@
        xml:space="preserve"
        transform="matrix(0.22501573,0,0,0.24255509,-30.876984,-76.738573)"
        id="text1"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.3333px;line-height:0;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect1);fill:url(#linearGradient6);fill-opacity:1;stroke:url(#linearGradient4);stroke-width:2.56826;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;paint-order:stroke markers fill"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.3333px;line-height:0;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect1);fill:url(#linearGradient6);fill-opacity:1;stroke:url(#linearGradient4);stroke-width:2.56826;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;paint-order:stroke markers fill"><tspan
          x="138.9043"
          y="334.3889"
          id="tspan3"><tspan
-           style="font-weight:800;line-height:1.2;-inkscape-font-specification:'Open Sans, Ultra-Bold'"
+           style="font-weight:800;line-height:1.2;-inkscape-font-specification:'Noto Sans, Ultra-Bold'"
            id="tspan2">Toram Tools</tspan></tspan></text>
   </g>
 </svg>
