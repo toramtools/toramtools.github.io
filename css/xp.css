@@ -146,8 +146,11 @@ input{
     color: #5ecc5e;
 }
 
-@media (max-width:320px) {
-    html{
-        font-size: 12px;
+@media (max-width:400px) {
+    body{
+        font-size: 14px;
+    }
+    .floating-img{
+        display: none;
     }   
 }
