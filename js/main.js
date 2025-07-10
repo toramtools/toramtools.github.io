@@ -2,7 +2,7 @@
 
 const LV_CAP = 305;
 
-const HIGHEST_PROF = 240;
+const HIGHEST_PROF = 280;
 const HIGHEST_ARM_POT = 54;
 const HIGHEST_WPN_POT = 55;
 const ARMOR_DIFFICULTY = 245;
