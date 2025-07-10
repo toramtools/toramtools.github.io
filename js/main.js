@@ -1,6 +1,6 @@
 "use strict"
 
-const LV_CAP = 300;
+const LV_CAP = 305;
 
 const HIGHEST_PROF = 240;
 const HIGHEST_ARM_POT = 54;
