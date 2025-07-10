@@ -8,7 +8,7 @@ const HIGHEST_WPN_POT = 55;
 const ARMOR_DIFFICULTY = 245;
 const WEAPON_DIFFICULTY = 260;
 const PRIMARY_STAT = 510;
-const SECONDARY_STAT = 252;
+const SECONDARY_STAT = 277;
 
 const range = function (begin, end, step=1) {
     let list = [];
