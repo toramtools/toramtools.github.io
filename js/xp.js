@@ -147,6 +147,7 @@ const mq_data = {
     "Chapter 15":"",
     "Ark Crisis": 210500000,
     "Coastal Clash": 216300000,
+    "Unda's Rescue Operation": 222200000,
  };
 
 
