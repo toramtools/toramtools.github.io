@@ -148,6 +148,9 @@ const mq_data = {
     "Ark Crisis": 210500000,
     "Coastal Clash": 216300000,
     "Unda's Rescue Operation": 222200000,
+    "Unda's Return": 228100000,
+    "The Young Man and The Old Tree": 234000000,
+    "The Village of Lixis": 240000000,
  };
 
 
