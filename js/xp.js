@@ -7,7 +7,8 @@ const quest_data = {
     "Free from Infesters! (2k f/k)": 15000000,
     "Defeat Metal Stinger (x100)": 3240000,
     "Minotaur Skin (Stack)": 999900,
-    "Cracked Platinum Armguard (Stack)": 677000
+    "Cracked Platinum Armguard (Stack)": 677000,
+    "The Secret of the Mask (Stack)": 1200000
 };
 
 const mq_data = {
@@ -151,6 +152,11 @@ const mq_data = {
     "Unda's Return": 228100000,
     "The Young Man and The Old Tree": 234000000,
     "The Village of Lixis": 240000000,
+    "Visions of a Distant Past": 246000000,
+    "As the Roots Come to Light": 252100000,
+    "Chapter 16":"",
+    "Freedos's Thoughts": 141700000,
+    "Chaos in the Valley": 293700000,
  };
 
 
