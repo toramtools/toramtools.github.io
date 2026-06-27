@@ -1,14 +1,14 @@
 "use strict"
 
-const LV_CAP = 315;
+const LV_CAP = 325;
 
-const HIGHEST_PROF = 280;
+const HIGHEST_PROF = 305;
 const HIGHEST_ARM_POT = 54;
 const HIGHEST_WPN_POT = 55;
 const ARMOR_DIFFICULTY = 265;
 const WEAPON_DIFFICULTY = 300;
 const PRIMARY_STAT = 510;
-const SECONDARY_STAT = 297;
+const SECONDARY_STAT = 327;
 
 const range = function (begin, end, step=1) {
     let list = [];
